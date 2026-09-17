@@ -1,0 +1,1 @@
+# bpnm-gen-hsbc
