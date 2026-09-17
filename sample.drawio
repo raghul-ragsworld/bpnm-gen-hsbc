@@ -1,0 +1,122 @@
+
+
+
+$base='C:\Users\raghu\OneDrive\Desktop\Hackathon'
+@'
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="Definitions_D1" targetNamespace="http://example.com/bpmn">
+  <bpmn:process id="Process_D1" name="Diagram 1 - Process and Technology" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1" name="Start"/>
+    <bpmn:userTask id="Task_AOB_001" name="Submit onboarding request"/>
+    <bpmn:userTask id="Task_AOB_002" name="Triage and classify"/>
+    <bpmn:exclusiveGateway id="Task_AOB_003" name="Completeness gateway"/>
+    <bpmn:userTask id="Task_AOB_004" name="Request clarification (fail path)"/>
+    <bpmn:userTask id="Task_AOB_005" name="Business approval"/>
+    <bpmn:eventBasedGateway id="Task_AOB_006" name="Approval event gateway"/>
+    <bpmn:serviceTask id="Task_AOB_007" name="Create onboarding draft"/>
+    <bpmn:serviceTask id="Task_AOB_008" name="Package for ingestion"/>
+    <bpmn:serviceTask id="Task_AOB_009" name="Ingest to landing"/>
+    <bpmn:serviceTask id="Task_AOB_010" name="Technical error handling"/>
+    <bpmn:parallelGateway id="Task_AOB_011" name="Parallel validations start"/>
+    <bpmn:scriptTask id="Task_AOB_012" name="Execute DQ ruleset"/>
+    <bpmn:serviceTask id="Task_AOB_013" name="Reference enrichment"/>
+    <bpmn:scriptTask id="Task_AOB_014" name="Duplicate detect &amp; merge decision"/>
+    <bpmn:exclusiveGateway id="Task_AOB_015" name="Validation join"/>
+    <bpmn:exclusiveGateway id="Task_AOB_016" name="Conditional SPECIALIST checks"/>
+    <bpmn:userTask id="Task_AOB_017" name="Process SPECIALIST review (conditional)"/>
+    <bpmn:exclusiveGateway id="Task_AOB_018" name="DQ pass gateway"/>
+    <bpmn:userTask id="Task_AOB_019" name="Remediation loop"/>
+    <bpmn:userTask id="Task_AOB_020" name="Maker-checker (4-eye)"/>
+    <bpmn:serviceTask id="Task_AOB_021" name="Publish to onboarding master"/>
+    <bpmn:serviceTask id="Task_AOB_022" name="Write controls &amp; DQ metrics"/>
+    <bpmn:serviceTask id="Task_AOB_023" name="Distribute to Downstream Systems (transaction)"/>
+    <bpmn:serviceTask id="Task_AOB_024" name="Publish to DDT"/>
+    <bpmn:serviceTask id="Task_AOB_025" name="Publish to Portfolio Analytics Platform"/>
+    <bpmn:serviceTask id="Task_AOB_026" name="Publish to Client Reporting Hub topic"/>
+    <bpmn:serviceTask id="Task_AOB_027" name="Record publication events"/>
+    <bpmn:serviceTask id="Task_AOB_028" name="Update DQ dashboard"/>
+    <bpmn:userTask id="Task_AOB_029" name="Notify completion"/>
+    <bpmn:endEvent id="EndEvent_1" name="End"/>
+  </bpmn:process>
+</bpmn:definitions>
+'@ | Set-Content "$base\diagram1_process_technology.bpmn" -Encoding UTF8
+
+@'
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="Definitions_D2" targetNamespace="http://example.com/bpmn">
+  <bpmn:process id="Process_D2" name="Diagram 2 - Process and People" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1" name="Start"/>
+    <bpmn:userTask id="Task_AOB_001" name="Submit onboarding request"/>
+    <bpmn:userTask id="Task_AOB_002" name="Triage and classify"/>
+    <bpmn:exclusiveGateway id="Task_AOB_003" name="Completeness gateway"/>
+    <bpmn:userTask id="Task_AOB_004" name="Request clarification (fail path)"/>
+    <bpmn:userTask id="Task_AOB_005" name="Business approval"/>
+    <bpmn:eventBasedGateway id="Task_AOB_006" name="Approval event gateway"/>
+    <bpmn:manualTask id="Task_AOB_007" name="Create onboarding draft"/>
+    <bpmn:manualTask id="Task_AOB_008" name="Package for ingestion"/>
+    <bpmn:manualTask id="Task_AOB_009" name="Ingest to landing"/>
+    <bpmn:manualTask id="Task_AOB_010" name="Technical error handling"/>
+    <bpmn:parallelGateway id="Task_AOB_011" name="Parallel validations start"/>
+    <bpmn:manualTask id="Task_AOB_012" name="Execute DQ ruleset"/>
+    <bpmn:manualTask id="Task_AOB_013" name="Reference enrichment"/>
+    <bpmn:manualTask id="Task_AOB_014" name="Duplicate detect &amp; merge decision"/>
+    <bpmn:exclusiveGateway id="Task_AOB_015" name="Validation join"/>
+    <bpmn:exclusiveGateway id="Task_AOB_016" name="Conditional SPECIALIST checks"/>
+    <bpmn:userTask id="Task_AOB_017" name="Process SPECIALIST review (conditional)"/>
+    <bpmn:exclusiveGateway id="Task_AOB_018" name="DQ pass gateway"/>
+    <bpmn:userTask id="Task_AOB_019" name="Remediation loop"/>
+    <bpmn:userTask id="Task_AOB_020" name="Maker-checker (4-eye)"/>
+    <bpmn:manualTask id="Task_AOB_021" name="Publish to onboarding master"/>
+    <bpmn:manualTask id="Task_AOB_022" name="Write controls &amp; DQ metrics"/>
+    <bpmn:manualTask id="Task_AOB_023" name="Distribute to Downstream Systems (transaction)"/>
+    <bpmn:manualTask id="Task_AOB_024" name="Publish to DDT"/>
+    <bpmn:manualTask id="Task_AOB_025" name="Publish to Portfolio Analytics Platform"/>
+    <bpmn:manualTask id="Task_AOB_026" name="Publish to Client Reporting Hub topic"/>
+    <bpmn:manualTask id="Task_AOB_027" name="Record publication events"/>
+    <bpmn:manualTask id="Task_AOB_028" name="Update DQ dashboard"/>
+    <bpmn:userTask id="Task_AOB_029" name="Notify completion"/>
+    <bpmn:endEvent id="EndEvent_1" name="End"/>
+  </bpmn:process>
+</bpmn:definitions>
+'@ | Set-Content "$base\diagram2_process_people.bpmn" -Encoding UTF8
+
+@'
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="Definitions_D3" targetNamespace="http://example.com/bpmn">
+  <bpmn:process id="Process_D3" name="Diagram 3 - People + Process + Technology" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1" name="Start"/>
+    <bpmn:userTask id="Task_AOB_001" name="Submit onboarding request"/>
+    <bpmn:userTask id="Task_AOB_002" name="Triage and classify"/>
+    <bpmn:exclusiveGateway id="Task_AOB_003" name="Completeness gateway"/>
+    <bpmn:userTask id="Task_AOB_004" name="Request clarification (fail path)"/>
+    <bpmn:userTask id="Task_AOB_005" name="Business approval"/>
+    <bpmn:eventBasedGateway id="Task_AOB_006" name="Approval event gateway"/>
+    <bpmn:serviceTask id="Task_AOB_007" name="Create onboarding draft"/>
+    <bpmn:serviceTask id="Task_AOB_008" name="Package for ingestion"/>
+    <bpmn:serviceTask id="Task_AOB_009" name="Ingest to landing"/>
+    <bpmn:serviceTask id="Task_AOB_010" name="Technical error handling"/>
+    <bpmn:parallelGateway id="Task_AOB_011" name="Parallel validations start"/>
+    <bpmn:scriptTask id="Task_AOB_012" name="Execute DQ ruleset"/>
+    <bpmn:serviceTask id="Task_AOB_013" name="Reference enrichment"/>
+    <bpmn:scriptTask id="Task_AOB_014" name="Duplicate detect &amp; merge decision"/>
+    <bpmn:exclusiveGateway id="Task_AOB_015" name="Validation join"/>
+    <bpmn:exclusiveGateway id="Task_AOB_016" name="Conditional SPECIALIST checks"/>
+    <bpmn:userTask id="Task_AOB_017" name="Process SPECIALIST review (conditional)"/>
+    <bpmn:exclusiveGateway id="Task_AOB_018" name="DQ pass gateway"/>
+    <bpmn:userTask id="Task_AOB_019" name="Remediation loop"/>
+    <bpmn:userTask id="Task_AOB_020" name="Maker-checker (4-eye)"/>
+    <bpmn:serviceTask id="Task_AOB_021" name="Publish to onboarding master"/>
+    <bpmn:serviceTask id="Task_AOB_022" name="Write controls &amp; DQ metrics"/>
+    <bpmn:serviceTask id="Task_AOB_023" name="Distribute to Downstream Systems (transaction)"/>
+    <bpmn:serviceTask id="Task_AOB_024" name="Publish to DDT"/>
+    <bpmn:serviceTask id="Task_AOB_025" name="Publish to Portfolio Analytics Platform"/>
+    <bpmn:serviceTask id="Task_AOB_026" name="Publish to Client Reporting Hub topic"/>
+    <bpmn:serviceTask id="Task_AOB_027" name="Record publication events"/>
+    <bpmn:serviceTask id="Task_AOB_028" name="Update DQ dashboard"/>
+    <bpmn:userTask id="Task_AOB_029" name="Notify completion"/>
+    <bpmn:endEvent id="EndEvent_1" name="End"/>
+  </bpmn:process>
+</bpmn:definitions>
+'@ | Set-Content "$base\diagram3_people_process_technology.bpmn" -Encoding UTF8
+
+Get-ChildItem "$base\diagram*.bpmn" | Select-Object Name,Length,LastWriteTime

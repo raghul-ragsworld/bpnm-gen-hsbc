@@ -1,0 +1,3062 @@
+{
+  "workflow": "WF-06",
+  "process_id": "AOB-PR-1003-V02",
+  "name": "Corporate KYC Remediation - Event Driven",
+  "version": "CR-2026-09-17.2",
+  "generated_at": "2026-09-17T17:17:12.456Z",
+  "input_sha256": "0043d26885a931820d5bd2092c71401d63673b9936ed909c2d1dee74983284da",
+  "dependencies_sha256": "b2dd389c366cb8bd3de9a3eb46998aed09c6d76e74f62d3a953150e20e9e6ca3",
+  "validator": {
+    "node": "v22.22.0",
+    "browser": "153.0.4234.32",
+    "platform": "win32",
+    "schema_engine": "System.Xml.Schema via Windows PowerShell",
+    "packages": {
+      "playwright": "1.63.0",
+      "bpmn-js": "18.28.0",
+      "bpmn-moddle": "10.2.0"
+    }
+  },
+  "schemas": [
+    {
+      "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\schema\\BPMN20.xsd",
+      "url": "https://www.omg.org/spec/BPMN/20100501/BPMN20.xsd",
+      "sha256": "a07c159cb0594573dd7c97b1370dd116112378f377e43c89a8bf512ac5030705"
+    },
+    {
+      "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\schema\\BPMNDI.xsd",
+      "url": "https://www.omg.org/spec/BPMN/20100501/BPMNDI.xsd",
+      "sha256": "f0dff1cd559d1514d8ebfc8c646f58402bcaced27ec22e2aa6456c2dcc80b038"
+    },
+    {
+      "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\schema\\Semantic.xsd",
+      "url": "https://www.omg.org/spec/BPMN/20100501/Semantic.xsd",
+      "sha256": "c4318842f7d2bbc262d7954c9452c501db16f0868eac0b8732ec5d7fb384d9a7"
+    },
+    {
+      "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\schema\\DI.xsd",
+      "url": "https://www.omg.org/spec/BPMN/20100501/DI.xsd",
+      "sha256": "d5754bf7a91e647d6f2b6121115032238d6871b12d7ce64e620a8452b7cf4c01"
+    },
+    {
+      "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\schema\\DC.xsd",
+      "url": "https://www.omg.org/spec/BPMN/20100501/DC.xsd",
+      "sha256": "a2f90e5ad9bb48c6915e4e034b4e27ac838264a1d4f27bfc70dbdfc69351312d"
+    }
+  ],
+  "quality": {
+    "process_id": "AOB-PR-1003-V02",
+    "input_sha256": "0043d26885a931820d5bd2092c71401d63673b9936ed909c2d1dee74983284da",
+    "source_sha256": "99d24e7d2a452e1a7817cd10c1aa7f62636f66569f12e8b6a8b574e5762a8685",
+    "source_score": 64.31,
+    "components": [
+      {
+        "component": "identity",
+        "weight": 20,
+        "passed": 58,
+        "total": 58,
+        "score": 100
+      },
+      {
+        "component": "routing",
+        "weight": 25,
+        "passed": 0,
+        "total": 4,
+        "score": 0
+      },
+      {
+        "component": "people",
+        "weight": 25,
+        "passed": 143,
+        "total": 145,
+        "score": 98.62068965517241
+      },
+      {
+        "component": "technology",
+        "weight": 20,
+        "passed": 14,
+        "total": 29,
+        "score": 48.275862068965516
+      },
+      {
+        "component": "traceability",
+        "weight": 10,
+        "passed": 139,
+        "total": 139,
+        "score": 100
+      }
+    ],
+    "checks": [
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S001:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S001:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S001:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S001:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S001:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S001:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S001:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S001:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S002:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S002:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S002:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S002:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S002:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S002:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S002:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S002:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S003:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S003:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S003:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S003:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S003:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S003:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S003:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S003:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S004:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S004:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S004:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S004:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S004:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S004:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S004:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S004:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S005:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S005:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S005:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S005:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S005:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S005:I",
+        "passed": false,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S005:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S005:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S006:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S006:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S006:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S006:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S006:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S006:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S006:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S006:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S007:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S007:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S007:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S007:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S007:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S007:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S007:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S007:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S008:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S008:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S008:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S008:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S008:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S008:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S008:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S008:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S009:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S009:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S009:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S009:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S009:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S009:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S009:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S009:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S010:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S010:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S010:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S010:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S010:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S010:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S010:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S010:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S011:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S011:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S011:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S011:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S011:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S011:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S011:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S011:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S012:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S012:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S012:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S012:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S012:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S012:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S012:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S012:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S013:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S013:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S013:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S013:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S013:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S013:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S013:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S013:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S014:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S014:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S014:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S014:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S014:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S014:I",
+        "passed": false,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S014:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S014:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S015:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S015:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S015:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S015:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S015:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S015:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S015:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S015:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S016:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S016:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S016:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S016:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S016:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S016:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S016:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S016:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S017:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S017:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S017:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S017:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S017:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S017:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S017:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S017:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S018:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S018:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S018:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S018:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S018:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S018:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S018:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S018:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S019:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S019:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S019:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S019:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S019:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S019:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S019:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S019:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S020:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S020:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S020:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S020:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S020:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S020:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S020:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S020:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S021:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S021:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S021:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S021:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S021:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S021:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S021:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S021:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S022:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S022:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S022:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S022:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S022:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S022:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S022:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S022:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S023:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S023:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S023:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S023:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S023:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S023:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S023:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S023:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S024:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S024:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S024:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S024:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S024:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S024:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S024:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S024:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S025:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S025:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S025:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S025:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S025:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S025:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S025:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S025:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S026:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S026:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S026:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S026:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S026:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S026:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S026:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S026:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S027:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S027:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S027:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S027:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S027:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S027:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S027:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S027:application",
+        "passed": false,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S028:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S028:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S028:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S028:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S028:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S028:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S028:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S028:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S029:identity",
+        "passed": true,
+        "reason": "Unique step ID and valid process parent"
+      },
+      {
+        "component": "identity",
+        "id": "AOB-PR-1003-V02-S029:action",
+        "passed": true,
+        "reason": "Action and full description supplied"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S029:R",
+        "passed": true,
+        "reason": "Every supplied RACI variant has R; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S029:A",
+        "passed": true,
+        "reason": "Every supplied RACI variant has A; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S029:C",
+        "passed": true,
+        "reason": "Every supplied RACI variant has C; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S029:I",
+        "passed": true,
+        "reason": "Every supplied RACI variant has I; missing or unsupported N/A fails"
+      },
+      {
+        "component": "people",
+        "id": "AOB-PR-1003-V02-S029:consistency",
+        "passed": true,
+        "reason": "Conflicting R/A variants require review"
+      },
+      {
+        "component": "technology",
+        "id": "AOB-PR-1003-V02-S029:application",
+        "passed": true,
+        "reason": "Explicit application detail; absence is not evidence of a manual step"
+      },
+      {
+        "component": "routing",
+        "id": "WF-06:start_end",
+        "passed": false,
+        "reason": "Source workbook has no explicit routing table; revised requirements are Proposed, not source facts"
+      },
+      {
+        "component": "routing",
+        "id": "WF-06:conditional_routes",
+        "passed": false,
+        "reason": "Source workbook has no explicit routing table; revised requirements are Proposed, not source facts"
+      },
+      {
+        "component": "routing",
+        "id": "WF-06:bounded_corrections",
+        "passed": false,
+        "reason": "Source workbook has no explicit routing table; revised requirements are Proposed, not source facts"
+      },
+      {
+        "component": "routing",
+        "id": "WF-06:joins_scopes",
+        "passed": false,
+        "reason": "Source workbook has no explicit routing table; revised requirements are Proposed, not source facts"
+      },
+      {
+        "component": "traceability",
+        "id": "WF-06:snapshot",
+        "passed": true,
+        "reason": "Source workbook fingerprint supplied"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S001-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S001-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S001-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S001-04",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S002-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S002-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S003-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S003-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S003-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S004-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S005-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S006-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S006-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S006-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S007-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S007-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S007-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S008-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S008-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S009-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S009-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S010-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S010-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S011-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S012-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S012-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S012-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S013-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S013-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S013-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S014-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S014-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S015-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S015-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S016-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S016-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S016-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S017-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S017-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S017-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S018-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S019-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S019-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S020-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S020-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S021-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S021-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S021-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S022-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S022-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S023-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S023-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S023-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S024-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S025-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S026-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S027-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S027-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S028-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S028-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S029-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "details:PSD-AOB-PR-1003-V02-S029-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-04",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-05",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-06",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-07",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-08",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-09",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-10",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-11",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-12",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-13",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-14",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S001-15",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S002-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S002-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S002-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S004-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S006-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S006-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S007-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S007-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S007-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S007-04",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S007-05",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S007-06",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S008-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S008-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S008-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S009-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S009-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S010-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S010-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S010-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S012-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S012-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S012-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S012-04",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S012-05",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S012-06",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S013-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S013-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S013-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S013-04",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S014-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S015-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S015-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S015-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S015-04",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S015-05",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S016-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S016-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S017-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S017-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S018-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S018-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S018-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S019-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S019-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S020-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S020-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S020-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S021-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S021-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S021-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S022-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S022-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S022-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S023-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S023-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S023-03",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S027-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S028-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S028-02",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      },
+      {
+        "component": "traceability",
+        "id": "bde:PSDATA-AOB-PR-1003-V02-S029-01",
+        "passed": true,
+        "reason": "Unique mapping identifier and existing step reference"
+      }
+    ],
+    "path": "repair",
+    "critical_gaps": [
+      "Source routing is not explicitly specified",
+      "Revised activities have no validated source equivalence; source applications and RACI cannot be transplanted",
+      "Source RACI incomplete or conflicting"
+    ],
+    "source_counts": {
+      "steps": 29,
+      "details": 62,
+      "bde_mappings": 76
+    },
+    "direct_coverage": {
+      "passed": 0,
+      "total": 29
+    },
+    "proposed_activities": 26,
+    "gates": {
+      "people": {
+        "status": "PROPOSED",
+        "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+      },
+      "technology": {
+        "status": "BLOCKED",
+        "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+      },
+      "combined": {
+        "status": "BLOCKED",
+        "reason": "Technology mapping and independent perspective validation have not passed"
+      }
+    }
+  },
+  "source_comparison": {
+    "status": "PASS",
+    "basis": "Exact snapshot equality against data/normalized-processes.json; not independent workbook re-extraction"
+  },
+  "files": [
+    {
+      "view": "overview",
+      "artifact": {
+        "path": "overview.bpmn",
+        "sha256": "7c7fd0f78e8c51387203e344d93d48b6319f14c1ac0aaaffb463642a1ba0ac53"
+      },
+      "roundtrip": {
+        "path": "overview.roundtrip.bpmn",
+        "sha256": "70fd3117daa0e8d032f58336d5506e99698764f3d1d8d1fc784a3987a3f37635"
+      },
+      "warnings": [],
+      "reachability": {
+        "passed": 17,
+        "total": 17,
+        "status": "PASS",
+        "scopes": [
+          {
+            "scope": "WF-06_process",
+            "passed": 17,
+            "total": 17,
+            "status": "PASS",
+            "failures": [],
+            "invalid_flows": []
+          }
+        ],
+        "method": "Scope-local forward/reverse graph traversal; boundary events reachable from host. Not token simulation."
+      },
+      "retained": {
+        "steps": {
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        "details": {
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        "bde_mappings": {
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        }
+      },
+      "fidelity": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "basis": "Exact original evidence snapshot preserved in process documentation; does not establish revised-activity equivalence"
+      },
+      "coverage": {
+        "passed": null,
+        "total": null,
+        "status": "N/A"
+      },
+      "topology_sha256": "ddb79c581991124af147ae15281d6440092ff794cc1b15d0825df4e8312aa085",
+      "viewer": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "warnings": [],
+        "nonblank": true,
+        "rendered_elements": 59
+      },
+      "layout": {
+        "status": "NOT RUN",
+        "passed": null,
+        "total": null,
+        "reason": "Nonblank rendering tested; comprehensive connector and label collision review not certified"
+      },
+      "schema": {
+        "passed": 2,
+        "total": 2,
+        "status": "PASS",
+        "results": [
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\overview.bpmn",
+            "status": "PASS",
+            "errors": []
+          },
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\overview.roundtrip.bpmn",
+            "status": "PASS",
+            "errors": []
+          }
+        ]
+      }
+    },
+    {
+      "view": "diagram1_people",
+      "artifact": {
+        "path": "diagram1_people.bpmn",
+        "sha256": "5d9e9110fda70f68d891499654f0d78ff5b6ba71f5efb1287f56fe035f4596c0"
+      },
+      "roundtrip": {
+        "path": "diagram1_people.roundtrip.bpmn",
+        "sha256": "91003e85c9cc2db79c254703ee3ac8046426589631f829a307a9067d58818542"
+      },
+      "warnings": [],
+      "reachability": {
+        "passed": 80,
+        "total": 80,
+        "status": "PASS",
+        "scopes": [
+          {
+            "scope": "WF-06_process",
+            "passed": 80,
+            "total": 80,
+            "status": "PASS",
+            "failures": [],
+            "invalid_flows": []
+          }
+        ],
+        "method": "Scope-local forward/reverse graph traversal; boundary events reachable from host. Not token simulation."
+      },
+      "retained": {
+        "steps": {
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        "details": {
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        "bde_mappings": {
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        }
+      },
+      "fidelity": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "basis": "Exact original evidence snapshot preserved in process documentation; does not establish revised-activity equivalence"
+      },
+      "coverage": {
+        "passed": 26,
+        "total": 26,
+        "status": "PASS"
+      },
+      "topology_sha256": "2e59ce6e411253279a1f72e47f81454b1f39c41dd86419823d52daeb76ba08d9",
+      "viewer": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "warnings": [],
+        "nonblank": true,
+        "rendered_elements": 371
+      },
+      "layout": {
+        "status": "NOT RUN",
+        "passed": null,
+        "total": null,
+        "reason": "Nonblank rendering tested; comprehensive connector and label collision review not certified"
+      },
+      "schema": {
+        "passed": 2,
+        "total": 2,
+        "status": "PASS",
+        "results": [
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people.bpmn",
+            "status": "PASS",
+            "errors": []
+          },
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people.roundtrip.bpmn",
+            "status": "PASS",
+            "errors": []
+          }
+        ]
+      }
+    },
+    {
+      "view": "diagram1_people__WF-06_phase_1",
+      "artifact": {
+        "path": "diagram1_people__WF-06_phase_1.bpmn",
+        "sha256": "747960489e16e198745f5037d77dd4dd5fad579ee51765cfad36256805157851"
+      },
+      "roundtrip": {
+        "path": "diagram1_people__WF-06_phase_1.roundtrip.bpmn",
+        "sha256": "ad680a01f4df4ad8631bad108c9e44f35d829d705e1f0e38aa54b89f98225ef9"
+      },
+      "warnings": [],
+      "reachability": {
+        "passed": 80,
+        "total": 80,
+        "status": "PASS",
+        "scopes": [
+          {
+            "scope": "WF-06_process",
+            "passed": 80,
+            "total": 80,
+            "status": "PASS",
+            "failures": [],
+            "invalid_flows": []
+          }
+        ],
+        "method": "Scope-local forward/reverse graph traversal; boundary events reachable from host. Not token simulation."
+      },
+      "retained": {
+        "steps": {
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        "details": {
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        "bde_mappings": {
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        }
+      },
+      "fidelity": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "basis": "Exact original evidence snapshot preserved in process documentation; does not establish revised-activity equivalence"
+      },
+      "coverage": {
+        "passed": 26,
+        "total": 26,
+        "status": "PASS"
+      },
+      "topology_sha256": "2e59ce6e411253279a1f72e47f81454b1f39c41dd86419823d52daeb76ba08d9",
+      "viewer": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "warnings": [],
+        "nonblank": true,
+        "rendered_elements": 73
+      },
+      "layout": {
+        "status": "NOT RUN",
+        "passed": null,
+        "total": null,
+        "reason": "Nonblank rendering tested; comprehensive connector and label collision review not certified"
+      },
+      "schema": {
+        "passed": 2,
+        "total": 2,
+        "status": "PASS",
+        "results": [
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_1.bpmn",
+            "status": "PASS",
+            "errors": []
+          },
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_1.roundtrip.bpmn",
+            "status": "PASS",
+            "errors": []
+          }
+        ]
+      }
+    },
+    {
+      "view": "diagram1_people__WF-06_phase_2",
+      "artifact": {
+        "path": "diagram1_people__WF-06_phase_2.bpmn",
+        "sha256": "0d802278c5553857566053d256daff6e3b75a433a1e7b2a50942e4d674f7351f"
+      },
+      "roundtrip": {
+        "path": "diagram1_people__WF-06_phase_2.roundtrip.bpmn",
+        "sha256": "571ba2cbd206bbeb6bde94860aa17c2214ae27c88551e72dada5b7f3d7c4df93"
+      },
+      "warnings": [],
+      "reachability": {
+        "passed": 80,
+        "total": 80,
+        "status": "PASS",
+        "scopes": [
+          {
+            "scope": "WF-06_process",
+            "passed": 80,
+            "total": 80,
+            "status": "PASS",
+            "failures": [],
+            "invalid_flows": []
+          }
+        ],
+        "method": "Scope-local forward/reverse graph traversal; boundary events reachable from host. Not token simulation."
+      },
+      "retained": {
+        "steps": {
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        "details": {
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        "bde_mappings": {
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        }
+      },
+      "fidelity": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "basis": "Exact original evidence snapshot preserved in process documentation; does not establish revised-activity equivalence"
+      },
+      "coverage": {
+        "passed": 26,
+        "total": 26,
+        "status": "PASS"
+      },
+      "topology_sha256": "2e59ce6e411253279a1f72e47f81454b1f39c41dd86419823d52daeb76ba08d9",
+      "viewer": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "warnings": [],
+        "nonblank": true,
+        "rendered_elements": 60
+      },
+      "layout": {
+        "status": "NOT RUN",
+        "passed": null,
+        "total": null,
+        "reason": "Nonblank rendering tested; comprehensive connector and label collision review not certified"
+      },
+      "schema": {
+        "passed": 2,
+        "total": 2,
+        "status": "PASS",
+        "results": [
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_2.bpmn",
+            "status": "PASS",
+            "errors": []
+          },
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_2.roundtrip.bpmn",
+            "status": "PASS",
+            "errors": []
+          }
+        ]
+      }
+    },
+    {
+      "view": "diagram1_people__WF-06_phase_3",
+      "artifact": {
+        "path": "diagram1_people__WF-06_phase_3.bpmn",
+        "sha256": "25c77bc493898163afc6dc2e83c0627bf8114b3a8a59fa8834c1c2878168e3ec"
+      },
+      "roundtrip": {
+        "path": "diagram1_people__WF-06_phase_3.roundtrip.bpmn",
+        "sha256": "dfc2041e12c048c69b5d05f6420d8b6b3f149f89f70707d1461e8b42d87610f3"
+      },
+      "warnings": [],
+      "reachability": {
+        "passed": 80,
+        "total": 80,
+        "status": "PASS",
+        "scopes": [
+          {
+            "scope": "WF-06_process",
+            "passed": 80,
+            "total": 80,
+            "status": "PASS",
+            "failures": [],
+            "invalid_flows": []
+          }
+        ],
+        "method": "Scope-local forward/reverse graph traversal; boundary events reachable from host. Not token simulation."
+      },
+      "retained": {
+        "steps": {
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        "details": {
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        "bde_mappings": {
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        }
+      },
+      "fidelity": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "basis": "Exact original evidence snapshot preserved in process documentation; does not establish revised-activity equivalence"
+      },
+      "coverage": {
+        "passed": 26,
+        "total": 26,
+        "status": "PASS"
+      },
+      "topology_sha256": "2e59ce6e411253279a1f72e47f81454b1f39c41dd86419823d52daeb76ba08d9",
+      "viewer": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "warnings": [],
+        "nonblank": true,
+        "rendered_elements": 144
+      },
+      "layout": {
+        "status": "NOT RUN",
+        "passed": null,
+        "total": null,
+        "reason": "Nonblank rendering tested; comprehensive connector and label collision review not certified"
+      },
+      "schema": {
+        "passed": 2,
+        "total": 2,
+        "status": "PASS",
+        "results": [
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_3.bpmn",
+            "status": "PASS",
+            "errors": []
+          },
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_3.roundtrip.bpmn",
+            "status": "PASS",
+            "errors": []
+          }
+        ]
+      }
+    },
+    {
+      "view": "diagram1_people__WF-06_phase_4",
+      "artifact": {
+        "path": "diagram1_people__WF-06_phase_4.bpmn",
+        "sha256": "026cb3e40f6c2f1617d0e145060758ecdb80768d6330bbc05b49e80152886585"
+      },
+      "roundtrip": {
+        "path": "diagram1_people__WF-06_phase_4.roundtrip.bpmn",
+        "sha256": "3db8689a457393449c5ed9d64fa25126345ed1aca919199847b40be45bd395db"
+      },
+      "warnings": [],
+      "reachability": {
+        "passed": 80,
+        "total": 80,
+        "status": "PASS",
+        "scopes": [
+          {
+            "scope": "WF-06_process",
+            "passed": 80,
+            "total": 80,
+            "status": "PASS",
+            "failures": [],
+            "invalid_flows": []
+          }
+        ],
+        "method": "Scope-local forward/reverse graph traversal; boundary events reachable from host. Not token simulation."
+      },
+      "retained": {
+        "steps": {
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        "details": {
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        "bde_mappings": {
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        }
+      },
+      "fidelity": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "basis": "Exact original evidence snapshot preserved in process documentation; does not establish revised-activity equivalence"
+      },
+      "coverage": {
+        "passed": 26,
+        "total": 26,
+        "status": "PASS"
+      },
+      "topology_sha256": "2e59ce6e411253279a1f72e47f81454b1f39c41dd86419823d52daeb76ba08d9",
+      "viewer": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "warnings": [],
+        "nonblank": true,
+        "rendered_elements": 77
+      },
+      "layout": {
+        "status": "NOT RUN",
+        "passed": null,
+        "total": null,
+        "reason": "Nonblank rendering tested; comprehensive connector and label collision review not certified"
+      },
+      "schema": {
+        "passed": 2,
+        "total": 2,
+        "status": "PASS",
+        "results": [
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_4.bpmn",
+            "status": "PASS",
+            "errors": []
+          },
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_4.roundtrip.bpmn",
+            "status": "PASS",
+            "errors": []
+          }
+        ]
+      }
+    },
+    {
+      "view": "diagram1_people__WF-06_phase_5",
+      "artifact": {
+        "path": "diagram1_people__WF-06_phase_5.bpmn",
+        "sha256": "8526bcf7750e84a9ca4bbb628a79893bbea92249f8db3bd58b2eb3b992e2e857"
+      },
+      "roundtrip": {
+        "path": "diagram1_people__WF-06_phase_5.roundtrip.bpmn",
+        "sha256": "8ad358ea4e81ba5e9ad408222f6c48e8ef5e733da070a11266ce4a7108949cd5"
+      },
+      "warnings": [],
+      "reachability": {
+        "passed": 80,
+        "total": 80,
+        "status": "PASS",
+        "scopes": [
+          {
+            "scope": "WF-06_process",
+            "passed": 80,
+            "total": 80,
+            "status": "PASS",
+            "failures": [],
+            "invalid_flows": []
+          }
+        ],
+        "method": "Scope-local forward/reverse graph traversal; boundary events reachable from host. Not token simulation."
+      },
+      "retained": {
+        "steps": {
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        "details": {
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        "bde_mappings": {
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        }
+      },
+      "fidelity": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "basis": "Exact original evidence snapshot preserved in process documentation; does not establish revised-activity equivalence"
+      },
+      "coverage": {
+        "passed": 26,
+        "total": 26,
+        "status": "PASS"
+      },
+      "topology_sha256": "2e59ce6e411253279a1f72e47f81454b1f39c41dd86419823d52daeb76ba08d9",
+      "viewer": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS",
+        "warnings": [],
+        "nonblank": true,
+        "rendered_elements": 80
+      },
+      "layout": {
+        "status": "NOT RUN",
+        "passed": null,
+        "total": null,
+        "reason": "Nonblank rendering tested; comprehensive connector and label collision review not certified"
+      },
+      "schema": {
+        "passed": 2,
+        "total": 2,
+        "status": "PASS",
+        "results": [
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_5.bpmn",
+            "status": "PASS",
+            "errors": []
+          },
+          {
+            "path": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\BPMN-Generator\\web\\workflow\\evidence\\WF-06\\diagram1_people__WF-06_phase_5.roundtrip.bpmn",
+            "status": "PASS",
+            "errors": []
+          }
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "check": "OMG BPMN XSD (original + browser export per view)",
+      "passed": 7,
+      "total": 7,
+      "status": "PASS"
+    },
+    {
+      "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+      "passed": 7,
+      "total": 7,
+      "status": "PASS"
+    },
+    {
+      "check": "Proposed activity coverage (per full perspective)",
+      "passed": 26,
+      "total": 26,
+      "status": "PASS"
+    },
+    {
+      "check": "Scope-aware reachability (nodes per full perspective)",
+      "passed": 80,
+      "total": 80,
+      "status": "PASS"
+    },
+    {
+      "check": "Exact source steps preserved (per full perspective)",
+      "passed": 29,
+      "total": 29,
+      "status": "PASS"
+    },
+    {
+      "check": "Exact source details preserved (per full perspective)",
+      "passed": 62,
+      "total": 62,
+      "status": "PASS"
+    },
+    {
+      "check": "Exact source bde_mappings preserved (per full perspective)",
+      "passed": 76,
+      "total": 76,
+      "status": "PASS"
+    },
+    {
+      "check": "Verified direct source-step equivalence",
+      "passed": 0,
+      "total": 29,
+      "status": "FAIL"
+    },
+    {
+      "check": "Cross-perspective consistency",
+      "status": "BLOCKED",
+      "passed": null,
+      "total": null
+    },
+    {
+      "check": "Comprehensive visual layout",
+      "status": "NOT RUN",
+      "passed": null,
+      "total": null
+    },
+    {
+      "check": "Independent business accuracy",
+      "status": "NOT RUN",
+      "passed": null,
+      "total": null
+    }
+  ]
+}

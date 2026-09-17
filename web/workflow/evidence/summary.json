@@ -1,0 +1,1787 @@
+{
+  "generated_at": "2026-09-17T17:18:17.649Z",
+  "version": "CR-2026-09-17.2",
+  "dependencies_sha256": "b2dd389c366cb8bd3de9a3eb46998aed09c6d76e74f62d3a953150e20e9e6ca3",
+  "processes": [
+    {
+      "workflow": "WF-01",
+      "name": "Retail Account Onboarding",
+      "source_score": 64.31,
+      "views": 6,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 24,
+          "total": 24,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 79,
+          "total": 79,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-01/report.json"
+    },
+    {
+      "workflow": "WF-02",
+      "name": "Retail Account Onboarding - Variant A",
+      "source_score": 64.31,
+      "views": 6,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 28,
+          "total": 28,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 83,
+          "total": 83,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-02/report.json"
+    },
+    {
+      "workflow": "WF-03",
+      "name": "SME Account Opening",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 32,
+          "total": 32,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 83,
+          "total": 83,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-03/report.json"
+    },
+    {
+      "workflow": "WF-04",
+      "name": "SME Account Opening - Express",
+      "source_score": 64.31,
+      "views": 6,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 20,
+          "total": 20,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 68,
+          "total": 68,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-04/report.json"
+    },
+    {
+      "workflow": "WF-05",
+      "name": "Corporate KYC Remediation",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 34,
+          "total": 34,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 85,
+          "total": 85,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-05/report.json"
+    },
+    {
+      "workflow": "WF-06",
+      "name": "Corporate KYC Remediation - Event Driven",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 26,
+          "total": 26,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 80,
+          "total": 80,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-06/report.json"
+    },
+    {
+      "workflow": "WF-07",
+      "name": "Trade Finance Client Setup",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 36,
+          "total": 36,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 100,
+          "total": 100,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-07/report.json"
+    },
+    {
+      "workflow": "WF-08",
+      "name": "Trade Finance Client Setup - Multi-Entity",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 42,
+          "total": 42,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 117,
+          "total": 117,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-08/report.json"
+    },
+    {
+      "workflow": "WF-09",
+      "name": "Treasury Counterparty Onboarding",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 30,
+          "total": 30,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 85,
+          "total": 85,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-09/report.json"
+    },
+    {
+      "workflow": "WF-10",
+      "name": "Treasury Counterparty Onboarding - NBFI",
+      "source_score": 64.31,
+      "views": 8,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 8,
+          "total": 8,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 8,
+          "total": 8,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 38,
+          "total": 38,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 105,
+          "total": 105,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-10/report.json"
+    },
+    {
+      "workflow": "WF-11",
+      "name": "Wealth Client Profiling",
+      "source_score": 64.31,
+      "views": 6,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 22,
+          "total": 22,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 50,
+          "total": 50,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-11/report.json"
+    },
+    {
+      "workflow": "WF-12",
+      "name": "Wealth Client Profiling - UHNI",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 35,
+          "total": 35,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 97,
+          "total": 97,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-12/report.json"
+    },
+    {
+      "workflow": "WF-13",
+      "name": "Cards Customer Enrollment",
+      "source_score": 64.31,
+      "views": 6,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 25,
+          "total": 25,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 77,
+          "total": 77,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-13/report.json"
+    },
+    {
+      "workflow": "WF-14",
+      "name": "Cards Customer Enrollment - CoBrand",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 31,
+          "total": 31,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 98,
+          "total": 98,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-14/report.json"
+    },
+    {
+      "workflow": "WF-15",
+      "name": "Merchant Onboarding (Payments)",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 33,
+          "total": 33,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 91,
+          "total": 91,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-15/report.json"
+    },
+    {
+      "workflow": "WF-16",
+      "name": "Merchant Onboarding - Enterprise",
+      "source_score": 64.31,
+      "views": 8,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 8,
+          "total": 8,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 8,
+          "total": 8,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 44,
+          "total": 44,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 114,
+          "total": 114,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-16/report.json"
+    },
+    {
+      "workflow": "WF-17",
+      "name": "Loan Origination Party Setup",
+      "source_score": 64.31,
+      "views": 6,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 23,
+          "total": 23,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 66,
+          "total": 66,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-17/report.json"
+    },
+    {
+      "workflow": "WF-18",
+      "name": "Loan Origination Party Setup - Secured",
+      "source_score": 64.31,
+      "views": 8,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 8,
+          "total": 8,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 8,
+          "total": 8,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 37,
+          "total": 37,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 98,
+          "total": 98,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-18/report.json"
+    },
+    {
+      "workflow": "WF-19",
+      "name": "Custody Account Setup",
+      "source_score": 64.31,
+      "views": 6,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 6,
+          "total": 6,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 27,
+          "total": 27,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 82,
+          "total": 82,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-19/report.json"
+    },
+    {
+      "workflow": "WF-20",
+      "name": "Custody Account Setup - Global Markets",
+      "source_score": 64.31,
+      "views": 7,
+      "gates": {
+        "people": {
+          "status": "PROPOSED",
+          "reason": "Human responsibility candidates only; not approved ownership or business accuracy"
+        },
+        "technology": {
+          "status": "BLOCKED",
+          "reason": "No evidence-backed application mapping for revised activities; capability guesses are not applications"
+        },
+        "combined": {
+          "status": "BLOCKED",
+          "reason": "Technology mapping and independent perspective validation have not passed"
+        }
+      },
+      "checks": [
+        {
+          "check": "OMG BPMN XSD (original + browser export per view)",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "bpmn-js import/export/reimport, warning-free and nonblank",
+          "passed": 7,
+          "total": 7,
+          "status": "PASS"
+        },
+        {
+          "check": "Proposed activity coverage (per full perspective)",
+          "passed": 40,
+          "total": 40,
+          "status": "PASS"
+        },
+        {
+          "check": "Scope-aware reachability (nodes per full perspective)",
+          "passed": 134,
+          "total": 134,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source steps preserved (per full perspective)",
+          "passed": 29,
+          "total": 29,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source details preserved (per full perspective)",
+          "passed": 62,
+          "total": 62,
+          "status": "PASS"
+        },
+        {
+          "check": "Exact source bde_mappings preserved (per full perspective)",
+          "passed": 76,
+          "total": 76,
+          "status": "PASS"
+        },
+        {
+          "check": "Verified direct source-step equivalence",
+          "passed": 0,
+          "total": 29,
+          "status": "FAIL"
+        },
+        {
+          "check": "Cross-perspective consistency",
+          "status": "BLOCKED",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Comprehensive visual layout",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        },
+        {
+          "check": "Independent business accuracy",
+          "status": "NOT RUN",
+          "passed": null,
+          "total": null
+        }
+      ],
+      "report": "WF-20/report.json"
+    }
+  ]
+}

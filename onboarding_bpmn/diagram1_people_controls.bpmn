@@ -1,0 +1,3350 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions-View-1" targetNamespace="urn:onboarding:AOB-PR-1001">
+  <bpmn:message id="Message-Approval-Received" name="Approve"/>
+  <bpmn:message id="Message-Rejection-Received" name="Reject"/>
+  <bpmn:message id="Message-Withdrawal-Received" name="Withdraw"/>
+  <bpmn:escalation id="Escalation-Remediation" name="Remediation breach" escalationCode="REMEDIATION_BREACH"/>
+  <bpmn:process id="AOB-PR-1001" name="Sample Process Onboarding" isExecutable="false">
+    <bpmn:documentation>Source: parsed_process_data.json, excluding every row containing [added]. Descriptive BPMN; no runtime expression bindings invented. See validation.md for open items and approved modelling deviations.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet-1">
+      <bpmn:lane id="Lane-1-01" name="Requestor">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Requestor (Client Service). Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-001</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-02" name="Onboarding Ops">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Onboarding Ops; Onboarding Ops (Maker). Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-002</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-004</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-007</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-019</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-029</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Draft-Merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Remediation-Merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Remediation-Decision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Breach-Merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Remediation-Timer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Remediation-Escalation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Remediation-Parked</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-03" name="Approver">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Business Approver. Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-005</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Approval-Wait</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Approval-Timeout</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Approval-Outcome</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Request-Rejected</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-04" name="Data Platform Team">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Data Platform. Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-009</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-011</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-015</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-021</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-022</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-027</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-028</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Ingest-Merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Ingest-Outcome</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Validation-Merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Delivery-Join</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-05" name="Process Ops">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Process Ops (Checker); Process Ops (DQ &amp; Controls). Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-003</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-012</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-014</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-016</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-018</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-020</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-06" name="Steward">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Data Steward (Reference Data). Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-013</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-07" name="Process SPECIALIST">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Process SPECIALIST. Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-017</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Specialist-Outcome</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-08" name="Integration Team">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Integration Layer. Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-008</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-023</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-024</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-025</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AOB-026</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Delivery-Split</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-09" name="Service Management Team">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Service Management (ServiceNow Team). Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>AOB-010</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Retry-Decision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Technical-Parked</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane-1-10" name="Ops Lead">
+        <bpmn:documentation>Normalized human responsibility with approved Maker/Checker/Ops team consolidation, not an individual or headcount. Original owner labels: Ops Lead. Original and normalized RACI are retained in documentation. Maker and Checker must be different individuals for the same record.</bpmn:documentation>
+        <bpmn:flowNodeRef>Approval-Escalation</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="AOB-001" name="AOB-001&#10;Submit onboarding request">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-001",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "10",
+    "Process Step": "Submit onboarding request",
+    "Description": "Requestor submits onboarding requests with mandatory attributes and evidence references; Tracking ID created.",
+    "Data Involved": "Process attributes + evidence refs",
+    "Source BDEs": "Request Payload",
+    "Target BDEs": "Ticket Record",
+    "Data Transformed": "Minimal (format validation)"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-001-01",
+      "Process Step ID": "AOB-001",
+      "Detail Type": "Submit onboarding request / Application",
+      "Detail Value": "Azure DevOps Boards",
+      "Process Step Owner": "Requestor (Client Service)",
+      "RACI": "R=Requestor, A=Business Approver, C=Onboarding Ops, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-001-02",
+      "Process Step ID": "AOB-001",
+      "Detail Type": "Submit onboarding request / Input",
+      "Detail Value": "Process attributes + Supporting Evidence References",
+      "Process Step Owner": "Requestor (Client Service)",
+      "RACI": "R=Requestor, A=Business Approver, C=Onboarding Ops, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-001-03",
+      "Process Step ID": "AOB-001",
+      "Detail Type": "Submit onboarding request / Tracking",
+      "Detail Value": "Create Tracking ID (Correlation ID) at intake; persist end-to-end",
+      "Process Step Owner": "Requestor (Client Service)",
+      "RACI": "R=Requestor, A=Business Approver, C=Onboarding Ops, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-001-04",
+      "Process Step ID": "AOB-001",
+      "Detail Type": "Submit onboarding request / Output",
+      "Detail Value": "Ticket contains submitted attributes, evidence refs, Tracking ID",
+      "Process Step Owner": "Requestor (Client Service)",
+      "RACI": "R=Requestor, A=Business Approver, C=Onboarding Ops, I=Process Ops"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-001-01",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Code",
+      "Data Transformation Logic": "Trim; enforce pattern; reject invalid chars"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-02",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Country",
+      "Data Transformation Logic": "Accept ISO2 or full name; store raw + parsed"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-03",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Currency",
+      "Data Transformation Logic": "Accept ISO4217; store raw + parsed"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-04",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Name",
+      "Data Transformation Logic": "Capture as submitted; defer normalisation to draft creation"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-05",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Open Date",
+      "Data Transformation Logic": "Parse to date; reject invalid formats"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-06",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Status",
+      "Data Transformation Logic": "Validate in allowed list if present at intake"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-07",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Teams",
+      "Data Transformation Logic": "Capture team list as submitted"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-08",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Type",
+      "Data Transformation Logic": "Capture if provided"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-09",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Identifier",
+      "Data Transformation Logic": "If provided, capture and validate basic format; otherwise allow null"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-10",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Model",
+      "Data Transformation Logic": "Capture if provided; no transformation at intake"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-11",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Owning Organisation Unit ID",
+      "Data Transformation Logic": "Capture if provided; validate legal entity code format if supplied"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-12",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Closed Date",
+      "Data Transformation Logic": "Parse to date if provided; allow null for open Process"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-13",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Process Level",
+      "Data Transformation Logic": "Capture hierarchy level as submitted"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-14",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Target",
+      "BDE Name": "Tracking ID (Correlation ID)",
+      "Data Transformation Logic": "Generate unique ID at intake; persist across all artefacts/events"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-001-15",
+      "Process Step ID": "AOB-001",
+      "Process Step": "Submit onboarding request",
+      "Src/Tgt": "Source",
+      "BDE Name": "Supporting Evidence References",
+      "Data Transformation Logic": "Enforce non-empty list requirement at completeness gateway"
+    }
+  ],
+  "normalized": {
+    "team": "Requestor",
+    "application": "Azure DevOps Boards",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Requestor",
+          "A": "Approver",
+          "C": "Onboarding Ops",
+          "I": "Process Ops"
+        },
+        "source": {
+          "R": "Requestor",
+          "A": "Business Approver",
+          "C": "Onboarding Ops",
+          "I": "Process Ops"
+        },
+        "duty": "Requestor"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:outgoing>Flow-001</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="AOB-002" name="AOB-002 Triage and classify">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-002",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "20",
+    "Process Step": "Triage and classify",
+    "Description": "Ops reviews request, classifies route (FD/SA), urgency, sets SLA and assigns maker.",
+    "Data Involved": "Ticket metadata",
+    "Source BDEs": "Ticket Record",
+    "Target BDEs": "Routed Ticket",
+    "Data Transformed": "Routing tags applied"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-002-01",
+      "Process Step ID": "AOB-002",
+      "Detail Type": "Triage and classify / Application",
+      "Detail Value": "Azure DevOps Boards",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Process Ops, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-002-02",
+      "Process Step ID": "AOB-002",
+      "Detail Type": "Triage and classify / Output",
+      "Detail Value": "Set Routing Category, Urgency, SLA Target; assign maker",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Process Ops, I=Requestor"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-002-01",
+      "Process Step ID": "AOB-002",
+      "Process Step": "Triage and classify",
+      "Src/Tgt": "Target",
+      "BDE Name": "Route Classification",
+      "Data Transformation Logic": "Apply routing tag (e.g., FD/SA) based on ticket content/ops rules"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-002-02",
+      "Process Step ID": "AOB-002",
+      "Process Step": "Triage and classify",
+      "Src/Tgt": "Target",
+      "BDE Name": "Urgency",
+      "Data Transformation Logic": "Set urgent/standard; drives SLA and escalation paths"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-002-03",
+      "Process Step ID": "AOB-002",
+      "Process Step": "Triage and classify",
+      "Src/Tgt": "Target",
+      "BDE Name": "SLA Target",
+      "Data Transformation Logic": "Set SLA targets (approval timeout 24h; remediation urgent 4h/standard 24h)"
+    }
+  ],
+  "normalized": {
+    "team": "Onboarding Ops",
+    "application": "Azure DevOps Boards",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Onboarding Ops",
+          "A": "Ops Lead",
+          "C": "Process Ops",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Maker",
+          "A": "Ops Lead",
+          "C": "Process Ops",
+          "I": "Requestor"
+        },
+        "duty": "Maker"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-001</bpmn:incoming>
+      <bpmn:outgoing>Flow-002</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="AOB-003" name="AOB-003&#10;Completeness gateway" gatewayDirection="Mixed">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-003",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "30",
+    "Process Step": "Completeness gateway",
+    "Description": "Mandatory fields/evidence check; fail → AOB-004, pass → AOB-005.",
+    "Data Involved": "Process attributes + evidence refs",
+    "Source BDEs": "Routed Ticket",
+    "Target BDEs": "Pass/Fail decision",
+    "Data Transformed": "None"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-003-01",
+      "Process Step ID": "AOB-003",
+      "Detail Type": "Completeness gateway / Gateway Rule (XOR)",
+      "Detail Value": "If mandatory attribute/evidence missing → AOB-004 else → AOB-005",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=Ops Lead, C=Maker, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-003-02",
+      "Process Step ID": "AOB-003",
+      "Detail Type": "Completeness gateway / Mandatory Fields",
+      "Detail Value": "Process Code, Country, Currency, Name, Open Date, Status, Responsible Groups",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=Ops Lead, C=Maker, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-003-03",
+      "Process Step ID": "AOB-003",
+      "Detail Type": "Completeness gateway / Evidence Rule",
+      "Detail Value": "Minimum 1 Supporting Evidence entry required",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=Ops Lead, C=Maker, I=Requestor"
+    }
+  ],
+  "BDE mappings": [],
+  "normalized": {
+    "team": "Process Ops",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Process Ops",
+          "A": "Ops Lead",
+          "C": "Maker",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Process Ops",
+          "A": "Ops Lead",
+          "C": "Maker",
+          "I": "Requestor"
+        },
+        "duty": "Process Ops"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-002</bpmn:incoming>
+      <bpmn:incoming>Flow-004</bpmn:incoming>
+      <bpmn:outgoing>Flow-003</bpmn:outgoing>
+      <bpmn:outgoing>Flow-005</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="AOB-004" name="AOB-004 Request clarification&#10;(fail path)">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-004",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "40",
+    "Process Step": "Request clarification (fail path)",
+    "Description": "Return to requestor with reason codes; loop to AOB-003.",
+    "Data Involved": "Missing field list",
+    "Source BDEs": "Routed Ticket",
+    "Target BDEs": "Updated Ticket",
+    "Data Transformed": "None"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-004-01",
+      "Process Step ID": "AOB-004",
+      "Detail Type": "Request clarification / Output",
+      "Detail Value": "Return Missing-field Reason Codes and resubmission instructions",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Process Ops, I=Requestor"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-004-01",
+      "Process Step ID": "AOB-004",
+      "Process Step": "Request clarification (fail path)",
+      "Src/Tgt": "Target",
+      "BDE Name": "Missing-field Reason Codes",
+      "Data Transformation Logic": "Populate standard reason codes and free-text resubmission instructions"
+    }
+  ],
+  "normalized": {
+    "team": "Onboarding Ops",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Onboarding Ops",
+          "A": "Ops Lead",
+          "C": "Process Ops",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Maker",
+          "A": "Ops Lead",
+          "C": "Process Ops",
+          "I": "Requestor"
+        },
+        "duty": "Maker"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-003</bpmn:incoming>
+      <bpmn:outgoing>Flow-004</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-005" name="AOB-005 Business approval">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-005",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "50",
+    "Process Step": "Business approval",
+    "Description": "Business approver confirms request is valid and authorised.",
+    "Data Involved": "Key Process attributes",
+    "Source BDEs": "Routed Ticket",
+    "Target BDEs": "Approved/Rejected",
+    "Data Transformed": "None"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-005-01",
+      "Process Step ID": "AOB-005",
+      "Detail Type": "Business approval / Control",
+      "Detail Value": "Delegated authority approval required before ingestion",
+      "Process Step Owner": "Business Approver",
+      "RACI": "R=Approver, A=Approver Lead, C=Requestor, I=Ops"
+    }
+  ],
+  "BDE mappings": [],
+  "normalized": {
+    "team": "Approver",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Approver",
+          "A": "Approver Lead",
+          "C": "Requestor",
+          "I": "Operations Team (unresolved)"
+        },
+        "source": {
+          "R": "Approver",
+          "A": "Approver Lead",
+          "C": "Requestor",
+          "I": "Ops"
+        },
+        "duty": "Approver"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-005</bpmn:incoming>
+      <bpmn:outgoing>Flow-006</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-007" name="AOB-007 Create onboarding&#10;draft">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-007",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "70",
+    "Process Step": "Create onboarding draft",
+    "Description": "Maker maps request to draft, creates v1 + change log.",
+    "Data Involved": "Process attributes",
+    "Source BDEs": "Approved Ticket",
+    "Target BDEs": "Draft Record v1",
+    "Data Transformed": "Standardisation + typing"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-007-01",
+      "Process Step ID": "AOB-007",
+      "Detail Type": "Create onboarding draft / Application",
+      "Detail Value": "Power Automate + SharePoint(BRD: Template Builder)",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Data Steward, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-007-02",
+      "Process Step ID": "AOB-007",
+      "Detail Type": "Create onboarding draft / Data Control",
+      "Detail Value": "Create versioned draft; maintain Change Log",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Data Steward, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-007-03",
+      "Process Step ID": "AOB-007",
+      "Detail Type": "Create onboarding draft / Output",
+      "Detail Value": "Draft Version (v1) created; Change Log initialised",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Data Steward, I=Process Ops"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-007-01",
+      "Process Step ID": "AOB-007",
+      "Process Step": "Create onboarding draft",
+      "Src/Tgt": "Target",
+      "BDE Name": "Draft Version",
+      "Data Transformation Logic": "Initialise v1; increment on remediation cycles"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-007-02",
+      "Process Step ID": "AOB-007",
+      "Process Step": "Create onboarding draft",
+      "Src/Tgt": "Target",
+      "BDE Name": "Change Log",
+      "Data Transformation Logic": "Create structured change log entry for draft creation"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-007-03",
+      "Process Step ID": "AOB-007",
+      "Process Step": "Create onboarding draft",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Name",
+      "Data Transformation Logic": "Normalise whitespace; max length enforcement"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-007-04",
+      "Process Step ID": "AOB-007",
+      "Process Step": "Create onboarding draft",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Model",
+      "Data Transformation Logic": "Standardise servicing model to approved value set"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-007-05",
+      "Process Step ID": "AOB-007",
+      "Process Step": "Create onboarding draft",
+      "Src/Tgt": "Target",
+      "BDE Name": "Owning Organisation Unit ID",
+      "Data Transformation Logic": "Standardise legal/booking entity code to canonical format"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-007-06",
+      "Process Step ID": "AOB-007",
+      "Process Step": "Create onboarding draft",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Level",
+      "Data Transformation Logic": "Standardise hierarchy level representation"
+    }
+  ],
+  "normalized": {
+    "team": "Onboarding Ops",
+    "application": "Power Automate + SharePoint(BRD: Template Builder)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Onboarding Ops",
+          "A": "Ops Lead",
+          "C": "Steward",
+          "I": "Process Ops"
+        },
+        "source": {
+          "R": "Maker",
+          "A": "Ops Lead",
+          "C": "Data Steward",
+          "I": "Process Ops"
+        },
+        "duty": "Maker"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-019</bpmn:incoming>
+      <bpmn:outgoing>Flow-020</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-008" name="AOB-008 Package for ingestion">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-008",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "80",
+    "Process Step": "Package for ingestion",
+    "Description": "Create ingestion package, apply naming/checksum/encryption.",
+    "Data Involved": "Draft Record",
+    "Source BDEs": "Draft Record v1",
+    "Target BDEs": "Ingestion Package",
+    "Data Transformed": "Canonical field mapping"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-008-01",
+      "Process Step ID": "AOB-008",
+      "Detail Type": "Package for ingestion / Application",
+      "Detail Value": "Azure Storage SFTP / Azure API Management + Azure Functions",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Maker, I=Platform"
+    },
+    {
+      "PSD ID": "PSD-AOB-008-02",
+      "Process Step ID": "AOB-008",
+      "Detail Type": "Package for ingestion / Output",
+      "Detail Value": "Create package incl. Tracking ID; generate checksum + encryption marker",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Maker, I=Platform"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-008-01",
+      "Process Step ID": "AOB-008",
+      "Process Step": "Package for ingestion",
+      "Src/Tgt": "Target",
+      "BDE Name": "Ingestion Checksum",
+      "Data Transformation Logic": "Compute checksum for package payload/file"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-008-02",
+      "Process Step ID": "AOB-008",
+      "Process Step": "Package for ingestion",
+      "Src/Tgt": "Target",
+      "BDE Name": "Encryption Marker",
+      "Data Transformation Logic": "Mark package as encrypted; include method/flag in metadata"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-008-03",
+      "Process Step ID": "AOB-008",
+      "Process Step": "Package for ingestion",
+      "Src/Tgt": "Source",
+      "BDE Name": "Tracking ID (Correlation ID)",
+      "Data Transformation Logic": "Embed into payload headers/metadata for end-to-end replay/idempotency"
+    }
+  ],
+  "normalized": {
+    "team": "Integration Team",
+    "application": "Azure Storage SFTP / Azure API Management + Azure Functions",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Integration Team",
+          "A": "Integration Lead",
+          "C": "Maker",
+          "I": "Data Platform Team"
+        },
+        "source": {
+          "R": "Integration",
+          "A": "Integration Lead",
+          "C": "Maker",
+          "I": "Platform"
+        },
+        "duty": "Integration"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-020</bpmn:incoming>
+      <bpmn:outgoing>Flow-021</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-009" name="AOB-009 Ingest to landing">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-009",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "90",
+    "Process Step": "Ingest to landing",
+    "Description": "Platform ingests package; schema validation.",
+    "Data Involved": "Draft + metadata",
+    "Source BDEs": "Ingestion Package",
+    "Target BDEs": "Landing Record",
+    "Data Transformed": "Schema/format coercion"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-009-01",
+      "Process Step ID": "AOB-009",
+      "Detail Type": "Ingest to landing / Application",
+      "Detail Value": "Azure Data Lake Storage (Landing)",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Platform Lead, C=Integration, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-009-02",
+      "Process Step ID": "AOB-009",
+      "Detail Type": "Ingest to landing / Output",
+      "Detail Value": "Record Schema Validation Status; capture errors if fail",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Platform Lead, C=Integration, I=Process Ops"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-009-01",
+      "Process Step ID": "AOB-009",
+      "Process Step": "Ingest to landing",
+      "Src/Tgt": "Target",
+      "BDE Name": "Schema Validation Status",
+      "Data Transformation Logic": "Set PASS/FAIL based on landing schema validation"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-009-02",
+      "Process Step ID": "AOB-009",
+      "Process Step": "Ingest to landing",
+      "Src/Tgt": "Target",
+      "BDE Name": "Schema Validation Errors",
+      "Data Transformation Logic": "Capture error details when validation fails"
+    }
+  ],
+  "normalized": {
+    "team": "Data Platform Team",
+    "application": "Azure Data Lake Storage (Landing)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Data Platform Team",
+          "A": "Platform Lead",
+          "C": "Integration Team",
+          "I": "Process Ops"
+        },
+        "source": {
+          "R": "Platform",
+          "A": "Platform Lead",
+          "C": "Integration",
+          "I": "Process Ops"
+        },
+        "duty": "Platform"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-022</bpmn:incoming>
+      <bpmn:outgoing>Flow-023</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-010" name="AOB-010 Technical error&#10;handling">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-010",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "100",
+    "Process Step": "Technical error handling",
+    "Description": "Incident created; retry/park decision (max 2 retries).",
+    "Data Involved": "Error details",
+    "Source BDEs": "Ingest logs",
+    "Target BDEs": "Incident/Retry/Parked",
+    "Data Transformed": "None"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-010-01",
+      "Process Step ID": "AOB-010",
+      "Detail Type": "Technical error handling / Exception Path",
+      "Detail Value": "Create ServiceNow incident; retry ≤2; else \"Parked – Technical\"",
+      "Process Step Owner": "Service Management (ServiceNow Team)",
+      "RACI": "R=SNOW, A=Platform Lead, C=Integration, I=Ops Lead"
+    },
+    {
+      "PSD ID": "PSD-AOB-010-02",
+      "Process Step ID": "AOB-010",
+      "Detail Type": "Technical error handling / Output",
+      "Detail Value": "Exception Case ID created; Retry Count updated; Parked Status set",
+      "Process Step Owner": "Service Management (ServiceNow Team)",
+      "RACI": "R=SNOW, A=Platform Lead, C=Integration, I=Ops Lead"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-010-01",
+      "Process Step ID": "AOB-010",
+      "Process Step": "Technical error handling",
+      "Src/Tgt": "Target",
+      "BDE Name": "Exception Case ID",
+      "Data Transformation Logic": "Create ServiceNow incident and store reference against Tracking ID"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-010-02",
+      "Process Step ID": "AOB-010",
+      "Process Step": "Technical error handling",
+      "Src/Tgt": "Target",
+      "BDE Name": "Retry Count",
+      "Data Transformation Logic": "Increment per retry attempt; cap at 2"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-010-03",
+      "Process Step ID": "AOB-010",
+      "Process Step": "Technical error handling",
+      "Src/Tgt": "Target",
+      "BDE Name": "Parked Status",
+      "Data Transformation Logic": "If retries exhausted, set \"Parked – Technical\""
+    }
+  ],
+  "normalized": {
+    "team": "Service Management Team",
+    "application": "ServiceNow",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Service Management Team",
+          "A": "Platform Lead",
+          "C": "Integration Team",
+          "I": "Ops Lead"
+        },
+        "source": {
+          "R": "SNOW",
+          "A": "Platform Lead",
+          "C": "Integration",
+          "I": "Ops Lead"
+        },
+        "duty": "SNOW"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-025</bpmn:incoming>
+      <bpmn:outgoing>Flow-026</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="AOB-011" name="AOB-011&#10;Parallel validations start" gatewayDirection="Diverging">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-011",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "110",
+    "Process Step": "Parallel validations start",
+    "Description": "Run DQ, enrichment, duplicate detection in parallel; join at AOB-015.",
+    "Data Involved": "Landing record",
+    "Source BDEs": "Landing Record",
+    "Target BDEs": "Validation outputs",
+    "Data Transformed": "Varies"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-011-01",
+      "Process Step ID": "AOB-011",
+      "Detail Type": "Parallel validations start / Gateway (AND)",
+      "Detail Value": "Spawn AOB-012/013/014 in parallel; join at AOB-015",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Platform Lead, C=Process Ops, I=Data Steward"
+    }
+  ],
+  "BDE mappings": [],
+  "normalized": {
+    "team": "Data Platform Team",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Data Platform Team",
+          "A": "Platform Lead",
+          "C": "Process Ops",
+          "I": "Steward"
+        },
+        "source": {
+          "R": "Platform",
+          "A": "Platform Lead",
+          "C": "Process Ops",
+          "I": "Data Steward"
+        },
+        "duty": "Platform"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-029</bpmn:incoming>
+      <bpmn:outgoing>Flow-030</bpmn:outgoing>
+      <bpmn:outgoing>Flow-032</bpmn:outgoing>
+      <bpmn:outgoing>Flow-034</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="AOB-012" name="AOB-012 Execute DQ ruleset">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-012",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "120",
+    "Process Step": "Execute DQ ruleset",
+    "Description": "Automated DQ checks: completeness, code sets, date logic, uniqueness.",
+    "Data Involved": "Landing record",
+    "Source BDEs": "Landing Record",
+    "Target BDEs": "DQ Results",
+    "Data Transformed": "Flags/scores calculated"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-012-01",
+      "Process Step ID": "AOB-012",
+      "Detail Type": "Execute DQ ruleset / Application",
+      "Detail Value": "Microsoft Purview – Data Quality(BRD: DQ Engine)",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=DQ Lead, C=Maker, I=Data Steward"
+    },
+    {
+      "PSD ID": "PSD-AOB-012-02",
+      "Process Step ID": "AOB-012",
+      "Detail Type": "Execute DQ ruleset / Rule Set",
+      "Detail Value": "Completeness; ISO codes; date logic; uniqueness; format constraints",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=DQ Lead, C=Maker, I=Data Steward"
+    },
+    {
+      "PSD ID": "PSD-AOB-012-03",
+      "Process Step ID": "AOB-012",
+      "Detail Type": "Execute DQ ruleset / Output",
+      "Detail Value": "Produce DQ Rule Failures + interim DQ Score inputs",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=DQ Lead, C=Maker, I=Data Steward"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-012-01",
+      "Process Step ID": "AOB-012",
+      "Process Step": "Execute DQ ruleset",
+      "Src/Tgt": "Target",
+      "BDE Name": "DQ Rule Failures",
+      "Data Transformation Logic": "Persist failed rule IDs, field-level failures, severities"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-012-02",
+      "Process Step ID": "AOB-012",
+      "Process Step": "Execute DQ ruleset",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Open Date",
+      "Data Transformation Logic": "Must be ≤ today; must be ≤ Process Closed Date if present"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-012-03",
+      "Process Step ID": "AOB-012",
+      "Process Step": "Execute DQ ruleset",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Closed Date",
+      "Data Transformation Logic": "If present, must be ≥ Process Open Date"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-012-04",
+      "Process Step ID": "AOB-012",
+      "Process Step": "Execute DQ ruleset",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Code",
+      "Data Transformation Logic": "Validate format and uniqueness constraints per ruleset"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-012-05",
+      "Process Step ID": "AOB-012",
+      "Process Step": "Execute DQ ruleset",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Identifier",
+      "Data Transformation Logic": "If present, validate format only; uniqueness checked after generation at publish"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-012-06",
+      "Process Step ID": "AOB-012",
+      "Process Step": "Execute DQ ruleset",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Status",
+      "Data Transformation Logic": "Validate against allowed lifecycle status values"
+    }
+  ],
+  "normalized": {
+    "team": "Process Ops",
+    "application": "Microsoft Purview – Data Quality(BRD: DQ Engine)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Process Ops",
+          "A": "DQ Lead",
+          "C": "Maker",
+          "I": "Steward"
+        },
+        "source": {
+          "R": "Process Ops",
+          "A": "DQ Lead",
+          "C": "Maker",
+          "I": "Data Steward"
+        },
+        "duty": "Process Ops"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-030</bpmn:incoming>
+      <bpmn:outgoing>Flow-031</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-013" name="AOB-013 Reference enrichment">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-013",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "130",
+    "Process Step": "Reference enrichment",
+    "Description": "Standardize country/currency/team codes.",
+    "Data Involved": "Landing record",
+    "Source BDEs": "Landing Record",
+    "Target BDEs": "Enriched Record",
+    "Data Transformed": "Lookup + normalisation"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-013-01",
+      "Process Step ID": "AOB-013",
+      "Detail Type": "Reference enrichment / Application",
+      "Detail Value": "Azure Data Lake Storage (Landing)",
+      "Process Step Owner": "Data Steward (Reference Data)",
+      "RACI": "R=Steward, A=Data Owner, C=Process Ops, I=Maker"
+    },
+    {
+      "PSD ID": "PSD-AOB-013-02",
+      "Process Step ID": "AOB-013",
+      "Detail Type": "Reference enrichment / Enrichment",
+      "Detail Value": "Map country/currency/team codes to reference sets",
+      "Process Step Owner": "Data Steward (Reference Data)",
+      "RACI": "R=Steward, A=Data Owner, C=Process Ops, I=Maker"
+    },
+    {
+      "PSD ID": "PSD-AOB-013-03",
+      "Process Step ID": "AOB-013",
+      "Detail Type": "Reference enrichment / Output",
+      "Detail Value": "Set Enrichment Applied Flag; update standardised codes",
+      "Process Step Owner": "Data Steward (Reference Data)",
+      "RACI": "R=Steward, A=Data Owner, C=Process Ops, I=Maker"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-013-01",
+      "Process Step ID": "AOB-013",
+      "Process Step": "Reference enrichment",
+      "Src/Tgt": "Target",
+      "BDE Name": "Enrichment Applied Flag",
+      "Data Transformation Logic": "Set TRUE once all reference lookups performed successfully"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-013-02",
+      "Process Step ID": "AOB-013",
+      "Process Step": "Reference enrichment",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Currency",
+      "Data Transformation Logic": "Validate ISO4217; default from billing entity if missing"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-013-03",
+      "Process Step ID": "AOB-013",
+      "Process Step": "Reference enrichment",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Country",
+      "Data Transformation Logic": "Standardise to approved country reference set"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-013-04",
+      "Process Step ID": "AOB-013",
+      "Process Step": "Reference enrichment",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Teams",
+      "Data Transformation Logic": "Standardise team codes to approved reference set"
+    }
+  ],
+  "normalized": {
+    "team": "Steward",
+    "application": "Azure Data Lake Storage (Landing)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Steward",
+          "A": "Data Owner",
+          "C": "Process Ops",
+          "I": "Maker"
+        },
+        "source": {
+          "R": "Steward",
+          "A": "Data Owner",
+          "C": "Process Ops",
+          "I": "Maker"
+        },
+        "duty": "Steward"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-032</bpmn:incoming>
+      <bpmn:outgoing>Flow-033</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-014" name="AOB-014 Duplicate detect &amp;&#10;merge decision">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-014",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "140",
+    "Process Step": "Duplicate detect &amp; merge decision",
+    "Description": "Detect duplicates; merge/reject/proceed decision.",
+    "Data Involved": "Identity fields",
+    "Source BDEs": "Enriched Record",
+    "Target BDEs": "Merge Outcome",
+    "Data Transformed": "Fuzzy match + survivorship"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-014-01",
+      "Process Step ID": "AOB-014",
+      "Detail Type": "Duplicate detect &amp; merge decision / Rule",
+      "Detail Value": "Fuzzy match on Code+Name+Org Unit; survivorship rules",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=DQ Lead, C=Steward, I=Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-014-02",
+      "Process Step ID": "AOB-014",
+      "Detail Type": "Duplicate detect &amp; merge decision / Output",
+      "Detail Value": "Produce Merge Outcome with survivorship notes",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=DQ Lead, C=Steward, I=Ops"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-014-01",
+      "Process Step ID": "AOB-014",
+      "Process Step": "Duplicate detect &amp; merge decision",
+      "Src/Tgt": "Target",
+      "BDE Name": "Merge Outcome",
+      "Data Transformation Logic": "Fuzzy match; survivorship rules; output merge/reject/proceed with notes"
+    }
+  ],
+  "normalized": {
+    "team": "Process Ops",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Process Ops",
+          "A": "DQ Lead",
+          "C": "Steward",
+          "I": "Operations Team (unresolved)"
+        },
+        "source": {
+          "R": "Process Ops",
+          "A": "DQ Lead",
+          "C": "Steward",
+          "I": "Ops"
+        },
+        "duty": "Process Ops"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-034</bpmn:incoming>
+      <bpmn:outgoing>Flow-035</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="AOB-015" name="AOB-015&#10;Validation join" gatewayDirection="Converging">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-015",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "150",
+    "Process Step": "Validation join",
+    "Description": "Consolidate parallel outputs into Validated Draft.",
+    "Data Involved": "DQ + enriched + merge",
+    "Source BDEs": "DQ/Enriched/Merge Results",
+    "Target BDEs": "Validated Draft",
+    "Data Transformed": "Consolidation"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-015-01",
+      "Process Step ID": "AOB-015",
+      "Detail Type": "Validation join / Gateway (AND Join)",
+      "Detail Value": "Join AOB-012/013/014 into Validated Draft",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Platform Lead, C=Process Ops, I=Data Steward"
+    },
+    {
+      "PSD ID": "PSD-AOB-015-02",
+      "Process Step ID": "AOB-015",
+      "Detail Type": "Validation join / Output",
+      "Detail Value": "Consolidate DQ/Enrichment/Merge/Tax/Tracking into Validated Draft",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Platform Lead, C=Process Ops, I=Data Steward"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-015-01",
+      "Process Step ID": "AOB-015",
+      "Process Step": "Validation join",
+      "Src/Tgt": "Source",
+      "BDE Name": "DQ Rule Failures",
+      "Data Transformation Logic": "Consolidate DQ outputs into Validated Draft"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-015-02",
+      "Process Step ID": "AOB-015",
+      "Process Step": "Validation join",
+      "Src/Tgt": "Source",
+      "BDE Name": "Enrichment Applied Flag",
+      "Data Transformation Logic": "Carry enrichment completion status into Validated Draft"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-015-03",
+      "Process Step ID": "AOB-015",
+      "Process Step": "Validation join",
+      "Src/Tgt": "Source",
+      "BDE Name": "Merge Outcome",
+      "Data Transformation Logic": "Carry duplicate/merge decision into Validated Draft"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-015-04",
+      "Process Step ID": "AOB-015",
+      "Process Step": "Validation join",
+      "Src/Tgt": "Source",
+      "BDE Name": "Tracking ID (Correlation ID)",
+      "Data Transformation Logic": "Preserve Tracking ID across consolidated validation outputs"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-015-05",
+      "Process Step ID": "AOB-015",
+      "Process Step": "Validation join",
+      "Src/Tgt": "Target",
+      "BDE Name": "Tax Review Basis",
+      "Data Transformation Logic": "Derive TRUE when Process Status=TAXABLE OR Process Type in tax-review list; else FALSE"
+    }
+  ],
+  "normalized": {
+    "team": "Data Platform Team",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Data Platform Team",
+          "A": "Platform Lead",
+          "C": "Process Ops",
+          "I": "Steward"
+        },
+        "source": {
+          "R": "Platform",
+          "A": "Platform Lead",
+          "C": "Process Ops",
+          "I": "Data Steward"
+        },
+        "duty": "Platform"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-031</bpmn:incoming>
+      <bpmn:incoming>Flow-033</bpmn:incoming>
+      <bpmn:incoming>Flow-035</bpmn:incoming>
+      <bpmn:outgoing>Flow-036</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:inclusiveGateway id="AOB-016" name="AOB-016&#10;Conditional SPECIALIST checks" gatewayDirection="Diverging">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-016",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "160",
+    "Process Step": "Conditional SPECIALIST checks",
+    "Description": "Determine if Tax/SPECIALIST review required.",
+    "Data Involved": "Tax review routing data",
+    "Source BDEs": "Validated Draft",
+    "Target BDEs": "Specialist Review Flag",
+    "Data Transformed": "Rule evaluation"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-016-01",
+      "Process Step ID": "AOB-016",
+      "Detail Type": "Conditional SPECIALIST checks / Gateway Rule (Inclusive)",
+      "Detail Value": "If Tax Review Basis=TRUE → AOB-017 else → AOB-018",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=Ops Lead, C=Process SPECIALIST, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-016-02",
+      "Process Step ID": "AOB-016",
+      "Detail Type": "Conditional SPECIALIST checks / Rule Basis",
+      "Detail Value": "Derived from Process Status=TAXABLE OR tax-review-required type",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=Ops Lead, C=Process SPECIALIST, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-016-03",
+      "Process Step ID": "AOB-016",
+      "Detail Type": "Conditional SPECIALIST checks / Output",
+      "Detail Value": "Record Specialist Review Required Flag against Tracking ID",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=Ops Lead, C=Process SPECIALIST, I=Requestor"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-016-01",
+      "Process Step ID": "AOB-016",
+      "Process Step": "Conditional SPECIALIST checks",
+      "Src/Tgt": "Source",
+      "BDE Name": "Tax Review Basis",
+      "Data Transformation Logic": "Evaluate explicit tax-review trigger basis"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-016-02",
+      "Process Step ID": "AOB-016",
+      "Process Step": "Conditional SPECIALIST checks",
+      "Src/Tgt": "Target",
+      "BDE Name": "Specialist Review Required Flag",
+      "Data Transformation Logic": "Set TRUE/FALSE based on gateway rule evaluation"
+    }
+  ],
+  "normalized": {
+    "team": "Process Ops",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Process Ops",
+          "A": "Ops Lead",
+          "C": "Process SPECIALIST",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Process Ops",
+          "A": "Ops Lead",
+          "C": "Process SPECIALIST",
+          "I": "Requestor"
+        },
+        "duty": "Process Ops"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-036</bpmn:incoming>
+      <bpmn:outgoing>Flow-037</bpmn:outgoing>
+      <bpmn:outgoing>Flow-038</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:task id="AOB-017" name="AOB-017 Process SPECIALIST&#10;review (conditional)">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-017",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "170",
+    "Process Step": "Process SPECIALIST review (conditional)",
+    "Description": "SPECIALIST reviews tax-triggered cases.",
+    "Data Involved": "Tax review routing data",
+    "Source BDEs": "Validated Draft",
+    "Target BDEs": "Tax Approved / Correction Required",
+    "Data Transformed": "Possible corrections"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-017-01",
+      "Process Step ID": "AOB-017",
+      "Detail Type": "Process SPECIALIST review (conditional) / Control",
+      "Detail Value": "SPECIALIST must approve tax-triggered cases; may request correction",
+      "Process Step Owner": "Process SPECIALIST",
+      "RACI": "R=Process SPECIALIST, A=Tax Lead, C=Maker, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-017-02",
+      "Process Step ID": "AOB-017",
+      "Detail Type": "Process SPECIALIST review (conditional) / Routing Rule",
+      "Detail Value": "If Correction Required → AOB-019; if Approved → AOB-018",
+      "Process Step Owner": "Process SPECIALIST",
+      "RACI": "R=Process SPECIALIST, A=Tax Lead, C=Maker, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-017-03",
+      "Process Step ID": "AOB-017",
+      "Detail Type": "Process SPECIALIST review (conditional) / Output",
+      "Detail Value": "Record Specialist Review Outcome",
+      "Process Step Owner": "Process SPECIALIST",
+      "RACI": "R=Process SPECIALIST, A=Tax Lead, C=Maker, I=Process Ops"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-017-01",
+      "Process Step ID": "AOB-017",
+      "Process Step": "Process SPECIALIST review (conditional)",
+      "Src/Tgt": "Source",
+      "BDE Name": "Tax Review Basis",
+      "Data Transformation Logic": "Present derived tax-review trigger context to SPECIALIST"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-017-02",
+      "Process Step ID": "AOB-017",
+      "Process Step": "Process SPECIALIST review (conditional)",
+      "Src/Tgt": "Target",
+      "BDE Name": "Specialist Review Outcome",
+      "Data Transformation Logic": "Record SPECIALIST Approved vs Correction Required"
+    }
+  ],
+  "normalized": {
+    "team": "Process SPECIALIST",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Process SPECIALIST",
+          "A": "Tax Lead",
+          "C": "Maker",
+          "I": "Process Ops"
+        },
+        "source": {
+          "R": "Process SPECIALIST",
+          "A": "Tax Lead",
+          "C": "Maker",
+          "I": "Process Ops"
+        },
+        "duty": "Process SPECIALIST"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-037</bpmn:incoming>
+      <bpmn:outgoing>Flow-039</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="AOB-018" name="AOB-018&#10;DQ pass gateway" gatewayDirection="Mixed">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-018",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "180",
+    "Process Step": "DQ pass gateway",
+    "Description": "Evaluate DQ + Merge + Specialist outcomes; fail → AOB-019, pass → AOB-020.",
+    "Data Involved": "DQ + merge + specialist outcomes",
+    "Source BDEs": "Validated Draft",
+    "Target BDEs": "Pass/Fail decision",
+    "Data Transformed": "None"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-018-01",
+      "Process Step ID": "AOB-018",
+      "Detail Type": "DQ pass gateway / Gateway Rule (XOR)",
+      "Detail Value": "Fail if DQ/Merge/Specialist require remediation; else pass → AOB-020",
+      "Process Step Owner": "Process Ops (DQ &amp; Controls)",
+      "RACI": "R=Process Ops, A=DQ Lead, C=Maker, I=Ops Lead"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-018-01",
+      "Process Step ID": "AOB-018",
+      "Process Step": "DQ pass gateway",
+      "Src/Tgt": "Source",
+      "BDE Name": "DQ Rule Failures",
+      "Data Transformation Logic": "Evaluate DQ failures presence/severity threshold for pass/fail"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-018-02",
+      "Process Step ID": "AOB-018",
+      "Process Step": "DQ pass gateway",
+      "Src/Tgt": "Source",
+      "BDE Name": "Merge Outcome",
+      "Data Transformation Logic": "Fail if outcome requires remediation"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-018-03",
+      "Process Step ID": "AOB-018",
+      "Process Step": "DQ pass gateway",
+      "Src/Tgt": "Source",
+      "BDE Name": "Specialist Review Outcome",
+      "Data Transformation Logic": "Fail if SPECIALIST correction required (when flag=TRUE)"
+    }
+  ],
+  "normalized": {
+    "team": "Process Ops",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Process Ops",
+          "A": "DQ Lead",
+          "C": "Maker",
+          "I": "Ops Lead"
+        },
+        "source": {
+          "R": "Process Ops",
+          "A": "DQ Lead",
+          "C": "Maker",
+          "I": "Ops Lead"
+        },
+        "duty": "Process Ops"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-038</bpmn:incoming>
+      <bpmn:incoming>Flow-040</bpmn:incoming>
+      <bpmn:outgoing>Flow-042</bpmn:outgoing>
+      <bpmn:outgoing>Flow-043</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="AOB-019" name="AOB-019 Remediation loop">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-019",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "190",
+    "Process Step": "Remediation loop",
+    "Description": "Maker corrects and resubmits; max 3 attempts; loop to AOB-011.",
+    "Data Involved": "Failed fields",
+    "Source BDEs": "Fail reasons + draft",
+    "Target BDEs": "Corrected Draft / Parked",
+    "Data Transformed": "Data corrections"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-019-01",
+      "Process Step ID": "AOB-019",
+      "Detail Type": "Remediation loop / Loop Rule",
+      "Detail Value": "Max 3 attempts; SLA urgent 4h/standard 24h; breach → escalation; loop to AOB-011",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Process Ops, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-019-02",
+      "Process Step ID": "AOB-019",
+      "Detail Type": "Remediation loop / Output",
+      "Detail Value": "Increment Remediation Attempt Count; update Change Log",
+      "Process Step Owner": "Onboarding Ops (Maker)",
+      "RACI": "R=Maker, A=Ops Lead, C=Process Ops, I=Requestor"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-019-01",
+      "Process Step ID": "AOB-019",
+      "Process Step": "Remediation loop",
+      "Src/Tgt": "Target",
+      "BDE Name": "Remediation Attempt Count",
+      "Data Transformation Logic": "Increment per loop; cap at 3; breach triggers escalation"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-019-02",
+      "Process Step ID": "AOB-019",
+      "Process Step": "Remediation loop",
+      "Src/Tgt": "Target",
+      "BDE Name": "Change Log",
+      "Data Transformation Logic": "Append remediation corrections and rationale"
+    }
+  ],
+  "normalized": {
+    "team": "Onboarding Ops",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Onboarding Ops",
+          "A": "Ops Lead",
+          "C": "Process Ops",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Maker",
+          "A": "Ops Lead",
+          "C": "Process Ops",
+          "I": "Requestor"
+        },
+        "duty": "Maker"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-044</bpmn:incoming>
+      <bpmn:outgoing>Flow-045</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-020" name="AOB-020 Maker-checker (4-eye)">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-020",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "200",
+    "Process Step": "Maker-checker (4-eye)",
+    "Description": "Checker reviews, approves/rejects with reasons; logged for audit.",
+    "Data Involved": "Approved candidate",
+    "Source BDEs": "Validated/Corrected Draft",
+    "Target BDEs": "Checker Outcome",
+    "Data Transformed": "Controlled edits + audit"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-020-01",
+      "Process Step ID": "AOB-020",
+      "Detail Type": "Maker-checker (4-eye) / Control",
+      "Detail Value": "Checker approval required; permitted edits logged",
+      "Process Step Owner": "Process Ops (Checker)",
+      "RACI": "R=Checker, A=Ops Lead, C=Data Owner, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-020-02",
+      "Process Step ID": "AOB-020",
+      "Detail Type": "Maker-checker (4-eye) / Output",
+      "Detail Value": "Record checker decision, edits, audit trail in Change Log",
+      "Process Step Owner": "Process Ops (Checker)",
+      "RACI": "R=Checker, A=Ops Lead, C=Data Owner, I=Requestor"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-020-01",
+      "Process Step ID": "AOB-020",
+      "Process Step": "Maker-checker (4-eye)",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Teams",
+      "Data Transformation Logic": "Validate team code list; checker may correct; log in Change Log"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-020-02",
+      "Process Step ID": "AOB-020",
+      "Process Step": "Maker-checker (4-eye)",
+      "Src/Tgt": "Target",
+      "BDE Name": "Change Log",
+      "Data Transformation Logic": "Append checker edits, approval/rejection rationale, audit trail"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-020-03",
+      "Process Step ID": "AOB-020",
+      "Process Step": "Maker-checker (4-eye)",
+      "Src/Tgt": "Target",
+      "BDE Name": "Approval Outcome",
+      "Data Transformation Logic": "Record checker approval/rejection outcome for downstream publish control"
+    }
+  ],
+  "normalized": {
+    "team": "Process Ops",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Process Ops",
+          "A": "Ops Lead",
+          "C": "Data Owner",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Checker",
+          "A": "Ops Lead",
+          "C": "Data Owner",
+          "I": "Requestor"
+        },
+        "duty": "Checker"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-043</bpmn:incoming>
+      <bpmn:outgoing>Flow-051</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-021" name="AOB-021 Publish to onboarding&#10;master">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-021",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "210",
+    "Process Step": "Publish to onboarding master",
+    "Description": "Publish to Azure Data Lake master; stamp lineage/audit.",
+    "Data Involved": "Approved record",
+    "Source BDEs": "Checker Approved Draft",
+    "Target BDEs": "Onboarding Master Record",
+    "Data Transformed": "Audit stamping"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-021-01",
+      "Process Step ID": "AOB-021",
+      "Detail Type": "Publish to onboarding master / Application",
+      "Detail Value": "Azure Data Lake Storage (Onboarding Master)",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Data Product Owner, C=Process Ops, I=Downstream Systems"
+    },
+    {
+      "PSD ID": "PSD-AOB-021-02",
+      "Process Step ID": "AOB-021",
+      "Detail Type": "Publish to onboarding master / Output",
+      "Detail Value": "Publish approved record; stamp Lineage ID + Published Timestamp",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Data Product Owner, C=Process Ops, I=Downstream Systems"
+    },
+    {
+      "PSD ID": "PSD-AOB-021-03",
+      "Process Step ID": "AOB-021",
+      "Detail Type": "Publish to onboarding master / Output",
+      "Detail Value": "Generate Process Identifier; persist; link to Tracking ID",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Data Product Owner, C=Process Ops, I=Downstream Systems"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-021-01",
+      "Process Step ID": "AOB-021",
+      "Process Step": "Publish to onboarding master",
+      "Src/Tgt": "Target",
+      "BDE Name": "Lineage ID (lineage_id)",
+      "Data Transformation Logic": "Stamp lineage identifier at publish"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-021-02",
+      "Process Step ID": "AOB-021",
+      "Process Step": "Publish to onboarding master",
+      "Src/Tgt": "Target",
+      "BDE Name": "Published Timestamp (published_ts)",
+      "Data Transformation Logic": "Stamp publish timestamp at publish"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-021-03",
+      "Process Step ID": "AOB-021",
+      "Process Step": "Publish to onboarding master",
+      "Src/Tgt": "Target",
+      "BDE Name": "Process Identifier",
+      "Data Transformation Logic": "Generate during publish/mastering; persist to master; link to Tracking ID"
+    }
+  ],
+  "normalized": {
+    "team": "Data Platform Team",
+    "application": "Azure Data Lake Storage (Onboarding Master)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Data Platform Team",
+          "A": "Data Product Owner",
+          "C": "Process Ops",
+          "I": "Downstream Consumer Team (proposed)"
+        },
+        "source": {
+          "R": "Platform",
+          "A": "Data Product Owner",
+          "C": "Process Ops",
+          "I": "Downstream Systems"
+        },
+        "duty": "Platform"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-051</bpmn:incoming>
+      <bpmn:outgoing>Flow-052</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-022" name="AOB-022 Write controls &amp; DQ&#10;metrics">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-022",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "220",
+    "Process Step": "Write controls &amp; DQ metrics",
+    "Description": "Persist DQ results, approvals, remediation history to controls dataset.",
+    "Data Involved": "Control metrics",
+    "Source BDEs": "DQ/Workflow outputs",
+    "Target BDEs": "Controls &amp; DQ Record",
+    "Data Transformed": "Aggregation"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-022-01",
+      "Process Step ID": "AOB-022",
+      "Detail Type": "Write controls &amp; DQ metrics / Application",
+      "Detail Value": "Azure Data Lake Storage (Onboarding Master)",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Data Product Owner, C=Process Ops, I=DQ Dashboard"
+    },
+    {
+      "PSD ID": "PSD-AOB-022-02",
+      "Process Step ID": "AOB-022",
+      "Detail Type": "Write controls &amp; DQ metrics / Output",
+      "Detail Value": "Persist DQ Score, Rule Failures, Approval Outcome, Remediation Count",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Data Product Owner, C=Process Ops, I=DQ Dashboard"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-022-01",
+      "Process Step ID": "AOB-022",
+      "Process Step": "Write controls &amp; DQ metrics",
+      "Src/Tgt": "Target",
+      "BDE Name": "DQ Score",
+      "Data Transformation Logic": "Compute weighted score from rule severities"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-022-02",
+      "Process Step ID": "AOB-022",
+      "Process Step": "Write controls &amp; DQ metrics",
+      "Src/Tgt": "Target",
+      "BDE Name": "Approval Outcome",
+      "Data Transformation Logic": "Persist approval/control outcome history for reporting"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-022-03",
+      "Process Step ID": "AOB-022",
+      "Process Step": "Write controls &amp; DQ metrics",
+      "Src/Tgt": "Target",
+      "BDE Name": "Remediation Attempt Count",
+      "Data Transformation Logic": "Persist remediation loop count for controls reporting"
+    }
+  ],
+  "normalized": {
+    "team": "Data Platform Team",
+    "application": "Azure Data Lake Storage (Onboarding Master)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Data Platform Team",
+          "A": "Data Product Owner",
+          "C": "Process Ops",
+          "I": "Reporting Team (proposed)"
+        },
+        "source": {
+          "R": "Platform",
+          "A": "Data Product Owner",
+          "C": "Process Ops",
+          "I": "DQ Dashboard"
+        },
+        "duty": "Platform"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-052</bpmn:incoming>
+      <bpmn:outgoing>Flow-053</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-023" name="AOB-023 Distribute to&#10;Downstream Systems&#10;(transaction)">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-023",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "230",
+    "Process Step": "Distribute to Downstream Systems (transaction)",
+    "Description": "Parallel fan-out; record per-consumer status; allow replay.",
+    "Data Involved": "Published record",
+    "Source BDEs": "Onboarding Master Record",
+    "Target BDEs": "Consumer payloads + statuses",
+    "Data Transformed": "Consumer mapping"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-023-01",
+      "Process Step ID": "AOB-023",
+      "Detail Type": "Distribute to Downstream Systems / Transaction",
+      "Detail Value": "Parallel fan-out; record failures; allow replay",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Platform, I=Downstream Systems"
+    },
+    {
+      "PSD ID": "PSD-AOB-023-02",
+      "Process Step ID": "AOB-023",
+      "Detail Type": "Distribute to Downstream Systems / Completion Rule",
+      "Detail Value": "Complete once master published (AOB-021) + events recorded (AOB-027)",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Platform, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-023-03",
+      "Process Step ID": "AOB-023",
+      "Detail Type": "Distribute to Downstream Systems / Output",
+      "Detail Value": "Record Consumer Delivery Status; derive Completion Status",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Platform, I=Process Ops"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-023-01",
+      "Process Step ID": "AOB-023",
+      "Process Step": "Distribute to Downstream Systems (transaction)",
+      "Src/Tgt": "Source",
+      "BDE Name": "Tracking ID (Correlation ID)",
+      "Data Transformation Logic": "Attach as idempotency key for consumer deliveries and replay"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-023-02",
+      "Process Step ID": "AOB-023",
+      "Process Step": "Distribute to Downstream Systems (transaction)",
+      "Src/Tgt": "Source",
+      "BDE Name": "Onboarding Master Record",
+      "Data Transformation Logic": "Read master record; map outbound consumer payloads for in-scope attributes"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-023-03",
+      "Process Step ID": "AOB-023",
+      "Process Step": "Distribute to Downstream Systems (transaction)",
+      "Src/Tgt": "Target",
+      "BDE Name": "Consumer Delivery Status",
+      "Data Transformation Logic": "Record per-consumer delivery success/fail/pending replay"
+    }
+  ],
+  "normalized": {
+    "team": "Integration Team",
+    "application": "Azure Storage SFTP / Azure API Management + Azure Functions",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Integration Team",
+          "A": "Integration Lead",
+          "C": "Data Platform Team",
+          "I": "Downstream Consumer Team (proposed)"
+        },
+        "source": {
+          "R": "Integration",
+          "A": "Integration Lead",
+          "C": "Platform",
+          "I": "Downstream Systems"
+        },
+        "duty": "Integration"
+      },
+      {
+        "assignments": {
+          "R": "Integration Team",
+          "A": "Integration Lead",
+          "C": "Data Platform Team",
+          "I": "Process Ops"
+        },
+        "source": {
+          "R": "Integration",
+          "A": "Integration Lead",
+          "C": "Platform",
+          "I": "Process Ops"
+        },
+        "duty": "Integration"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-053</bpmn:incoming>
+      <bpmn:outgoing>Flow-054</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-024" name="AOB-024 Publish to DDT">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-024",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "240",
+    "Process Step": "Publish to DDT",
+    "Description": "Produce DDT-specific extract and deliver.",
+    "Data Involved": "Consumer payload",
+    "Source BDEs": "Consumer payload",
+    "Target BDEs": "DDT delivery",
+    "Data Transformed": "Schema mapping"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-024-01",
+      "Process Step ID": "AOB-024",
+      "Detail Type": "Publish to DDT / Application",
+      "Detail Value": "Bloomberg / Market Data Feed(BRD: DDT / External Consumer A)",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Platform, I=Downstream Systems"
+    }
+  ],
+  "BDE mappings": [],
+  "normalized": {
+    "team": "Integration Team",
+    "application": "Bloomberg / Market Data Feed(BRD: DDT / External Consumer A)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Integration Team",
+          "A": "Integration Lead",
+          "C": "Data Platform Team",
+          "I": "Downstream Consumer Team (proposed)"
+        },
+        "source": {
+          "R": "Integration",
+          "A": "Integration Lead",
+          "C": "Platform",
+          "I": "Downstream Systems"
+        },
+        "duty": "Integration"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-055</bpmn:incoming>
+      <bpmn:outgoing>Flow-056</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-025" name="AOB-025 Publish to Portfolio&#10;Analytics Platform">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-025",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "250",
+    "Process Step": "Publish to Portfolio Analytics Platform",
+    "Description": "Deliver via API layer with retries/idempotency.",
+    "Data Involved": "Consumer payload",
+    "Source BDEs": "Consumer payload",
+    "Target BDEs": "Analytics delivery",
+    "Data Transformed": "Schema mapping"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-025-01",
+      "Process Step ID": "AOB-025",
+      "Detail Type": "Publish to Portfolio Analytics Platform / Application",
+      "Detail Value": "Azure API Management + Azure Functions → Azure Synapse/Databricks",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Platform, I=Downstream Systems"
+    }
+  ],
+  "BDE mappings": [],
+  "normalized": {
+    "team": "Integration Team",
+    "application": "Azure API Management + Azure Functions → Azure Synapse/Databricks",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Integration Team",
+          "A": "Integration Lead",
+          "C": "Data Platform Team",
+          "I": "Downstream Consumer Team (proposed)"
+        },
+        "source": {
+          "R": "Integration",
+          "A": "Integration Lead",
+          "C": "Platform",
+          "I": "Downstream Systems"
+        },
+        "duty": "Integration"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-057</bpmn:incoming>
+      <bpmn:outgoing>Flow-058</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-026" name="AOB-026 Publish to Client&#10;Reporting Hub topic">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-026",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "260",
+    "Process Step": "Publish to Client Reporting Hub topic",
+    "Description": "Publish event/message via Service Bus.",
+    "Data Involved": "Consumer payload",
+    "Source BDEs": "Consumer payload",
+    "Target BDEs": "CRH message",
+    "Data Transformed": "Event translation"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-026-01",
+      "Process Step ID": "AOB-026",
+      "Detail Type": "Publish to Client Reporting Hub topic / Application",
+      "Detail Value": "Azure Service Bus",
+      "Process Step Owner": "Integration Layer",
+      "RACI": "R=Integration, A=Integration Lead, C=Platform, I=Downstream Systems"
+    }
+  ],
+  "BDE mappings": [],
+  "normalized": {
+    "team": "Integration Team",
+    "application": "Azure Service Bus",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Integration Team",
+          "A": "Integration Lead",
+          "C": "Data Platform Team",
+          "I": "Downstream Consumer Team (proposed)"
+        },
+        "source": {
+          "R": "Integration",
+          "A": "Integration Lead",
+          "C": "Platform",
+          "I": "Downstream Systems"
+        },
+        "duty": "Integration"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-059</bpmn:incoming>
+      <bpmn:outgoing>Flow-060</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-027" name="AOB-027 Record publication&#10;events">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-027",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "270",
+    "Process Step": "Record publication events",
+    "Description": "Append delivery events for audit/replay/monitoring.",
+    "Data Involved": "Event data",
+    "Source BDEs": "Delivery outcomes",
+    "Target BDEs": "Publication Events",
+    "Data Transformed": "Event normalisation"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-027-01",
+      "Process Step ID": "AOB-027",
+      "Detail Type": "Record publication events / Audit",
+      "Detail Value": "Append events per target and outcome",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Product Owner, C=Integration, I=Process Ops"
+    },
+    {
+      "PSD ID": "PSD-AOB-027-02",
+      "Process Step ID": "AOB-027",
+      "Detail Type": "Record publication events / Output",
+      "Detail Value": "Record Publication Event Timestamp per target",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Product Owner, C=Integration, I=Process Ops"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-027-01",
+      "Process Step ID": "AOB-027",
+      "Process Step": "Record publication events",
+      "Src/Tgt": "Target",
+      "BDE Name": "Publication Event Timestamp",
+      "Data Transformation Logic": "Create per-target event with outcome + timestamp; link to Tracking ID"
+    }
+  ],
+  "normalized": {
+    "team": "Data Platform Team",
+    "application": "Azure Data Lake Storage (Onboarding Master)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Data Platform Team",
+          "A": "Product Owner",
+          "C": "Integration Team",
+          "I": "Process Ops"
+        },
+        "source": {
+          "R": "Platform",
+          "A": "Product Owner",
+          "C": "Integration",
+          "I": "Process Ops"
+        },
+        "duty": "Platform"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-061</bpmn:incoming>
+      <bpmn:outgoing>Flow-062</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="AOB-028" name="AOB-028 Update DQ dashboard">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-028",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "280",
+    "Process Step": "Update DQ dashboard",
+    "Description": "Refresh dashboard with status + DQ metrics.",
+    "Data Involved": "Metrics",
+    "Source BDEs": "Controls &amp; DQ Record",
+    "Target BDEs": "Dashboard view",
+    "Data Transformed": "Aggregation"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-028-01",
+      "Process Step ID": "AOB-028",
+      "Detail Type": "Update DQ dashboard / Application",
+      "Detail Value": "Power BI",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Data Product Owner, C=Process Ops, I=Ops Lead"
+    },
+    {
+      "PSD ID": "PSD-AOB-028-02",
+      "Process Step ID": "AOB-028",
+      "Detail Type": "Update DQ dashboard / Output",
+      "Detail Value": "Refresh dashboard with status, DQ Score, remediation counts",
+      "Process Step Owner": "Data Platform",
+      "RACI": "R=Platform, A=Data Product Owner, C=Process Ops, I=Ops Lead"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-028-01",
+      "Process Step ID": "AOB-028",
+      "Process Step": "Update DQ dashboard",
+      "Src/Tgt": "Source",
+      "BDE Name": "DQ Score",
+      "Data Transformation Logic": "Refresh dashboard KPI values from controls dataset"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-028-02",
+      "Process Step ID": "AOB-028",
+      "Process Step": "Update DQ dashboard",
+      "Src/Tgt": "Source",
+      "BDE Name": "Onboarding Completion Status",
+      "Data Transformation Logic": "Refresh dashboard completion metrics"
+    }
+  ],
+  "normalized": {
+    "team": "Data Platform Team",
+    "application": "Power BI",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Data Platform Team",
+          "A": "Data Product Owner",
+          "C": "Process Ops",
+          "I": "Ops Lead"
+        },
+        "source": {
+          "R": "Platform",
+          "A": "Data Product Owner",
+          "C": "Process Ops",
+          "I": "Ops Lead"
+        },
+        "duty": "Platform"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-062</bpmn:incoming>
+      <bpmn:outgoing>Flow-063</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="AOB-029" name="AOB-029&#10;Notify completion (success)">
+      <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-029",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "290",
+    "Process Step": "Notify completion",
+    "Description": "Notify requestor/stakeholders with outcome + Tracking ID.",
+    "Data Involved": "Status",
+    "Source BDEs": "Publication Events",
+    "Target BDEs": "Notifications",
+    "Data Transformed": "None"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-029-01",
+      "Process Step ID": "AOB-029",
+      "Detail Type": "Notify completion / Application",
+      "Detail Value": "Azure DevOps Boards + Power Automate (notifications)",
+      "Process Step Owner": "Onboarding Ops",
+      "RACI": "R=Ops, A=Ops Lead, C=Integration, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-029-02",
+      "Process Step ID": "AOB-029",
+      "Detail Type": "Notify completion / Output",
+      "Detail Value": "Notify requestor/stakeholders with Completion Status + Tracking ID",
+      "Process Step Owner": "Onboarding Ops",
+      "RACI": "R=Ops, A=Ops Lead, C=Integration, I=Requestor"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-029-01",
+      "Process Step ID": "AOB-029",
+      "Process Step": "Notify completion",
+      "Src/Tgt": "Target",
+      "BDE Name": "Onboarding Completion Status",
+      "Data Transformation Logic": "Set to COMPLETE when master published (AOB-021) and publication event recorded (AOB-027)"
+    }
+  ],
+  "normalized": {
+    "team": "Onboarding Ops",
+    "application": "Azure DevOps Boards + Power Automate (notifications)",
+    "application_basis": "source",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Onboarding Ops",
+          "A": "Ops Lead",
+          "C": "Integration Team",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Ops",
+          "A": "Ops Lead",
+          "C": "Integration",
+          "I": "Requestor"
+        },
+        "duty": "Ops"
+      }
+    ]
+  }
+}</bpmn:documentation>
+      <bpmn:incoming>Flow-063</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:subProcess id="Approval-Wait" name="Approval wait">
+      <bpmn:incoming>Flow-006</bpmn:incoming>
+      <bpmn:outgoing>Flow-014</bpmn:outgoing>
+      <bpmn:eventBasedGateway id="AOB-006" name="AOB-006&#10;Approval event gateway" gatewayDirection="Diverging">
+        <bpmn:documentation>{
+  "step": {
+    "Process Step ID": "AOB-006",
+    "Process ID": "AOB-PR-1001",
+    "Reorder": "60",
+    "Process Step": "Approval event gateway",
+    "Description": "Wait for approve/reject/withdraw/timeout; timeout → escalation.",
+    "Data Involved": "Approval status",
+    "Source BDEs": "Approval Task",
+    "Target BDEs": "Outcome event",
+    "Data Transformed": "None"
+  },
+  "details": [
+    {
+      "PSD ID": "PSD-AOB-006-01",
+      "Process Step ID": "AOB-006",
+      "Detail Type": "Approval event gateway / Event-based Gateway",
+      "Detail Value": "Await Approve/Reject/Withdraw/Timeout (24h)",
+      "Process Step Owner": "Business Approver",
+      "RACI": "R=Approver, A=Approver Lead, C=Ops Lead, I=ServiceNow"
+    },
+    {
+      "PSD ID": "PSD-AOB-006-02",
+      "Process Step ID": "AOB-006",
+      "Detail Type": "Approval event gateway / SLA Timer",
+      "Detail Value": "Timeout 24h → ServiceNow incident + escalation to Ops Lead",
+      "Process Step Owner": "Business Approver",
+      "RACI": "R=Approver, A=Approver Lead, C=ServiceNow, I=Requestor"
+    },
+    {
+      "PSD ID": "PSD-AOB-006-03",
+      "Process Step ID": "AOB-006",
+      "Detail Type": "Approval event gateway / Output",
+      "Detail Value": "Record Approval Outcome and Timestamp against Tracking ID",
+      "Process Step Owner": "Business Approver",
+      "RACI": "R=Approver, A=Approver Lead, C=Ops Lead, I=ServiceNow"
+    }
+  ],
+  "BDE mappings": [
+    {
+      "PSDATA ID": "PSDATA-AOB-006-01",
+      "Process Step ID": "AOB-006",
+      "Process Step": "Approval event gateway",
+      "Src/Tgt": "Target",
+      "BDE Name": "Approval Outcome",
+      "Data Transformation Logic": "Record approve/reject/withdraw/timeout outcome against Tracking ID"
+    },
+    {
+      "PSDATA ID": "PSDATA-AOB-006-02",
+      "Process Step ID": "AOB-006",
+      "Process Step": "Approval event gateway",
+      "Src/Tgt": "Target",
+      "BDE Name": "Approval Timestamp",
+      "Data Transformation Logic": "Stamp timestamp of approval outcome (timeout uses timer firing time)"
+    }
+  ],
+  "normalized": {
+    "team": "Approver",
+    "application": "Power Automate (proposed orchestration)",
+    "application_basis": "proposed; confirmation required",
+    "raci": [
+      {
+        "assignments": {
+          "R": "Approver",
+          "A": "Approver Lead",
+          "C": "Ops Lead",
+          "I": "Service Management Team"
+        },
+        "source": {
+          "R": "Approver",
+          "A": "Approver Lead",
+          "C": "Ops Lead",
+          "I": "ServiceNow"
+        },
+        "duty": "Approver"
+      },
+      {
+        "assignments": {
+          "R": "Approver",
+          "A": "Approver Lead",
+          "C": "Service Management Team",
+          "I": "Requestor"
+        },
+        "source": {
+          "R": "Approver",
+          "A": "Approver Lead",
+          "C": "ServiceNow",
+          "I": "Requestor"
+        },
+        "duty": "Approver"
+      }
+    ]
+  }
+}</bpmn:documentation>
+        <bpmn:incoming>Flow-007</bpmn:incoming>
+        <bpmn:outgoing>Flow-008</bpmn:outgoing>
+        <bpmn:outgoing>Flow-010</bpmn:outgoing>
+        <bpmn:outgoing>Flow-012</bpmn:outgoing>
+      </bpmn:eventBasedGateway>
+      <bpmn:startEvent id="Approval-Start" name="Await outcome">
+        <bpmn:outgoing>Flow-007</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:intermediateCatchEvent id="Approval-Received" name="Approve">
+        <bpmn:incoming>Flow-008</bpmn:incoming>
+        <bpmn:outgoing>Flow-009</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="EventDefinition-Approval-Received" messageRef="Message-Approval-Received"/>
+      </bpmn:intermediateCatchEvent>
+      <bpmn:intermediateCatchEvent id="Rejection-Received" name="Reject">
+        <bpmn:incoming>Flow-010</bpmn:incoming>
+        <bpmn:outgoing>Flow-011</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="EventDefinition-Rejection-Received" messageRef="Message-Rejection-Received"/>
+      </bpmn:intermediateCatchEvent>
+      <bpmn:intermediateCatchEvent id="Withdrawal-Received" name="Withdraw">
+        <bpmn:incoming>Flow-012</bpmn:incoming>
+        <bpmn:outgoing>Flow-013</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="EventDefinition-Withdrawal-Received" messageRef="Message-Withdrawal-Received"/>
+      </bpmn:intermediateCatchEvent>
+      <bpmn:endEvent id="Approval-Complete" name="Approved outcome">
+        <bpmn:incoming>Flow-009</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:endEvent id="Rejection-Complete" name="Rejected outcome">
+        <bpmn:incoming>Flow-011</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:endEvent id="Withdrawal-Complete" name="Withdrawn outcome">
+        <bpmn:incoming>Flow-013</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow-007" sourceRef="Approval-Start" targetRef="AOB-006"/>
+      <bpmn:sequenceFlow id="Flow-008" sourceRef="AOB-006" targetRef="Approval-Received" name="Approve"/>
+      <bpmn:sequenceFlow id="Flow-009" sourceRef="Approval-Received" targetRef="Approval-Complete"/>
+      <bpmn:sequenceFlow id="Flow-010" sourceRef="AOB-006" targetRef="Rejection-Received" name="Reject"/>
+      <bpmn:sequenceFlow id="Flow-011" sourceRef="Rejection-Received" targetRef="Rejection-Complete"/>
+      <bpmn:sequenceFlow id="Flow-012" sourceRef="AOB-006" targetRef="Withdrawal-Received" name="Withdraw"/>
+      <bpmn:sequenceFlow id="Flow-013" sourceRef="Withdrawal-Received" targetRef="Withdrawal-Complete"/>
+    </bpmn:subProcess>
+    <bpmn:boundaryEvent id="Approval-Timeout" name="24h approval timeout" attachedToRef="Approval-Wait" cancelActivity="true">
+      <bpmn:outgoing>Flow-017</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="EventDefinition-Approval-Timeout">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT24H</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:exclusiveGateway id="Approval-Outcome" name="Approval outcome" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow-014</bpmn:incoming>
+      <bpmn:outgoing>Flow-015</bpmn:outgoing>
+      <bpmn:outgoing>Flow-016</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Approval-Escalation" name="Ops Lead review / resolve&#10;incident">
+      <bpmn:documentation>Explicit timeout resolution step requested by user.</bpmn:documentation>
+      <bpmn:incoming>Flow-017</bpmn:incoming>
+      <bpmn:outgoing>Flow-018</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="Request-Rejected" name="Request Rejected/Withdrawn">
+      <bpmn:incoming>Flow-016</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Draft-Merge" name="Approved or timeout resolved" gatewayDirection="Converging">
+      <bpmn:incoming>Flow-015</bpmn:incoming>
+      <bpmn:incoming>Flow-018</bpmn:incoming>
+      <bpmn:outgoing>Flow-019</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Ingest-Merge" name="Initial ingestion or retry" gatewayDirection="Converging">
+      <bpmn:incoming>Flow-021</bpmn:incoming>
+      <bpmn:incoming>Flow-027</bpmn:incoming>
+      <bpmn:outgoing>Flow-022</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Ingest-Outcome" name="Schema validation outcome" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow-023</bpmn:incoming>
+      <bpmn:outgoing>Flow-024</bpmn:outgoing>
+      <bpmn:outgoing>Flow-025</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Retry-Decision" name="Retry allowance" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow-026</bpmn:incoming>
+      <bpmn:outgoing>Flow-027</bpmn:outgoing>
+      <bpmn:outgoing>Flow-028</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Validation-Merge" name="Initial or corrected draft" gatewayDirection="Converging">
+      <bpmn:incoming>Flow-024</bpmn:incoming>
+      <bpmn:incoming>Flow-046</bpmn:incoming>
+      <bpmn:outgoing>Flow-029</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Specialist-Outcome" name="SPECIALIST outcome" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow-039</bpmn:incoming>
+      <bpmn:outgoing>Flow-040</bpmn:outgoing>
+      <bpmn:outgoing>Flow-041</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Remediation-Merge" name="Remediation required" gatewayDirection="Converging">
+      <bpmn:incoming>Flow-041</bpmn:incoming>
+      <bpmn:incoming>Flow-042</bpmn:incoming>
+      <bpmn:outgoing>Flow-044</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Remediation-Decision" name="Remediation attempt count" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow-045</bpmn:incoming>
+      <bpmn:outgoing>Flow-046</bpmn:outgoing>
+      <bpmn:outgoing>Flow-047</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Breach-Merge" name="Attempt or SLA breach" gatewayDirection="Converging">
+      <bpmn:incoming>Flow-047</bpmn:incoming>
+      <bpmn:incoming>Flow-048</bpmn:incoming>
+      <bpmn:outgoing>Flow-049</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Technical-Parked" name="Parked - Technical">
+      <bpmn:incoming>Flow-028</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:boundaryEvent id="Remediation-Timer" name="SLA: urgent 4h / standard 24h" attachedToRef="AOB-019" cancelActivity="true">
+      <bpmn:outgoing>Flow-048</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="EventDefinition-Remediation-Timer">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">if Urgency = 'urgent' then 'PT4H' else 'PT24H'</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:intermediateThrowEvent id="Remediation-Escalation" name="Escalate remediation breach">
+      <bpmn:incoming>Flow-049</bpmn:incoming>
+      <bpmn:outgoing>Flow-050</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EventDefinition-Remediation-Escalation" escalationRef="Escalation-Remediation"/>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="Remediation-Parked" name="Parked - Remediation Exhausted">
+      <bpmn:incoming>Flow-050</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:parallelGateway id="Delivery-Split" name="Parallel downstream delivery" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow-054</bpmn:incoming>
+      <bpmn:outgoing>Flow-055</bpmn:outgoing>
+      <bpmn:outgoing>Flow-057</bpmn:outgoing>
+      <bpmn:outgoing>Flow-059</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:parallelGateway id="Delivery-Join" name="Delivery outcomes recorded" gatewayDirection="Converging">
+      <bpmn:incoming>Flow-056</bpmn:incoming>
+      <bpmn:incoming>Flow-058</bpmn:incoming>
+      <bpmn:incoming>Flow-060</bpmn:incoming>
+      <bpmn:outgoing>Flow-061</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow-001" sourceRef="AOB-001" targetRef="AOB-002"/>
+    <bpmn:sequenceFlow id="Flow-002" sourceRef="AOB-002" targetRef="AOB-003"/>
+    <bpmn:sequenceFlow id="Flow-003" sourceRef="AOB-003" targetRef="AOB-004" name="FAIL: mandatory&#10;attribute/evidence missing">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">mandatory attribute/evidence missing</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-004" sourceRef="AOB-004" targetRef="AOB-003" name="Clarification supplied: recheck&#10;completeness"/>
+    <bpmn:sequenceFlow id="Flow-005" sourceRef="AOB-003" targetRef="AOB-005" name="PASS: else (no mandatory&#10;attribute/evidence missing)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">not (mandatory attribute/evidence missing)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-006" sourceRef="AOB-005" targetRef="Approval-Wait"/>
+    <bpmn:sequenceFlow id="Flow-014" sourceRef="Approval-Wait" targetRef="Approval-Outcome"/>
+    <bpmn:sequenceFlow id="Flow-015" sourceRef="Approval-Outcome" targetRef="Draft-Merge" name="Approve">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Approval Outcome = Approve</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-016" sourceRef="Approval-Outcome" targetRef="Request-Rejected" name="Reject/Withdraw">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Approval Outcome = Reject OR Approval Outcome = Withdraw</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-017" sourceRef="Approval-Timeout" targetRef="Approval-Escalation" name="Timeout (24h): ServiceNow&#10;incident + escalation to Ops&#10;Lead"/>
+    <bpmn:sequenceFlow id="Flow-018" sourceRef="Approval-Escalation" targetRef="Draft-Merge" name="Ops Lead review resolved"/>
+    <bpmn:sequenceFlow id="Flow-019" sourceRef="Draft-Merge" targetRef="AOB-007" name="Continue with approved/resolved&#10;request"/>
+    <bpmn:sequenceFlow id="Flow-020" sourceRef="AOB-007" targetRef="AOB-008"/>
+    <bpmn:sequenceFlow id="Flow-021" sourceRef="AOB-008" targetRef="Ingest-Merge"/>
+    <bpmn:sequenceFlow id="Flow-022" sourceRef="Ingest-Merge" targetRef="AOB-009" name="Ingest package"/>
+    <bpmn:sequenceFlow id="Flow-023" sourceRef="AOB-009" targetRef="Ingest-Outcome"/>
+    <bpmn:sequenceFlow id="Flow-024" sourceRef="Ingest-Outcome" targetRef="Validation-Merge" name="Schema Validation Status = PASS">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Schema Validation Status = PASS</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-025" sourceRef="Ingest-Outcome" targetRef="AOB-010" name="Schema Validation Status = FAIL">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Schema Validation Status = FAIL</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-026" sourceRef="AOB-010" targetRef="Retry-Decision"/>
+    <bpmn:sequenceFlow id="Flow-027" sourceRef="Retry-Decision" targetRef="Ingest-Merge" name="Retry &lt;=2 (next retry number&#10;&lt;=2)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">next retry number &lt;= 2</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-028" sourceRef="Retry-Decision" targetRef="Technical-Parked" name="Else: retries exhausted (next&#10;retry number &gt;2)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">next retry number &gt; 2</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-029" sourceRef="Validation-Merge" targetRef="AOB-011" name="Validate initial/corrected draft"/>
+    <bpmn:sequenceFlow id="Flow-030" sourceRef="AOB-011" targetRef="AOB-012" name="Spawn in parallel: DQ ruleset"/>
+    <bpmn:sequenceFlow id="Flow-031" sourceRef="AOB-012" targetRef="AOB-015"/>
+    <bpmn:sequenceFlow id="Flow-032" sourceRef="AOB-011" targetRef="AOB-013" name="Spawn in parallel: Reference&#10;enrichment"/>
+    <bpmn:sequenceFlow id="Flow-033" sourceRef="AOB-013" targetRef="AOB-015"/>
+    <bpmn:sequenceFlow id="Flow-034" sourceRef="AOB-011" targetRef="AOB-014" name="Spawn in parallel: Duplicate&#10;detection"/>
+    <bpmn:sequenceFlow id="Flow-035" sourceRef="AOB-014" targetRef="AOB-015"/>
+    <bpmn:sequenceFlow id="Flow-036" sourceRef="AOB-015" targetRef="AOB-016" name="All three validation branches&#10;complete"/>
+    <bpmn:sequenceFlow id="Flow-037" sourceRef="AOB-016" targetRef="AOB-017" name="Tax Review Basis=TRUE">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Tax Review Basis = TRUE</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-038" sourceRef="AOB-016" targetRef="AOB-018" name="Else: Tax Review Basis=FALSE">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Tax Review Basis = FALSE</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-039" sourceRef="AOB-017" targetRef="Specialist-Outcome"/>
+    <bpmn:sequenceFlow id="Flow-040" sourceRef="Specialist-Outcome" targetRef="AOB-018" name="Approved">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Specialist Review Outcome = Approved</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-041" sourceRef="Specialist-Outcome" targetRef="Remediation-Merge" name="Correction Required">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Specialist Review Outcome = Correction Required</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-042" sourceRef="AOB-018" targetRef="Remediation-Merge" name="FAIL: DQ/Merge/Specialist&#10;require remediation">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">DQ fail OR Merge remediation OR Specialist correction</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-043" sourceRef="AOB-018" targetRef="AOB-020" name="PASS: else (DQ/Merge/Specialist&#10;do not require remediation)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">not (DQ fail OR Merge remediation OR Specialist correction)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-044" sourceRef="Remediation-Merge" targetRef="AOB-019" name="Correct failed fields"/>
+    <bpmn:sequenceFlow id="Flow-045" sourceRef="AOB-019" targetRef="Remediation-Decision"/>
+    <bpmn:sequenceFlow id="Flow-046" sourceRef="Remediation-Decision" targetRef="Validation-Merge" name="Attempt &lt;3: loop to AOB-011">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Remediation Attempt Count &lt; 3</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-047" sourceRef="Remediation-Decision" targetRef="Breach-Merge" name="Attempt =3: max 3 attempts&#10;reached">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Remediation Attempt Count = 3</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow-048" sourceRef="Remediation-Timer" targetRef="Breach-Merge" name="SLA breach: urgent 4h / standard&#10;24h"/>
+    <bpmn:sequenceFlow id="Flow-049" sourceRef="Breach-Merge" targetRef="Remediation-Escalation" name="Escalate breach"/>
+    <bpmn:sequenceFlow id="Flow-050" sourceRef="Remediation-Escalation" targetRef="Remediation-Parked"/>
+    <bpmn:sequenceFlow id="Flow-051" sourceRef="AOB-020" targetRef="AOB-021" name="Checker approval required"/>
+    <bpmn:sequenceFlow id="Flow-052" sourceRef="AOB-021" targetRef="AOB-022"/>
+    <bpmn:sequenceFlow id="Flow-053" sourceRef="AOB-022" targetRef="AOB-023"/>
+    <bpmn:sequenceFlow id="Flow-054" sourceRef="AOB-023" targetRef="Delivery-Split"/>
+    <bpmn:sequenceFlow id="Flow-055" sourceRef="Delivery-Split" targetRef="AOB-024" name="Parallel delivery: Publish to&#10;DDT"/>
+    <bpmn:sequenceFlow id="Flow-056" sourceRef="AOB-024" targetRef="Delivery-Join" name="Update Consumer Delivery Status&#10;independently"/>
+    <bpmn:sequenceFlow id="Flow-057" sourceRef="Delivery-Split" targetRef="AOB-025" name="Parallel delivery: Publish to&#10;Portfolio Analytics Platform"/>
+    <bpmn:sequenceFlow id="Flow-058" sourceRef="AOB-025" targetRef="Delivery-Join" name="Update Consumer Delivery Status&#10;independently"/>
+    <bpmn:sequenceFlow id="Flow-059" sourceRef="Delivery-Split" targetRef="AOB-026" name="Parallel delivery: Publish to&#10;Client Reporting Hub topic"/>
+    <bpmn:sequenceFlow id="Flow-060" sourceRef="AOB-026" targetRef="Delivery-Join" name="Update Consumer Delivery Status&#10;independently"/>
+    <bpmn:sequenceFlow id="Flow-061" sourceRef="Delivery-Join" targetRef="AOB-027" name="All delivery outcomes available"/>
+    <bpmn:sequenceFlow id="Flow-062" sourceRef="AOB-027" targetRef="AOB-028"/>
+    <bpmn:sequenceFlow id="Flow-063" sourceRef="AOB-028" targetRef="AOB-029"/>
+    <bpmn:dataObject id="DataObject-AOB-002"/>
+    <bpmn:dataObjectReference id="BDE-AOB-002" dataObjectRef="DataObject-AOB-002" name="AOB-002: 3 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-002-01",
+    "Process Step ID": "AOB-002",
+    "Process Step": "Triage and classify",
+    "Src/Tgt": "Target",
+    "BDE Name": "Route Classification",
+    "Data Transformation Logic": "Apply routing tag (e.g., FD/SA) based on ticket content/ops rules"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-002-02",
+    "Process Step ID": "AOB-002",
+    "Process Step": "Triage and classify",
+    "Src/Tgt": "Target",
+    "BDE Name": "Urgency",
+    "Data Transformation Logic": "Set urgent/standard; drives SLA and escalation paths"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-002-03",
+    "Process Step ID": "AOB-002",
+    "Process Step": "Triage and classify",
+    "Src/Tgt": "Target",
+    "BDE Name": "SLA Target",
+    "Data Transformation Logic": "Set SLA targets (approval timeout 24h; remediation urgent 4h/standard 24h)"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-004"/>
+    <bpmn:dataObjectReference id="BDE-AOB-004" dataObjectRef="DataObject-AOB-004" name="AOB-004: 1 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-004-01",
+    "Process Step ID": "AOB-004",
+    "Process Step": "Request clarification (fail path)",
+    "Src/Tgt": "Target",
+    "BDE Name": "Missing-field Reason Codes",
+    "Data Transformation Logic": "Populate standard reason codes and free-text resubmission instructions"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-007"/>
+    <bpmn:dataObjectReference id="BDE-AOB-007" dataObjectRef="DataObject-AOB-007" name="AOB-007: 6 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-007-01",
+    "Process Step ID": "AOB-007",
+    "Process Step": "Create onboarding draft",
+    "Src/Tgt": "Target",
+    "BDE Name": "Draft Version",
+    "Data Transformation Logic": "Initialise v1; increment on remediation cycles"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-007-02",
+    "Process Step ID": "AOB-007",
+    "Process Step": "Create onboarding draft",
+    "Src/Tgt": "Target",
+    "BDE Name": "Change Log",
+    "Data Transformation Logic": "Create structured change log entry for draft creation"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-007-03",
+    "Process Step ID": "AOB-007",
+    "Process Step": "Create onboarding draft",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Name",
+    "Data Transformation Logic": "Normalise whitespace; max length enforcement"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-007-04",
+    "Process Step ID": "AOB-007",
+    "Process Step": "Create onboarding draft",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Model",
+    "Data Transformation Logic": "Standardise servicing model to approved value set"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-007-05",
+    "Process Step ID": "AOB-007",
+    "Process Step": "Create onboarding draft",
+    "Src/Tgt": "Target",
+    "BDE Name": "Owning Organisation Unit ID",
+    "Data Transformation Logic": "Standardise legal/booking entity code to canonical format"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-007-06",
+    "Process Step ID": "AOB-007",
+    "Process Step": "Create onboarding draft",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Level",
+    "Data Transformation Logic": "Standardise hierarchy level representation"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-008"/>
+    <bpmn:dataObjectReference id="BDE-AOB-008" dataObjectRef="DataObject-AOB-008" name="AOB-008: 3 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-008-01",
+    "Process Step ID": "AOB-008",
+    "Process Step": "Package for ingestion",
+    "Src/Tgt": "Target",
+    "BDE Name": "Ingestion Checksum",
+    "Data Transformation Logic": "Compute checksum for package payload/file"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-008-02",
+    "Process Step ID": "AOB-008",
+    "Process Step": "Package for ingestion",
+    "Src/Tgt": "Target",
+    "BDE Name": "Encryption Marker",
+    "Data Transformation Logic": "Mark package as encrypted; include method/flag in metadata"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-008-03",
+    "Process Step ID": "AOB-008",
+    "Process Step": "Package for ingestion",
+    "Src/Tgt": "Source",
+    "BDE Name": "Tracking ID (Correlation ID)",
+    "Data Transformation Logic": "Embed into payload headers/metadata for end-to-end replay/idempotency"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-009"/>
+    <bpmn:dataObjectReference id="BDE-AOB-009" dataObjectRef="DataObject-AOB-009" name="AOB-009: 2 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-009-01",
+    "Process Step ID": "AOB-009",
+    "Process Step": "Ingest to landing",
+    "Src/Tgt": "Target",
+    "BDE Name": "Schema Validation Status",
+    "Data Transformation Logic": "Set PASS/FAIL based on landing schema validation"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-009-02",
+    "Process Step ID": "AOB-009",
+    "Process Step": "Ingest to landing",
+    "Src/Tgt": "Target",
+    "BDE Name": "Schema Validation Errors",
+    "Data Transformation Logic": "Capture error details when validation fails"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-010"/>
+    <bpmn:dataObjectReference id="BDE-AOB-010" dataObjectRef="DataObject-AOB-010" name="AOB-010: 3 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-010-01",
+    "Process Step ID": "AOB-010",
+    "Process Step": "Technical error handling",
+    "Src/Tgt": "Target",
+    "BDE Name": "Exception Case ID",
+    "Data Transformation Logic": "Create ServiceNow incident and store reference against Tracking ID"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-010-02",
+    "Process Step ID": "AOB-010",
+    "Process Step": "Technical error handling",
+    "Src/Tgt": "Target",
+    "BDE Name": "Retry Count",
+    "Data Transformation Logic": "Increment per retry attempt; cap at 2"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-010-03",
+    "Process Step ID": "AOB-010",
+    "Process Step": "Technical error handling",
+    "Src/Tgt": "Target",
+    "BDE Name": "Parked Status",
+    "Data Transformation Logic": "If retries exhausted, set \"Parked – Technical\""
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-012"/>
+    <bpmn:dataObjectReference id="BDE-AOB-012" dataObjectRef="DataObject-AOB-012" name="AOB-012: 6 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-012-01",
+    "Process Step ID": "AOB-012",
+    "Process Step": "Execute DQ ruleset",
+    "Src/Tgt": "Target",
+    "BDE Name": "DQ Rule Failures",
+    "Data Transformation Logic": "Persist failed rule IDs, field-level failures, severities"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-012-02",
+    "Process Step ID": "AOB-012",
+    "Process Step": "Execute DQ ruleset",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Open Date",
+    "Data Transformation Logic": "Must be ≤ today; must be ≤ Process Closed Date if present"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-012-03",
+    "Process Step ID": "AOB-012",
+    "Process Step": "Execute DQ ruleset",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Closed Date",
+    "Data Transformation Logic": "If present, must be ≥ Process Open Date"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-012-04",
+    "Process Step ID": "AOB-012",
+    "Process Step": "Execute DQ ruleset",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Code",
+    "Data Transformation Logic": "Validate format and uniqueness constraints per ruleset"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-012-05",
+    "Process Step ID": "AOB-012",
+    "Process Step": "Execute DQ ruleset",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Identifier",
+    "Data Transformation Logic": "If present, validate format only; uniqueness checked after generation at publish"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-012-06",
+    "Process Step ID": "AOB-012",
+    "Process Step": "Execute DQ ruleset",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Status",
+    "Data Transformation Logic": "Validate against allowed lifecycle status values"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-013"/>
+    <bpmn:dataObjectReference id="BDE-AOB-013" dataObjectRef="DataObject-AOB-013" name="AOB-013: 4 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-013-01",
+    "Process Step ID": "AOB-013",
+    "Process Step": "Reference enrichment",
+    "Src/Tgt": "Target",
+    "BDE Name": "Enrichment Applied Flag",
+    "Data Transformation Logic": "Set TRUE once all reference lookups performed successfully"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-013-02",
+    "Process Step ID": "AOB-013",
+    "Process Step": "Reference enrichment",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Currency",
+    "Data Transformation Logic": "Validate ISO4217; default from billing entity if missing"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-013-03",
+    "Process Step ID": "AOB-013",
+    "Process Step": "Reference enrichment",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Country",
+    "Data Transformation Logic": "Standardise to approved country reference set"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-013-04",
+    "Process Step ID": "AOB-013",
+    "Process Step": "Reference enrichment",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Teams",
+    "Data Transformation Logic": "Standardise team codes to approved reference set"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-014"/>
+    <bpmn:dataObjectReference id="BDE-AOB-014" dataObjectRef="DataObject-AOB-014" name="AOB-014: 1 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-014-01",
+    "Process Step ID": "AOB-014",
+    "Process Step": "Duplicate detect &amp; merge decision",
+    "Src/Tgt": "Target",
+    "BDE Name": "Merge Outcome",
+    "Data Transformation Logic": "Fuzzy match; survivorship rules; output merge/reject/proceed with notes"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-017"/>
+    <bpmn:dataObjectReference id="BDE-AOB-017" dataObjectRef="DataObject-AOB-017" name="AOB-017: 2 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-017-01",
+    "Process Step ID": "AOB-017",
+    "Process Step": "Process SPECIALIST review (conditional)",
+    "Src/Tgt": "Source",
+    "BDE Name": "Tax Review Basis",
+    "Data Transformation Logic": "Present derived tax-review trigger context to SPECIALIST"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-017-02",
+    "Process Step ID": "AOB-017",
+    "Process Step": "Process SPECIALIST review (conditional)",
+    "Src/Tgt": "Target",
+    "BDE Name": "Specialist Review Outcome",
+    "Data Transformation Logic": "Record SPECIALIST Approved vs Correction Required"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-019"/>
+    <bpmn:dataObjectReference id="BDE-AOB-019" dataObjectRef="DataObject-AOB-019" name="AOB-019: 2 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-019-01",
+    "Process Step ID": "AOB-019",
+    "Process Step": "Remediation loop",
+    "Src/Tgt": "Target",
+    "BDE Name": "Remediation Attempt Count",
+    "Data Transformation Logic": "Increment per loop; cap at 3; breach triggers escalation"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-019-02",
+    "Process Step ID": "AOB-019",
+    "Process Step": "Remediation loop",
+    "Src/Tgt": "Target",
+    "BDE Name": "Change Log",
+    "Data Transformation Logic": "Append remediation corrections and rationale"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-020"/>
+    <bpmn:dataObjectReference id="BDE-AOB-020" dataObjectRef="DataObject-AOB-020" name="AOB-020: 3 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-020-01",
+    "Process Step ID": "AOB-020",
+    "Process Step": "Maker-checker (4-eye)",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Teams",
+    "Data Transformation Logic": "Validate team code list; checker may correct; log in Change Log"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-020-02",
+    "Process Step ID": "AOB-020",
+    "Process Step": "Maker-checker (4-eye)",
+    "Src/Tgt": "Target",
+    "BDE Name": "Change Log",
+    "Data Transformation Logic": "Append checker edits, approval/rejection rationale, audit trail"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-020-03",
+    "Process Step ID": "AOB-020",
+    "Process Step": "Maker-checker (4-eye)",
+    "Src/Tgt": "Target",
+    "BDE Name": "Approval Outcome",
+    "Data Transformation Logic": "Record checker approval/rejection outcome for downstream publish control"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-021"/>
+    <bpmn:dataObjectReference id="BDE-AOB-021" dataObjectRef="DataObject-AOB-021" name="AOB-021: 3 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-021-01",
+    "Process Step ID": "AOB-021",
+    "Process Step": "Publish to onboarding master",
+    "Src/Tgt": "Target",
+    "BDE Name": "Lineage ID (lineage_id)",
+    "Data Transformation Logic": "Stamp lineage identifier at publish"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-021-02",
+    "Process Step ID": "AOB-021",
+    "Process Step": "Publish to onboarding master",
+    "Src/Tgt": "Target",
+    "BDE Name": "Published Timestamp (published_ts)",
+    "Data Transformation Logic": "Stamp publish timestamp at publish"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-021-03",
+    "Process Step ID": "AOB-021",
+    "Process Step": "Publish to onboarding master",
+    "Src/Tgt": "Target",
+    "BDE Name": "Process Identifier",
+    "Data Transformation Logic": "Generate during publish/mastering; persist to master; link to Tracking ID"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-022"/>
+    <bpmn:dataObjectReference id="BDE-AOB-022" dataObjectRef="DataObject-AOB-022" name="AOB-022: 3 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-022-01",
+    "Process Step ID": "AOB-022",
+    "Process Step": "Write controls &amp; DQ metrics",
+    "Src/Tgt": "Target",
+    "BDE Name": "DQ Score",
+    "Data Transformation Logic": "Compute weighted score from rule severities"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-022-02",
+    "Process Step ID": "AOB-022",
+    "Process Step": "Write controls &amp; DQ metrics",
+    "Src/Tgt": "Target",
+    "BDE Name": "Approval Outcome",
+    "Data Transformation Logic": "Persist approval/control outcome history for reporting"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-022-03",
+    "Process Step ID": "AOB-022",
+    "Process Step": "Write controls &amp; DQ metrics",
+    "Src/Tgt": "Target",
+    "BDE Name": "Remediation Attempt Count",
+    "Data Transformation Logic": "Persist remediation loop count for controls reporting"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-023"/>
+    <bpmn:dataObjectReference id="BDE-AOB-023" dataObjectRef="DataObject-AOB-023" name="AOB-023: 3 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-023-01",
+    "Process Step ID": "AOB-023",
+    "Process Step": "Distribute to Downstream Systems (transaction)",
+    "Src/Tgt": "Source",
+    "BDE Name": "Tracking ID (Correlation ID)",
+    "Data Transformation Logic": "Attach as idempotency key for consumer deliveries and replay"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-023-02",
+    "Process Step ID": "AOB-023",
+    "Process Step": "Distribute to Downstream Systems (transaction)",
+    "Src/Tgt": "Source",
+    "BDE Name": "Onboarding Master Record",
+    "Data Transformation Logic": "Read master record; map outbound consumer payloads for in-scope attributes"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-023-03",
+    "Process Step ID": "AOB-023",
+    "Process Step": "Distribute to Downstream Systems (transaction)",
+    "Src/Tgt": "Target",
+    "BDE Name": "Consumer Delivery Status",
+    "Data Transformation Logic": "Record per-consumer delivery success/fail/pending replay"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-027"/>
+    <bpmn:dataObjectReference id="BDE-AOB-027" dataObjectRef="DataObject-AOB-027" name="AOB-027: 1 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-027-01",
+    "Process Step ID": "AOB-027",
+    "Process Step": "Record publication events",
+    "Src/Tgt": "Target",
+    "BDE Name": "Publication Event Timestamp",
+    "Data Transformation Logic": "Create per-target event with outcome + timestamp; link to Tracking ID"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject-AOB-028"/>
+    <bpmn:dataObjectReference id="BDE-AOB-028" dataObjectRef="DataObject-AOB-028" name="AOB-028: 2 BDE mappings&#10;Source / target / transformations">
+      <bpmn:documentation>[
+  {
+    "PSDATA ID": "PSDATA-AOB-028-01",
+    "Process Step ID": "AOB-028",
+    "Process Step": "Update DQ dashboard",
+    "Src/Tgt": "Source",
+    "BDE Name": "DQ Score",
+    "Data Transformation Logic": "Refresh dashboard KPI values from controls dataset"
+  },
+  {
+    "PSDATA ID": "PSDATA-AOB-028-02",
+    "Process Step ID": "AOB-028",
+    "Process Step": "Update DQ dashboard",
+    "Src/Tgt": "Source",
+    "BDE Name": "Onboarding Completion Status",
+    "Data Transformation Logic": "Refresh dashboard completion metrics"
+  }
+]</bpmn:documentation>
+    </bpmn:dataObjectReference>
+    <bpmn:textAnnotation id="Account-AOB-002">
+      <bpmn:text>A=Ops Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-004">
+      <bpmn:text>A=Ops Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-005">
+      <bpmn:text>A=Approver Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-007">
+      <bpmn:text>A=Ops Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-008">
+      <bpmn:text>A=Integration Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-009">
+      <bpmn:text>A=Platform Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-010">
+      <bpmn:text>A=Platform Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-012">
+      <bpmn:text>A=DQ Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-013">
+      <bpmn:text>A=Data Owner</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-014">
+      <bpmn:text>A=DQ Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-017">
+      <bpmn:text>A=Tax Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-019">
+      <bpmn:text>A=Ops Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-020">
+      <bpmn:text>A=Ops Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-021">
+      <bpmn:text>A=Data Product Owner</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-022">
+      <bpmn:text>A=Data Product Owner</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-023">
+      <bpmn:text>A=Integration Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-024">
+      <bpmn:text>A=Integration Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-025">
+      <bpmn:text>A=Integration Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-026">
+      <bpmn:text>A=Integration Lead</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-027">
+      <bpmn:text>A=Product Owner</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-AOB-028">
+      <bpmn:text>A=Data Product Owner</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Account-Approval-Escalation">
+      <bpmn:text>A=not specified in source</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="View-Title">
+      <bpmn:text>Sample Process Onboarding
+(AOB-PR-1001) Diagram 1: People -
+Human responsibilities and process</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Legend-Task">
+      <bpmn:text>Process activity / responsible human team
+#9ACAF0</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Legend-Gateway">
+      <bpmn:text>Gateways: XOR X / inclusive O / parallel + /
+event-based #FFFFFF</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Legend-Timer">
+      <bpmn:text>Timer: yellow clock #FFE275</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Legend-Exception">
+      <bpmn:text>Exception / parked end: red #EF9292</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="Legend-Success">
+      <bpmn:text>Success end: dark green #216E39</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association-001" sourceRef="AOB-002" targetRef="Account-AOB-002" associationDirection="None"/>
+    <bpmn:association id="Association-002" sourceRef="AOB-002" targetRef="BDE-AOB-002" associationDirection="None"/>
+    <bpmn:association id="Association-003" sourceRef="AOB-004" targetRef="Account-AOB-004" associationDirection="None"/>
+    <bpmn:association id="Association-004" sourceRef="AOB-004" targetRef="BDE-AOB-004" associationDirection="None"/>
+    <bpmn:association id="Association-005" sourceRef="AOB-005" targetRef="Account-AOB-005" associationDirection="None"/>
+    <bpmn:association id="Association-006" sourceRef="AOB-007" targetRef="Account-AOB-007" associationDirection="None"/>
+    <bpmn:association id="Association-007" sourceRef="AOB-007" targetRef="BDE-AOB-007" associationDirection="None"/>
+    <bpmn:association id="Association-008" sourceRef="AOB-008" targetRef="Account-AOB-008" associationDirection="None"/>
+    <bpmn:association id="Association-009" sourceRef="AOB-008" targetRef="BDE-AOB-008" associationDirection="None"/>
+    <bpmn:association id="Association-010" sourceRef="AOB-009" targetRef="Account-AOB-009" associationDirection="None"/>
+    <bpmn:association id="Association-011" sourceRef="AOB-009" targetRef="BDE-AOB-009" associationDirection="None"/>
+    <bpmn:association id="Association-012" sourceRef="AOB-010" targetRef="Account-AOB-010" associationDirection="None"/>
+    <bpmn:association id="Association-013" sourceRef="AOB-010" targetRef="BDE-AOB-010" associationDirection="None"/>
+    <bpmn:association id="Association-014" sourceRef="AOB-012" targetRef="Account-AOB-012" associationDirection="None"/>
+    <bpmn:association id="Association-015" sourceRef="AOB-012" targetRef="BDE-AOB-012" associationDirection="None"/>
+    <bpmn:association id="Association-016" sourceRef="AOB-013" targetRef="Account-AOB-013" associationDirection="None"/>
+    <bpmn:association id="Association-017" sourceRef="AOB-013" targetRef="BDE-AOB-013" associationDirection="None"/>
+    <bpmn:association id="Association-018" sourceRef="AOB-014" targetRef="Account-AOB-014" associationDirection="None"/>
+    <bpmn:association id="Association-019" sourceRef="AOB-014" targetRef="BDE-AOB-014" associationDirection="None"/>
+    <bpmn:association id="Association-020" sourceRef="AOB-017" targetRef="Account-AOB-017" associationDirection="None"/>
+    <bpmn:association id="Association-021" sourceRef="AOB-017" targetRef="BDE-AOB-017" associationDirection="None"/>
+    <bpmn:association id="Association-022" sourceRef="AOB-019" targetRef="Account-AOB-019" associationDirection="None"/>
+    <bpmn:association id="Association-023" sourceRef="AOB-019" targetRef="BDE-AOB-019" associationDirection="None"/>
+    <bpmn:association id="Association-024" sourceRef="AOB-020" targetRef="Account-AOB-020" associationDirection="None"/>
+    <bpmn:association id="Association-025" sourceRef="AOB-020" targetRef="BDE-AOB-020" associationDirection="None"/>
+    <bpmn:association id="Association-026" sourceRef="AOB-021" targetRef="Account-AOB-021" associationDirection="None"/>
+    <bpmn:association id="Association-027" sourceRef="AOB-021" targetRef="BDE-AOB-021" associationDirection="None"/>
+    <bpmn:association id="Association-028" sourceRef="AOB-022" targetRef="Account-AOB-022" associationDirection="None"/>
+    <bpmn:association id="Association-029" sourceRef="AOB-022" targetRef="BDE-AOB-022" associationDirection="None"/>
+    <bpmn:association id="Association-030" sourceRef="AOB-023" targetRef="Account-AOB-023" associationDirection="None"/>
+    <bpmn:association id="Association-031" sourceRef="AOB-023" targetRef="BDE-AOB-023" associationDirection="None"/>
+    <bpmn:association id="Association-032" sourceRef="AOB-024" targetRef="Account-AOB-024" associationDirection="None"/>
+    <bpmn:association id="Association-033" sourceRef="AOB-025" targetRef="Account-AOB-025" associationDirection="None"/>
+    <bpmn:association id="Association-034" sourceRef="AOB-026" targetRef="Account-AOB-026" associationDirection="None"/>
+    <bpmn:association id="Association-035" sourceRef="AOB-027" targetRef="Account-AOB-027" associationDirection="None"/>
+    <bpmn:association id="Association-036" sourceRef="AOB-027" targetRef="BDE-AOB-027" associationDirection="None"/>
+    <bpmn:association id="Association-037" sourceRef="AOB-028" targetRef="Account-AOB-028" associationDirection="None"/>
+    <bpmn:association id="Association-038" sourceRef="AOB-028" targetRef="BDE-AOB-028" associationDirection="None"/>
+    <bpmn:association id="Association-039" sourceRef="Approval-Escalation" targetRef="Account-Approval-Escalation" associationDirection="None"/>
+  </bpmn:process>
+  <bpmn:collaboration id="Collaboration-1">
+    <bpmn:participant id="Pool-AOB-PR-1001" name="Sample Process Onboarding (AOB-PR-1001)" processRef="AOB-PR-1001"/>
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="Diagram-1" name="Remediation &amp; Checker - partial DI view with adjacent context">
+    <bpmndi:BPMNPlane id="Plane-1" bpmnElement="Collaboration-1">
+      <bpmndi:BPMNShape id="Shape-Pool-AOB-PR-1001" bpmnElement="Pool-AOB-PR-1001" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="80" y="480" width="7280" height="2400"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Lane-1-02" bpmnElement="Lane-1-02" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="160" y="480" width="7200" height="800"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Lane-1-04" bpmnElement="Lane-1-04" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="160" y="1280" width="7200" height="800"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Lane-1-05" bpmnElement="Lane-1-05" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="160" y="2080" width="7200" height="800"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-AOB-019" bpmnElement="AOB-019" bioc:fill="#9ACAF0" bioc:stroke="#000000">
+        <dc:Bounds x="2880" y="680" width="240" height="160"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Remediation-Merge" bpmnElement="Remediation-Merge" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="2080" y="680" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="2000" y="520" width="240" height="120"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Remediation-Decision" bpmnElement="Remediation-Decision" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="3680" y="680" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="3600" y="520" width="240" height="120"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Breach-Merge" bpmnElement="Breach-Merge" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="4480" y="680" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="4400" y="520" width="240" height="120"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Remediation-Escalation" bpmnElement="Remediation-Escalation" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="5280" y="680" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="5200" y="520" width="240" height="120"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Remediation-Parked" bpmnElement="Remediation-Parked" bioc:fill="#EF9292" bioc:stroke="#000000">
+        <dc:Bounds x="6080" y="680" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="6000" y="520" width="240" height="120"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-AOB-021" bpmnElement="AOB-021" bioc:fill="#9ACAF0" bioc:stroke="#000000">
+        <dc:Bounds x="6080" y="1480" width="240" height="160"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Validation-Merge" bpmnElement="Validation-Merge" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="480" y="1480" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="400" y="1320" width="240" height="120"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-AOB-018" bpmnElement="AOB-018" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="1280" y="2280" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="1200" y="2120" width="240" height="120"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-AOB-020" bpmnElement="AOB-020" bioc:fill="#9ACAF0" bioc:stroke="#000000">
+        <dc:Bounds x="5280" y="2280" width="240" height="160"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Remediation-Timer" bpmnElement="Remediation-Timer" bioc:fill="#FFE275" bioc:stroke="#000000">
+        <dc:Bounds x="3000" y="800" width="80" height="80"/>
+        <bpmndi:BPMNLabel><dc:Bounds x="2360" y="920" width="280" height="80"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Account-AOB-019" bpmnElement="Account-AOB-019" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="2880" y="920" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Account-AOB-020" bpmnElement="Account-AOB-020" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="5280" y="2520" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Account-AOB-021" bpmnElement="Account-AOB-021" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="6080" y="1720" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Edge-Flow-042" bpmnElement="Flow-042"><di:waypoint x="1360" y="2320"/><di:waypoint x="2040" y="2320"/><di:waypoint x="2040" y="720"/><di:waypoint x="2080" y="720"/><bpmndi:BPMNLabel><dc:Bounds x="1480" y="2240" width="220" height="60"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-043" bpmnElement="Flow-043"><di:waypoint x="1360" y="2320"/><di:waypoint x="1400" y="2320"/><di:waypoint x="1400" y="2360"/><di:waypoint x="5280" y="2360"/><bpmndi:BPMNLabel><dc:Bounds x="1400" y="2380" width="280" height="60"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-044" bpmnElement="Flow-044"><di:waypoint x="2160" y="720"/><di:waypoint x="2200" y="720"/><di:waypoint x="2200" y="760"/><di:waypoint x="2880" y="760"/><bpmndi:BPMNLabel><dc:Bounds x="2200" y="780" width="200" height="40"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-045" bpmnElement="Flow-045"><di:waypoint x="3120" y="760"/><di:waypoint x="3640" y="760"/><di:waypoint x="3640" y="720"/><di:waypoint x="3680" y="720"/></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-046" bpmnElement="Flow-046"><di:waypoint x="3760" y="720"/><di:waypoint x="3800" y="720"/><di:waypoint x="3800" y="1600"/><di:waypoint x="440" y="1600"/><di:waypoint x="440" y="1520"/><di:waypoint x="480" y="1520"/><bpmndi:BPMNLabel><dc:Bounds x="3820" y="760" width="240" height="40"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-047" bpmnElement="Flow-047"><di:waypoint x="3760" y="720"/><di:waypoint x="4480" y="720"/><bpmndi:BPMNLabel><dc:Bounds x="3880" y="640" width="240" height="60"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-048" bpmnElement="Flow-048"><di:waypoint x="3080" y="840"/><di:waypoint x="4440" y="840"/><di:waypoint x="4440" y="720"/><di:waypoint x="4480" y="720"/><bpmndi:BPMNLabel><dc:Bounds x="3200" y="860" width="280" height="60"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-049" bpmnElement="Flow-049"><di:waypoint x="4560" y="720"/><di:waypoint x="5280" y="720"/><bpmndi:BPMNLabel><dc:Bounds x="4600" y="660" width="140" height="40"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-050" bpmnElement="Flow-050"><di:waypoint x="5360" y="720"/><di:waypoint x="6080" y="720"/></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Flow-051" bpmnElement="Flow-051"><di:waypoint x="5520" y="2360"/><di:waypoint x="5560" y="2360"/><di:waypoint x="5560" y="1560"/><di:waypoint x="6080" y="1560"/><bpmndi:BPMNLabel><dc:Bounds x="5320" y="1560" width="220" height="40"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Association-022" bpmnElement="Association-022"><di:waypoint x="3120" y="760"/><di:waypoint x="3160" y="760"/><di:waypoint x="3160" y="640"/><di:waypoint x="2840" y="640"/><di:waypoint x="2840" y="960"/><di:waypoint x="2880" y="960"/></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Association-024" bpmnElement="Association-024"><di:waypoint x="5520" y="2360"/><di:waypoint x="5560" y="2360"/><di:waypoint x="5560" y="2480"/><di:waypoint x="5240" y="2480"/><di:waypoint x="5240" y="2560"/><di:waypoint x="5280" y="2560"/></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="Edge-Association-026" bpmnElement="Association-026"><di:waypoint x="6320" y="1560"/><di:waypoint x="6360" y="1560"/><di:waypoint x="6360" y="1680"/><di:waypoint x="6040" y="1680"/><di:waypoint x="6040" y="1760"/><di:waypoint x="6080" y="1760"/></bpmndi:BPMNEdge></bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

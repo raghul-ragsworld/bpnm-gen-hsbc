@@ -1,0 +1,83 @@
+[
+  {
+    "xsd_valid": true,
+    "shape_label_overlaps": 0,
+    "connector_shape_intersections": 0,
+    "grid_valid": true,
+    "nonempty_lanes": true,
+    "backward_loops": true,
+    "parallel_rows_even": true,
+    "view": 1,
+    "filename": "diagram1_people",
+    "title": "People - Human responsibilities and process",
+    "flow_nodes": 56,
+    "sequence_flows": 63,
+    "gateways": 18,
+    "lanes": 10,
+    "data_objects": 17,
+    "annotations": 28,
+    "associations": 39,
+    "shapes": 112,
+    "edges": 102,
+    "task_types": {
+      "task": 22,
+      "manualTask": 0,
+      "userTask": 0,
+      "serviceTask": 0
+    }
+  },
+  {
+    "xsd_valid": true,
+    "shape_label_overlaps": 0,
+    "connector_shape_intersections": 0,
+    "grid_valid": true,
+    "nonempty_lanes": true,
+    "backward_loops": true,
+    "parallel_rows_even": true,
+    "view": 2,
+    "filename": "diagram2_technology",
+    "title": "Technology - Applications and process",
+    "flow_nodes": 56,
+    "sequence_flows": 63,
+    "gateways": 18,
+    "lanes": 8,
+    "data_objects": 17,
+    "annotations": 30,
+    "associations": 39,
+    "shapes": 112,
+    "edges": 102,
+    "task_types": {
+      "task": 0,
+      "manualTask": 0,
+      "userTask": 14,
+      "serviceTask": 8
+    }
+  },
+  {
+    "xsd_valid": true,
+    "shape_label_overlaps": 0,
+    "connector_shape_intersections": 0,
+    "grid_valid": true,
+    "nonempty_lanes": true,
+    "backward_loops": true,
+    "parallel_rows_even": true,
+    "view": 3,
+    "filename": "diagram3_combined",
+    "title": "Combined - People, applications and process",
+    "flow_nodes": 56,
+    "sequence_flows": 63,
+    "gateways": 18,
+    "lanes": 10,
+    "data_objects": 17,
+    "annotations": 52,
+    "associations": 61,
+    "shapes": 136,
+    "edges": 124,
+    "task_types": {
+      "task": 0,
+      "manualTask": 0,
+      "userTask": 14,
+      "serviceTask": 8
+    }
+  }
+]

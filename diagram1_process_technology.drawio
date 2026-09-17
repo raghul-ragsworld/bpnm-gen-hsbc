@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" agent="BPMN repair utility" version="24.7.17">
+  <diagram id="Process_D1" name="Diagram 1 - Process and Technology">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Lane_1" value="Azure DevOps Boards" style="swimlane;horizontal=0;startSize=42;fillColor=#F7F9FC;swimlaneFillColor=#F7F9FC;strokeColor=#6C8EBF;fontColor=#1E3A5F;fontStyle=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="8720" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="Lane_2" value="Power Automate + SharePoint" style="swimlane;horizontal=0;startSize=42;fillColor=#EEF3F8;swimlaneFillColor=#EEF3F8;strokeColor=#6C8EBF;fontColor=#1E3A5F;fontStyle=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="200" width="8720" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="Lane_3" value="Integration / Data Platform / Purview" style="swimlane;horizontal=0;startSize=42;fillColor=#F7F9FC;swimlaneFillColor=#F7F9FC;strokeColor=#6C8EBF;fontColor=#1E3A5F;fontStyle=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="380" width="8720" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="StartEvent_1" value="Start" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#D5E8D4;strokeColor=#2D7600;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="180" y="92.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_001" value="Submit onboarding request" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="360" y="70.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_002" value="Triage and classify" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="540" y="70.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_003" value="Completeness gateway" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="720" y="85.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_004" value="Request clarification (fail path)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="900" y="70.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_005" value="Business approval" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="70.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_006" value="Approval event gateway" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="85.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_007" value="Create onboarding draft" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="250.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_008" value="Package for ingestion" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="1620" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_009" value="Ingest to landing" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_010" value="Technical error handling" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="1980" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_011" value="Parallel validations start" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="2160" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_012" value="Execute DQ ruleset" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="2340" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_013" value="Reference enrichment" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="2520" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_014" value="Duplicate detect &amp; merge decision" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="2700" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_015" value="Validation join" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="2880" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_016" value="Conditional SPECIALIST checks" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="3060" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_017" value="Process SPECIALIST review (conditional)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="3240" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_018" value="DQ pass gateway" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="3420" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_019" value="Remediation loop" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="3600" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_020" value="Maker-checker (4-eye)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="3780" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_021" value="Publish to onboarding master" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="3960" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_022" value="Write controls &amp; DQ metrics" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="4140" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_023" value="Distribute to Downstream Systems (transaction)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="4320" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_024" value="Publish to DDT" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="4500" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_025" value="Publish to Portfolio Analytics Platform" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="4680" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_026" value="Publish to Client Reporting Hub topic" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="4860" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_027" value="Record publication events" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="5040" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_028" value="Update DQ dashboard" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="5220" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_AOB_029" value="Notify completion" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="5400" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="EndEvent_1" value="End" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="5580" y="452.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="Event_ApprovalApproved" value="Approval received" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="5760" y="92.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="Event_ApprovalRejected" value="Rejection received" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="5940" y="92.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="Event_ApprovalWithdrawn" value="Withdrawal received" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="6120" y="92.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="Event_ApprovalTimeout" value="24-hour timeout" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="6300" y="92.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_ApprovalEscalation" value="Escalate approval timeout" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="6480" y="70.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Gateway_IngestionStatus" value="Ingestion successful?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="6660" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Gateway_RetryAllowed" value="Retry available?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="6840" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Gateway_SpecialistOutcome" value="Specialist approved?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="7020" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Gateway_RemediationAttempts" value="Remediation attempts available?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="7200" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Task_RemediationEscalation" value="Escalate remediation breach" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="7380" y="430.0" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Gateway_CheckerOutcome" value="Checker approved?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="7560" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Gateway_PublishSplit" value="Publish to consumers" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="7740" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Gateway_PublishJoin" value="Consumer publishing complete" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="7920" y="445.0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="End_Withdrawn" value="Request withdrawn" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="8100" y="92.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="End_ParkedTechnical" value="Parked - Technical" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="8280" y="452.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="End_ParkedRemediation" value="Parked - Remediation" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=3;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="8460" y="452.0" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_001" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="StartEvent_1" target="Task_AOB_001">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_002" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_001" target="Task_AOB_002">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_003" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_002" target="Task_AOB_003">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_004" value="Incomplete" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_003" target="Task_AOB_004">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_005" value="Complete" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_003" target="Task_AOB_005">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_006" value="Correct and resubmit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_004" target="Task_AOB_001">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_007" value="Await outcome" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_005" target="Task_AOB_006">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_008" value="Approve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_006" target="Event_ApprovalApproved">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_009" value="Reject" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_006" target="Event_ApprovalRejected">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_010" value="Withdraw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_006" target="Event_ApprovalWithdrawn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_011" value="Timeout" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_006" target="Event_ApprovalTimeout">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_012" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Event_ApprovalApproved" target="Task_AOB_007">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_013" value="Return for correction" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Event_ApprovalRejected" target="Task_AOB_004">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_014" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Event_ApprovalWithdrawn" target="End_Withdrawn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_015" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Event_ApprovalTimeout" target="Task_ApprovalEscalation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_016" value="Continue waiting" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_ApprovalEscalation" target="Task_AOB_006">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_017" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_007" target="Task_AOB_008">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_018" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_008" target="Task_AOB_009">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_019" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_009" target="Gateway_IngestionStatus">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_020" value="Success" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_IngestionStatus" target="Task_AOB_011">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_021" value="Failure" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_IngestionStatus" target="Task_AOB_010">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_022" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_010" target="Gateway_RetryAllowed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_023" value="Retry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_RetryAllowed" target="Task_AOB_009">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_024" value="Retries exhausted" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_RetryAllowed" target="End_ParkedTechnical">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_025" value="DQ validation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_011" target="Task_AOB_012">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_026" value="Reference enrichment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_011" target="Task_AOB_013">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_027" value="Duplicate detection" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_011" target="Task_AOB_014">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_028" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_012" target="Task_AOB_015">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_029" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_013" target="Task_AOB_015">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_030" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_014" target="Task_AOB_015">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_031" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_015" target="Task_AOB_016">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_032" value="Review required" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_016" target="Task_AOB_017">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_033" value="No review required" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_016" target="Task_AOB_018">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_034" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_017" target="Gateway_SpecialistOutcome">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_035" value="Approved" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_SpecialistOutcome" target="Task_AOB_018">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_036" value="Correction required" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_SpecialistOutcome" target="Task_AOB_019">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_037" value="Pass" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_018" target="Task_AOB_020">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_038" value="Fail" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_018" target="Task_AOB_019">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_039" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_019" target="Gateway_RemediationAttempts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_040" value="Revalidate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_RemediationAttempts" target="Task_AOB_011">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_041" value="Limit exceeded" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_RemediationAttempts" target="Task_RemediationEscalation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_042" value="Park case" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_RemediationEscalation" target="End_ParkedRemediation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_043" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_020" target="Gateway_CheckerOutcome">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_044" value="Approved" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_CheckerOutcome" target="Task_AOB_021">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_045" value="Rejected" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_CheckerOutcome" target="Task_AOB_019">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_046" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_021" target="Task_AOB_022">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_047" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_022" target="Task_AOB_023">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_048" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_023" target="Gateway_PublishSplit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_049" value="DDT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_PublishSplit" target="Task_AOB_024">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_050" value="Portfolio analytics" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_PublishSplit" target="Task_AOB_025">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_051" value="Client reporting" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_PublishSplit" target="Task_AOB_026">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_052" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_024" target="Gateway_PublishJoin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_053" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_025" target="Gateway_PublishJoin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_054" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_026" target="Gateway_PublishJoin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_055" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Gateway_PublishJoin" target="Task_AOB_027">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_056" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_027" target="Task_AOB_028">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_057" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_028" target="Task_AOB_029">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Flow_058" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=2;" edge="1" parent="1" source="Task_AOB_029" target="EndEvent_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

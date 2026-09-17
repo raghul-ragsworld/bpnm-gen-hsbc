@@ -1,0 +1,81 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="YmUvmyaUTDMu1RerPJ_z">
+    <mxGraphModel dx="1417" dy="828" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-2" parent="1" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;span style=&quot;color: rgb(238, 238, 238); font-family: anthropic-sans, sans-serif; font-size: 13px; text-align: start; white-space: nowrap;&quot;&gt;PROCESS&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="100" x="60" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-3" edge="1" parent="1" source="lK-VtfyG5QhIvd-2-qqL-2" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#0050ef;strokeColor=#001DBC;" target="lK-VtfyG5QhIvd-2-qqL-4" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <mxPoint x="150" y="150" as="sourcePoint" />
+            <mxPoint x="270" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-5" connectable="0" parent="lK-VtfyG5QhIvd-2-qqL-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Describes" vertex="1">
+          <mxGeometry relative="1" x="0.268" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-4" parent="1" style="whiteSpace=wrap;html=1;align=center;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;span style=&quot;color: rgb(238, 238, 238); font-family: anthropic-sans, sans-serif; font-size: 13px; text-align: start; white-space: nowrap;&quot;&gt;PROCESS_STEP&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="140" x="310" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-6" parent="1" style="whiteSpace=wrap;html=1;align=center;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;span style=&quot;color: rgb(240, 239, 236); font-family: anthropic-sans, sans-serif; font-size: 14px; text-align: start; white-space: nowrap;&quot;&gt;PROCESS_STEP_DETAIL&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="190" x="550" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-7" edge="1" parent="1" source="lK-VtfyG5QhIvd-2-qqL-4" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;fillColor=#0050ef;strokeColor=#001DBC;" target="lK-VtfyG5QhIvd-2-qqL-6" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <mxPoint x="420" y="260" as="sourcePoint" />
+            <mxPoint x="520" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-10" connectable="0" parent="lK-VtfyG5QhIvd-2-qqL-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Describes" vertex="1">
+          <mxGeometry relative="1" x="-0.1237" y="4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-11" parent="1" style="whiteSpace=wrap;html=1;align=center;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;span style=&quot;color: rgb(240, 239, 236); font-family: anthropic-sans, sans-serif; font-size: 14px; text-align: start; white-space: nowrap;&quot;&gt;APPLICATION&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="190" x="580" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-12" edge="1" parent="1" source="lK-VtfyG5QhIvd-2-qqL-6" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#0050ef;strokeColor=#001DBC;" target="lK-VtfyG5QhIvd-2-qqL-11" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <mxPoint x="750" y="450" as="sourcePoint" />
+            <mxPoint x="861.46" y="598" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-13" connectable="0" parent="lK-VtfyG5QhIvd-2-qqL-12" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Hosts" vertex="1">
+          <mxGeometry relative="1" x="-0.1237" y="4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-14" parent="1" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;span style=&quot;color: rgb(240, 239, 236); font-family: anthropic-sans, sans-serif; font-size: 14px; text-align: start; white-space: nowrap;&quot;&gt;PROCESS_STEP_DATA&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="320" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-15" edge="1" parent="1" source="lK-VtfyG5QhIvd-2-qqL-4" style="fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;rounded=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;fillColor=#0050ef;strokeColor=#001DBC;" target="lK-VtfyG5QhIvd-2-qqL-14" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <mxPoint x="380" y="330" as="sourcePoint" />
+            <mxPoint x="350" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-16" connectable="0" parent="lK-VtfyG5QhIvd-2-qqL-15" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Produces" vertex="1">
+          <mxGeometry relative="1" x="-0.0434" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-17" parent="1" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;span style=&quot;color: rgb(240, 239, 236); font-family: anthropic-sans, sans-serif; font-size: 14px; text-align: start; white-space: nowrap;&quot;&gt;DATA_ATTRIBUTE&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="50" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-18" edge="1" parent="1" style="fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;fillColor=#0050ef;strokeColor=#001DBC;" target="lK-VtfyG5QhIvd-2-qqL-14" value="Referenced as">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <mxPoint x="160" y="420" as="sourcePoint" />
+            <mxPoint x="188" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lK-VtfyG5QhIvd-2-qqL-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Process Conceptual Model" vertex="1">
+          <mxGeometry height="60" width="176" x="345" y="45" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

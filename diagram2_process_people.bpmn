@@ -1,0 +1,621 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bpmn:definitions xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_D2" targetNamespace="http://example.com/bpmn">
+  <bpmn:message id="Message_ApprovalApproved" name="Approval received" />
+  <bpmn:message id="Message_ApprovalRejected" name="Rejection received" />
+  <bpmn:message id="Message_ApprovalWithdrawn" name="Withdrawal received" />
+  <bpmn:process id="Process_D2" name="Diagram 2 - Process and People" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_D2">
+      <bpmn:lane id="Lane_P1" name="Requester">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_001</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_004</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_Withdrawn</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_P2" name="Onboarding Ops">
+        <bpmn:flowNodeRef>Task_AOB_002</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_003</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_007</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_019</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_020</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_029</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_RemediationAttempts</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RemediationEscalation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_ParkedRemediation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_CheckerOutcome</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_P3" name="Business Approver">
+        <bpmn:flowNodeRef>Task_AOB_005</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_006</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_ApprovalApproved</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_ApprovalRejected</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_ApprovalWithdrawn</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_ApprovalTimeout</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApprovalEscalation</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_P4" name="Process Ops / Data Platform / Specialist">
+        <bpmn:flowNodeRef>Task_AOB_008</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_009</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_010</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_011</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_012</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_013</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_014</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_015</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_016</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_017</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_018</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_021</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_022</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_023</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_024</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_025</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_026</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_027</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AOB_028</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IngestionStatus</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_RetryAllowed</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_ParkedTechnical</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_SpecialistOutcome</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_PublishSplit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_PublishJoin</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Start" />
+    <bpmn:userTask id="Task_AOB_001" name="Submit onboarding request" />
+    <bpmn:userTask id="Task_AOB_002" name="Triage and classify">
+      <bpmn:documentation>Set routing category, urgency, SLA target, and assigned maker.</bpmn:documentation>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Task_AOB_003" name="Completeness gateway">
+      <bpmn:documentation>Missing mandatory attributes or evidence routes to clarification; complete requests route to approval.</bpmn:documentation>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_AOB_004" name="Request clarification (fail path)" />
+    <bpmn:userTask id="Task_AOB_005" name="Business approval" />
+    <bpmn:eventBasedGateway id="Task_AOB_006" name="Approval event gateway">
+      <bpmn:documentation>Wait for approve, reject, withdraw, or a 24-hour timeout.</bpmn:documentation>
+    </bpmn:eventBasedGateway>
+    <bpmn:manualTask id="Task_AOB_007" name="Create onboarding draft" />
+    <bpmn:manualTask id="Task_AOB_008" name="Package for ingestion" />
+    <bpmn:manualTask id="Task_AOB_009" name="Ingest to landing" />
+    <bpmn:manualTask id="Task_AOB_010" name="Technical error handling">
+      <bpmn:documentation>Create a ServiceNow incident, retry no more than twice, then park the case.</bpmn:documentation>
+    </bpmn:manualTask>
+    <bpmn:parallelGateway id="Task_AOB_011" name="Parallel validations start">
+      <bpmn:documentation>Run data quality, reference enrichment, and duplicate detection concurrently.</bpmn:documentation>
+    </bpmn:parallelGateway>
+    <bpmn:manualTask id="Task_AOB_012" name="Execute DQ ruleset" />
+    <bpmn:manualTask id="Task_AOB_013" name="Reference enrichment" />
+    <bpmn:manualTask id="Task_AOB_014" name="Duplicate detect &amp; merge decision" />
+    <bpmn:parallelGateway id="Task_AOB_015" name="Validation join">
+      <bpmn:documentation>Wait for all three validation branches and consolidate their outputs.</bpmn:documentation>
+    </bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="Task_AOB_016" name="Conditional SPECIALIST checks">
+      <bpmn:documentation>Require specialist review when the tax review basis is true.</bpmn:documentation>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_AOB_017" name="Process SPECIALIST review (conditional)" />
+    <bpmn:exclusiveGateway id="Task_AOB_018" name="DQ pass gateway">
+      <bpmn:documentation>Pass only when DQ, merge, and any required specialist review are acceptable.</bpmn:documentation>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_AOB_019" name="Remediation loop">
+      <bpmn:documentation>Apply corrections and revalidate, with a maximum of three remediation attempts.</bpmn:documentation>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_AOB_020" name="Maker-checker (4-eye)">
+      <bpmn:documentation>Publish only after independent checker approval; rejection returns to remediation.</bpmn:documentation>
+    </bpmn:userTask>
+    <bpmn:manualTask id="Task_AOB_021" name="Publish to onboarding master" />
+    <bpmn:manualTask id="Task_AOB_022" name="Write controls &amp; DQ metrics" />
+    <bpmn:manualTask id="Task_AOB_023" name="Distribute to Downstream Systems (transaction)" />
+    <bpmn:manualTask id="Task_AOB_024" name="Publish to DDT" />
+    <bpmn:manualTask id="Task_AOB_025" name="Publish to Portfolio Analytics Platform" />
+    <bpmn:manualTask id="Task_AOB_026" name="Publish to Client Reporting Hub topic" />
+    <bpmn:manualTask id="Task_AOB_027" name="Record publication events" />
+    <bpmn:manualTask id="Task_AOB_028" name="Update DQ dashboard" />
+    <bpmn:userTask id="Task_AOB_029" name="Notify completion" />
+    <bpmn:endEvent id="EndEvent_1" name="End" />
+    <bpmn:intermediateCatchEvent id="Event_ApprovalApproved" name="Approval received">
+      <bpmn:messageEventDefinition messageRef="Message_ApprovalApproved" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="Event_ApprovalRejected" name="Rejection received">
+      <bpmn:messageEventDefinition messageRef="Message_ApprovalRejected" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="Event_ApprovalWithdrawn" name="Withdrawal received">
+      <bpmn:messageEventDefinition messageRef="Message_ApprovalWithdrawn" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="Event_ApprovalTimeout" name="24-hour timeout">
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT24H</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:serviceTask id="Task_ApprovalEscalation" name="Escalate approval timeout" />
+    <bpmn:exclusiveGateway id="Gateway_IngestionStatus" name="Ingestion successful?" />
+    <bpmn:exclusiveGateway id="Gateway_RetryAllowed" name="Retry available?" />
+    <bpmn:exclusiveGateway id="Gateway_SpecialistOutcome" name="Specialist approved?" />
+    <bpmn:exclusiveGateway id="Gateway_RemediationAttempts" name="Remediation attempts available?" />
+    <bpmn:serviceTask id="Task_RemediationEscalation" name="Escalate remediation breach" />
+    <bpmn:exclusiveGateway id="Gateway_CheckerOutcome" name="Checker approved?" />
+    <bpmn:parallelGateway id="Gateway_PublishSplit" name="Publish to consumers" />
+    <bpmn:parallelGateway id="Gateway_PublishJoin" name="Consumer publishing complete" />
+    <bpmn:endEvent id="End_Withdrawn" name="Request withdrawn" />
+    <bpmn:endEvent id="End_ParkedTechnical" name="Parked - Technical" />
+    <bpmn:endEvent id="End_ParkedRemediation" name="Parked - Remediation" />
+    <bpmn:sequenceFlow id="Flow_001" sourceRef="StartEvent_1" targetRef="Task_AOB_001" />
+    <bpmn:sequenceFlow id="Flow_002" sourceRef="Task_AOB_001" targetRef="Task_AOB_002" />
+    <bpmn:sequenceFlow id="Flow_003" sourceRef="Task_AOB_002" targetRef="Task_AOB_003" />
+    <bpmn:sequenceFlow id="Flow_004" sourceRef="Task_AOB_003" targetRef="Task_AOB_004" name="Incomplete">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Mandatory data or supporting evidence is missing</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_005" sourceRef="Task_AOB_003" targetRef="Task_AOB_005" name="Complete">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">All mandatory data and supporting evidence are present</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_006" sourceRef="Task_AOB_004" targetRef="Task_AOB_001" name="Correct and resubmit" />
+    <bpmn:sequenceFlow id="Flow_007" sourceRef="Task_AOB_005" targetRef="Task_AOB_006" name="Await outcome" />
+    <bpmn:sequenceFlow id="Flow_008" sourceRef="Task_AOB_006" targetRef="Event_ApprovalApproved" name="Approve" />
+    <bpmn:sequenceFlow id="Flow_009" sourceRef="Task_AOB_006" targetRef="Event_ApprovalRejected" name="Reject" />
+    <bpmn:sequenceFlow id="Flow_010" sourceRef="Task_AOB_006" targetRef="Event_ApprovalWithdrawn" name="Withdraw" />
+    <bpmn:sequenceFlow id="Flow_011" sourceRef="Task_AOB_006" targetRef="Event_ApprovalTimeout" name="Timeout" />
+    <bpmn:sequenceFlow id="Flow_012" sourceRef="Event_ApprovalApproved" targetRef="Task_AOB_007" />
+    <bpmn:sequenceFlow id="Flow_013" sourceRef="Event_ApprovalRejected" targetRef="Task_AOB_004" name="Return for correction" />
+    <bpmn:sequenceFlow id="Flow_014" sourceRef="Event_ApprovalWithdrawn" targetRef="End_Withdrawn" />
+    <bpmn:sequenceFlow id="Flow_015" sourceRef="Event_ApprovalTimeout" targetRef="Task_ApprovalEscalation" />
+    <bpmn:sequenceFlow id="Flow_016" sourceRef="Task_ApprovalEscalation" targetRef="Task_AOB_006" name="Continue waiting" />
+    <bpmn:sequenceFlow id="Flow_017" sourceRef="Task_AOB_007" targetRef="Task_AOB_008" />
+    <bpmn:sequenceFlow id="Flow_018" sourceRef="Task_AOB_008" targetRef="Task_AOB_009" />
+    <bpmn:sequenceFlow id="Flow_019" sourceRef="Task_AOB_009" targetRef="Gateway_IngestionStatus" />
+    <bpmn:sequenceFlow id="Flow_020" sourceRef="Gateway_IngestionStatus" targetRef="Task_AOB_011" name="Success">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Schema validation status is PASS</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_021" sourceRef="Gateway_IngestionStatus" targetRef="Task_AOB_010" name="Failure">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Schema validation status is FAIL</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_022" sourceRef="Task_AOB_010" targetRef="Gateway_RetryAllowed" />
+    <bpmn:sequenceFlow id="Flow_023" sourceRef="Gateway_RetryAllowed" targetRef="Task_AOB_009" name="Retry">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Retry count is less than 2</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_024" sourceRef="Gateway_RetryAllowed" targetRef="End_ParkedTechnical" name="Retries exhausted">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Retry count is at least 2</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_025" sourceRef="Task_AOB_011" targetRef="Task_AOB_012" name="DQ validation" />
+    <bpmn:sequenceFlow id="Flow_026" sourceRef="Task_AOB_011" targetRef="Task_AOB_013" name="Reference enrichment" />
+    <bpmn:sequenceFlow id="Flow_027" sourceRef="Task_AOB_011" targetRef="Task_AOB_014" name="Duplicate detection" />
+    <bpmn:sequenceFlow id="Flow_028" sourceRef="Task_AOB_012" targetRef="Task_AOB_015" />
+    <bpmn:sequenceFlow id="Flow_029" sourceRef="Task_AOB_013" targetRef="Task_AOB_015" />
+    <bpmn:sequenceFlow id="Flow_030" sourceRef="Task_AOB_014" targetRef="Task_AOB_015" />
+    <bpmn:sequenceFlow id="Flow_031" sourceRef="Task_AOB_015" targetRef="Task_AOB_016" />
+    <bpmn:sequenceFlow id="Flow_032" sourceRef="Task_AOB_016" targetRef="Task_AOB_017" name="Review required">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Tax review basis is true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_033" sourceRef="Task_AOB_016" targetRef="Task_AOB_018" name="No review required">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Tax review basis is false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_034" sourceRef="Task_AOB_017" targetRef="Gateway_SpecialistOutcome" />
+    <bpmn:sequenceFlow id="Flow_035" sourceRef="Gateway_SpecialistOutcome" targetRef="Task_AOB_018" name="Approved">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Specialist review outcome is approved</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_036" sourceRef="Gateway_SpecialistOutcome" targetRef="Task_AOB_019" name="Correction required">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Specialist review requires correction</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_037" sourceRef="Task_AOB_018" targetRef="Task_AOB_020" name="Pass">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">DQ, merge, and specialist outcomes pass</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_038" sourceRef="Task_AOB_018" targetRef="Task_AOB_019" name="Fail">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">DQ, merge, or specialist outcome requires remediation</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_039" sourceRef="Task_AOB_019" targetRef="Gateway_RemediationAttempts" />
+    <bpmn:sequenceFlow id="Flow_040" sourceRef="Gateway_RemediationAttempts" targetRef="Task_AOB_011" name="Revalidate">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Remediation attempt count is at most 3</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_041" sourceRef="Gateway_RemediationAttempts" targetRef="Task_RemediationEscalation" name="Limit exceeded">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Remediation attempt count exceeds 3</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_042" sourceRef="Task_RemediationEscalation" targetRef="End_ParkedRemediation" name="Park case" />
+    <bpmn:sequenceFlow id="Flow_043" sourceRef="Task_AOB_020" targetRef="Gateway_CheckerOutcome" />
+    <bpmn:sequenceFlow id="Flow_044" sourceRef="Gateway_CheckerOutcome" targetRef="Task_AOB_021" name="Approved">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Checker outcome is approved</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_045" sourceRef="Gateway_CheckerOutcome" targetRef="Task_AOB_019" name="Rejected">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Checker outcome is rejected</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_046" sourceRef="Task_AOB_021" targetRef="Task_AOB_022" />
+    <bpmn:sequenceFlow id="Flow_047" sourceRef="Task_AOB_022" targetRef="Task_AOB_023" />
+    <bpmn:sequenceFlow id="Flow_048" sourceRef="Task_AOB_023" targetRef="Gateway_PublishSplit" />
+    <bpmn:sequenceFlow id="Flow_049" sourceRef="Gateway_PublishSplit" targetRef="Task_AOB_024" name="DDT" />
+    <bpmn:sequenceFlow id="Flow_050" sourceRef="Gateway_PublishSplit" targetRef="Task_AOB_025" name="Portfolio analytics" />
+    <bpmn:sequenceFlow id="Flow_051" sourceRef="Gateway_PublishSplit" targetRef="Task_AOB_026" name="Client reporting" />
+    <bpmn:sequenceFlow id="Flow_052" sourceRef="Task_AOB_024" targetRef="Gateway_PublishJoin" />
+    <bpmn:sequenceFlow id="Flow_053" sourceRef="Task_AOB_025" targetRef="Gateway_PublishJoin" />
+    <bpmn:sequenceFlow id="Flow_054" sourceRef="Task_AOB_026" targetRef="Gateway_PublishJoin" />
+    <bpmn:sequenceFlow id="Flow_055" sourceRef="Gateway_PublishJoin" targetRef="Task_AOB_027" />
+    <bpmn:sequenceFlow id="Flow_056" sourceRef="Task_AOB_027" targetRef="Task_AOB_028" />
+    <bpmn:sequenceFlow id="Flow_057" sourceRef="Task_AOB_028" targetRef="Task_AOB_029" />
+    <bpmn:sequenceFlow id="Flow_058" sourceRef="Task_AOB_029" targetRef="EndEvent_1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Process_D2_Diagram">
+    <bpmndi:BPMNPlane id="Process_D2_Plane" bpmnElement="Process_D2">
+      <bpmndi:BPMNShape id="Lane_P1_di" bpmnElement="Lane_P1" isHorizontal="true" bioc:fill="#F7F9FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="20" y="20" width="8720" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_P2_di" bpmnElement="Lane_P2" isHorizontal="true" bioc:fill="#EEF3F8" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="20" y="200" width="8720" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_P3_di" bpmnElement="Lane_P3" isHorizontal="true" bioc:fill="#F7F9FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="20" y="380" width="8720" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_P4_di" bpmnElement="Lane_P4" isHorizontal="true" bioc:fill="#EEF3F8" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="20" y="560" width="8720" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1" bioc:fill="#D5E8D4" bioc:stroke="#2D7600">
+        <dc:Bounds x="180" y="92.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_001_di" bpmnElement="Task_AOB_001" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="360" y="70.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_002_di" bpmnElement="Task_AOB_002" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="540" y="250.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_003_di" bpmnElement="Task_AOB_003" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="720" y="265.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_004_di" bpmnElement="Task_AOB_004" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="900" y="70.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_005_di" bpmnElement="Task_AOB_005" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="1080" y="430.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_006_di" bpmnElement="Task_AOB_006" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="1260" y="445.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_007_di" bpmnElement="Task_AOB_007" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="1440" y="250.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_008_di" bpmnElement="Task_AOB_008" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="1620" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_009_di" bpmnElement="Task_AOB_009" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="1800" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_010_di" bpmnElement="Task_AOB_010" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="1980" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_011_di" bpmnElement="Task_AOB_011" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="2160" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_012_di" bpmnElement="Task_AOB_012" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="2340" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_013_di" bpmnElement="Task_AOB_013" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="2520" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_014_di" bpmnElement="Task_AOB_014" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="2700" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_015_di" bpmnElement="Task_AOB_015" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="2880" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_016_di" bpmnElement="Task_AOB_016" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="3060" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_017_di" bpmnElement="Task_AOB_017" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="3240" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_018_di" bpmnElement="Task_AOB_018" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="3420" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_019_di" bpmnElement="Task_AOB_019" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="3600" y="250.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_020_di" bpmnElement="Task_AOB_020" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="3780" y="250.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_021_di" bpmnElement="Task_AOB_021" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="3960" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_022_di" bpmnElement="Task_AOB_022" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="4140" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_023_di" bpmnElement="Task_AOB_023" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="4320" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_024_di" bpmnElement="Task_AOB_024" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="4500" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_025_di" bpmnElement="Task_AOB_025" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="4680" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_026_di" bpmnElement="Task_AOB_026" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="4860" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_027_di" bpmnElement="Task_AOB_027" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="5040" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_028_di" bpmnElement="Task_AOB_028" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="5220" y="610.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AOB_029_di" bpmnElement="Task_AOB_029" bioc:fill="#DAE8FC" bioc:stroke="#6C8EBF">
+        <dc:Bounds x="5400" y="250.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="EndEvent_1" bioc:fill="#F8CECC" bioc:stroke="#B85450">
+        <dc:Bounds x="5580" y="632.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_ApprovalApproved_di" bpmnElement="Event_ApprovalApproved" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="5760" y="452.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_ApprovalRejected_di" bpmnElement="Event_ApprovalRejected" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="5940" y="452.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_ApprovalWithdrawn_di" bpmnElement="Event_ApprovalWithdrawn" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="6120" y="452.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_ApprovalTimeout_di" bpmnElement="Event_ApprovalTimeout" bioc:fill="#FFF2CC" bioc:stroke="#D6B656">
+        <dc:Bounds x="6300" y="452.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ApprovalEscalation_di" bpmnElement="Task_ApprovalEscalation" bioc:fill="#D5E8D4" bioc:stroke="#82B366">
+        <dc:Bounds x="6480" y="430.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IngestionStatus_di" bpmnElement="Gateway_IngestionStatus" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="6660" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_RetryAllowed_di" bpmnElement="Gateway_RetryAllowed" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="6840" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_SpecialistOutcome_di" bpmnElement="Gateway_SpecialistOutcome" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="7020" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_RemediationAttempts_di" bpmnElement="Gateway_RemediationAttempts" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="7200" y="265.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RemediationEscalation_di" bpmnElement="Task_RemediationEscalation" bioc:fill="#D5E8D4" bioc:stroke="#82B366">
+        <dc:Bounds x="7380" y="250.0" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_CheckerOutcome_di" bpmnElement="Gateway_CheckerOutcome" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="7560" y="265.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_PublishSplit_di" bpmnElement="Gateway_PublishSplit" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="7740" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_PublishJoin_di" bpmnElement="Gateway_PublishJoin" bioc:fill="#FFE6CC" bioc:stroke="#D79B00">
+        <dc:Bounds x="7920" y="625.0" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_Withdrawn_di" bpmnElement="End_Withdrawn" bioc:fill="#F8CECC" bioc:stroke="#B85450">
+        <dc:Bounds x="8100" y="92.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_ParkedTechnical_di" bpmnElement="End_ParkedTechnical" bioc:fill="#F8CECC" bioc:stroke="#B85450">
+        <dc:Bounds x="8280" y="632.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_ParkedRemediation_di" bpmnElement="End_ParkedRemediation" bioc:fill="#F8CECC" bioc:stroke="#B85450">
+        <dc:Bounds x="8460" y="272.0" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_001_di" bpmnElement="Flow_001" bioc:stroke="#475569">
+        <di:waypoint x="198.0" y="110.0" />
+        <di:waypoint x="430.0" y="110.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_002_di" bpmnElement="Flow_002" bioc:stroke="#475569">
+        <di:waypoint x="430.0" y="110.0" />
+        <di:waypoint x="610.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_003_di" bpmnElement="Flow_003" bioc:stroke="#475569">
+        <di:waypoint x="610.0" y="290.0" />
+        <di:waypoint x="745.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_004_di" bpmnElement="Flow_004" bioc:stroke="#475569">
+        <di:waypoint x="745.0" y="290.0" />
+        <di:waypoint x="970.0" y="110.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_005_di" bpmnElement="Flow_005" bioc:stroke="#475569">
+        <di:waypoint x="745.0" y="290.0" />
+        <di:waypoint x="1150.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_006_di" bpmnElement="Flow_006" bioc:stroke="#475569">
+        <di:waypoint x="970.0" y="110.0" />
+        <di:waypoint x="430.0" y="110.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_007_di" bpmnElement="Flow_007" bioc:stroke="#475569">
+        <di:waypoint x="1150.0" y="470.0" />
+        <di:waypoint x="1285.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_008_di" bpmnElement="Flow_008" bioc:stroke="#475569">
+        <di:waypoint x="1285.0" y="470.0" />
+        <di:waypoint x="5778.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_009_di" bpmnElement="Flow_009" bioc:stroke="#475569">
+        <di:waypoint x="1285.0" y="470.0" />
+        <di:waypoint x="5958.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_010_di" bpmnElement="Flow_010" bioc:stroke="#475569">
+        <di:waypoint x="1285.0" y="470.0" />
+        <di:waypoint x="6138.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_011_di" bpmnElement="Flow_011" bioc:stroke="#475569">
+        <di:waypoint x="1285.0" y="470.0" />
+        <di:waypoint x="6318.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_012_di" bpmnElement="Flow_012" bioc:stroke="#475569">
+        <di:waypoint x="5778.0" y="470.0" />
+        <di:waypoint x="1510.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_013_di" bpmnElement="Flow_013" bioc:stroke="#475569">
+        <di:waypoint x="5958.0" y="470.0" />
+        <di:waypoint x="970.0" y="110.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_014_di" bpmnElement="Flow_014" bioc:stroke="#475569">
+        <di:waypoint x="6138.0" y="470.0" />
+        <di:waypoint x="8118.0" y="110.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_015_di" bpmnElement="Flow_015" bioc:stroke="#475569">
+        <di:waypoint x="6318.0" y="470.0" />
+        <di:waypoint x="6550.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_016_di" bpmnElement="Flow_016" bioc:stroke="#475569">
+        <di:waypoint x="6550.0" y="470.0" />
+        <di:waypoint x="1285.0" y="470.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_017_di" bpmnElement="Flow_017" bioc:stroke="#475569">
+        <di:waypoint x="1510.0" y="290.0" />
+        <di:waypoint x="1690.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_018_di" bpmnElement="Flow_018" bioc:stroke="#475569">
+        <di:waypoint x="1690.0" y="650.0" />
+        <di:waypoint x="1870.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_019_di" bpmnElement="Flow_019" bioc:stroke="#475569">
+        <di:waypoint x="1870.0" y="650.0" />
+        <di:waypoint x="6685.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_020_di" bpmnElement="Flow_020" bioc:stroke="#475569">
+        <di:waypoint x="6685.0" y="650.0" />
+        <di:waypoint x="2185.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_021_di" bpmnElement="Flow_021" bioc:stroke="#475569">
+        <di:waypoint x="6685.0" y="650.0" />
+        <di:waypoint x="2050.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_022_di" bpmnElement="Flow_022" bioc:stroke="#475569">
+        <di:waypoint x="2050.0" y="650.0" />
+        <di:waypoint x="6865.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_023_di" bpmnElement="Flow_023" bioc:stroke="#475569">
+        <di:waypoint x="6865.0" y="650.0" />
+        <di:waypoint x="1870.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_024_di" bpmnElement="Flow_024" bioc:stroke="#475569">
+        <di:waypoint x="6865.0" y="650.0" />
+        <di:waypoint x="8298.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_025_di" bpmnElement="Flow_025" bioc:stroke="#475569">
+        <di:waypoint x="2185.0" y="650.0" />
+        <di:waypoint x="2410.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_026_di" bpmnElement="Flow_026" bioc:stroke="#475569">
+        <di:waypoint x="2185.0" y="650.0" />
+        <di:waypoint x="2590.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_027_di" bpmnElement="Flow_027" bioc:stroke="#475569">
+        <di:waypoint x="2185.0" y="650.0" />
+        <di:waypoint x="2770.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_028_di" bpmnElement="Flow_028" bioc:stroke="#475569">
+        <di:waypoint x="2410.0" y="650.0" />
+        <di:waypoint x="2905.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_029_di" bpmnElement="Flow_029" bioc:stroke="#475569">
+        <di:waypoint x="2590.0" y="650.0" />
+        <di:waypoint x="2905.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_030_di" bpmnElement="Flow_030" bioc:stroke="#475569">
+        <di:waypoint x="2770.0" y="650.0" />
+        <di:waypoint x="2905.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_031_di" bpmnElement="Flow_031" bioc:stroke="#475569">
+        <di:waypoint x="2905.0" y="650.0" />
+        <di:waypoint x="3085.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_032_di" bpmnElement="Flow_032" bioc:stroke="#475569">
+        <di:waypoint x="3085.0" y="650.0" />
+        <di:waypoint x="3310.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_033_di" bpmnElement="Flow_033" bioc:stroke="#475569">
+        <di:waypoint x="3085.0" y="650.0" />
+        <di:waypoint x="3445.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_034_di" bpmnElement="Flow_034" bioc:stroke="#475569">
+        <di:waypoint x="3310.0" y="650.0" />
+        <di:waypoint x="7045.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_035_di" bpmnElement="Flow_035" bioc:stroke="#475569">
+        <di:waypoint x="7045.0" y="650.0" />
+        <di:waypoint x="3445.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_036_di" bpmnElement="Flow_036" bioc:stroke="#475569">
+        <di:waypoint x="7045.0" y="650.0" />
+        <di:waypoint x="3670.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_037_di" bpmnElement="Flow_037" bioc:stroke="#475569">
+        <di:waypoint x="3445.0" y="650.0" />
+        <di:waypoint x="3850.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_038_di" bpmnElement="Flow_038" bioc:stroke="#475569">
+        <di:waypoint x="3445.0" y="650.0" />
+        <di:waypoint x="3670.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_039_di" bpmnElement="Flow_039" bioc:stroke="#475569">
+        <di:waypoint x="3670.0" y="290.0" />
+        <di:waypoint x="7225.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_040_di" bpmnElement="Flow_040" bioc:stroke="#475569">
+        <di:waypoint x="7225.0" y="290.0" />
+        <di:waypoint x="2185.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_041_di" bpmnElement="Flow_041" bioc:stroke="#475569">
+        <di:waypoint x="7225.0" y="290.0" />
+        <di:waypoint x="7450.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_042_di" bpmnElement="Flow_042" bioc:stroke="#475569">
+        <di:waypoint x="7450.0" y="290.0" />
+        <di:waypoint x="8478.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_043_di" bpmnElement="Flow_043" bioc:stroke="#475569">
+        <di:waypoint x="3850.0" y="290.0" />
+        <di:waypoint x="7585.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_044_di" bpmnElement="Flow_044" bioc:stroke="#475569">
+        <di:waypoint x="7585.0" y="290.0" />
+        <di:waypoint x="4030.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_045_di" bpmnElement="Flow_045" bioc:stroke="#475569">
+        <di:waypoint x="7585.0" y="290.0" />
+        <di:waypoint x="3670.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_046_di" bpmnElement="Flow_046" bioc:stroke="#475569">
+        <di:waypoint x="4030.0" y="650.0" />
+        <di:waypoint x="4210.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_047_di" bpmnElement="Flow_047" bioc:stroke="#475569">
+        <di:waypoint x="4210.0" y="650.0" />
+        <di:waypoint x="4390.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_048_di" bpmnElement="Flow_048" bioc:stroke="#475569">
+        <di:waypoint x="4390.0" y="650.0" />
+        <di:waypoint x="7765.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_049_di" bpmnElement="Flow_049" bioc:stroke="#475569">
+        <di:waypoint x="7765.0" y="650.0" />
+        <di:waypoint x="4570.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_050_di" bpmnElement="Flow_050" bioc:stroke="#475569">
+        <di:waypoint x="7765.0" y="650.0" />
+        <di:waypoint x="4750.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_051_di" bpmnElement="Flow_051" bioc:stroke="#475569">
+        <di:waypoint x="7765.0" y="650.0" />
+        <di:waypoint x="4930.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_052_di" bpmnElement="Flow_052" bioc:stroke="#475569">
+        <di:waypoint x="4570.0" y="650.0" />
+        <di:waypoint x="7945.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_053_di" bpmnElement="Flow_053" bioc:stroke="#475569">
+        <di:waypoint x="4750.0" y="650.0" />
+        <di:waypoint x="7945.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_054_di" bpmnElement="Flow_054" bioc:stroke="#475569">
+        <di:waypoint x="4930.0" y="650.0" />
+        <di:waypoint x="7945.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_055_di" bpmnElement="Flow_055" bioc:stroke="#475569">
+        <di:waypoint x="7945.0" y="650.0" />
+        <di:waypoint x="5110.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_056_di" bpmnElement="Flow_056" bioc:stroke="#475569">
+        <di:waypoint x="5110.0" y="650.0" />
+        <di:waypoint x="5290.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_057_di" bpmnElement="Flow_057" bioc:stroke="#475569">
+        <di:waypoint x="5290.0" y="650.0" />
+        <di:waypoint x="5470.0" y="290.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_058_di" bpmnElement="Flow_058" bioc:stroke="#475569">
+        <di:waypoint x="5470.0" y="290.0" />
+        <di:waypoint x="5598.0" y="650.0" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

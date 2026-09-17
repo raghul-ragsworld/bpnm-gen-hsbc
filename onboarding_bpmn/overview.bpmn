@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Overview-Definitions" targetNamespace="urn:onboarding:overview">
+  <bpmn:process id="Overview-Process" name="Onboarding - summary abstraction" isExecutable="false">
+    <bpmn:documentation>Non-executable summary abstraction, not a substitute for the authoritative 56-node model. Collapsed phases have no executable internals here. Remediation and Checker are alternative routes: issues enter AOB-019 and return to validation; passed validation enters AOB-020. Checker rejection is unspecified. AOB-014 enrichment dependency remains unresolved.</bpmn:documentation>
+    <bpmn:startEvent id="Overview-Start" name="Request">
+      <bpmn:outgoing>Overview-Flow-01</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:subProcess id="intake" name="Intake&#10;AOB-001 to AOB-004">
+      <bpmn:documentation>{"phase": "intake", "first": 1, "last": 4, "summary_only": true}</bpmn:documentation>
+      <bpmn:incoming>Overview-Flow-01</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-02</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="approval" name="Approval &amp; Draft&#10;AOB-005 to AOB-007">
+      <bpmn:documentation>{"phase": "approval", "first": 5, "last": 7, "summary_only": true}</bpmn:documentation>
+      <bpmn:incoming>Overview-Flow-02</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-03</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:exclusiveGateway id="Approval-Result" name="" gatewayDirection="Diverging">
+      <bpmn:incoming>Overview-Flow-03</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-04</bpmn:outgoing>
+      <bpmn:outgoing>Overview-Flow-05</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:subProcess id="validation" name="Ingestion &amp; Validation&#10;AOB-008 to AOB-018">
+      <bpmn:documentation>{"phase": "validation", "first": 8, "last": 18, "summary_only": true}</bpmn:documentation>
+      <bpmn:incoming>Overview-Flow-04</bpmn:incoming>
+      <bpmn:incoming>Overview-Flow-11</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-06</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:exclusiveGateway id="Validation-Result" name="" gatewayDirection="Diverging">
+      <bpmn:incoming>Overview-Flow-06</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-07</bpmn:outgoing>
+      <bpmn:outgoing>Overview-Flow-08</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:subProcess id="controls" name="Remediation OR Checker&#10;AOB-019 / AOB-020">
+      <bpmn:documentation>{"phase": "controls", "first": 19, "last": 20, "summary_only": true}</bpmn:documentation>
+      <bpmn:incoming>Overview-Flow-07</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-09</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:exclusiveGateway id="Controls-Result" name="" gatewayDirection="Diverging">
+      <bpmn:incoming>Overview-Flow-09</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-10</bpmn:outgoing>
+      <bpmn:outgoing>Overview-Flow-11</bpmn:outgoing>
+      <bpmn:outgoing>Overview-Flow-12</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:subProcess id="publication" name="Publication &amp; Completion&#10;AOB-021 to AOB-029">
+      <bpmn:documentation>{"phase": "publication", "first": 21, "last": 29, "summary_only": true}</bpmn:documentation>
+      <bpmn:incoming>Overview-Flow-10</bpmn:incoming>
+      <bpmn:outgoing>Overview-Flow-13</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:endEvent id="Overview-Success" name="Complete">
+      <bpmn:incoming>Overview-Flow-13</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Overview-Rejected" name="Rejected / withdrawn">
+      <bpmn:incoming>Overview-Flow-05</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Overview-Technical" name="Technical parked">
+      <bpmn:incoming>Overview-Flow-08</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Overview-Parked" name="Escalated / parked">
+      <bpmn:incoming>Overview-Flow-12</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Overview-Flow-01" sourceRef="Overview-Start" targetRef="intake" name=""/>
+    <bpmn:sequenceFlow id="Overview-Flow-02" sourceRef="intake" targetRef="approval" name=""/>
+    <bpmn:sequenceFlow id="Overview-Flow-03" sourceRef="approval" targetRef="Approval-Result" name=""/>
+    <bpmn:sequenceFlow id="Overview-Flow-04" sourceRef="Approval-Result" targetRef="validation" name="Approved / resolved">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Approved / resolved</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Overview-Flow-05" sourceRef="Approval-Result" targetRef="Overview-Rejected" name="Reject / withdraw">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Reject / withdraw</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Overview-Flow-06" sourceRef="validation" targetRef="Validation-Result" name=""/>
+    <bpmn:sequenceFlow id="Overview-Flow-07" sourceRef="Validation-Result" targetRef="controls" name="Pass / issues">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Pass / issues</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Overview-Flow-08" sourceRef="Validation-Result" targetRef="Overview-Technical" name="Retries spent">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Retries spent</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Overview-Flow-09" sourceRef="controls" targetRef="Controls-Result" name=""/>
+    <bpmn:sequenceFlow id="Overview-Flow-10" sourceRef="Controls-Result" targetRef="publication" name="Checker approved">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Checker approved</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Overview-Flow-11" sourceRef="Controls-Result" targetRef="validation" name="Remediated: revalidate">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Remediated: revalidate</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Overview-Flow-12" sourceRef="Controls-Result" targetRef="Overview-Parked" name="Attempt 3 / SLA breach">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Attempt 3 / SLA breach</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Overview-Flow-13" sourceRef="publication" targetRef="Overview-Success" name=""/>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Overview-Diagram">
+    <bpmndi:BPMNPlane id="Overview-Plane" bpmnElement="Overview-Process">
+      <bpmndi:BPMNShape id="Shape-Overview-Start" bpmnElement="Overview-Start" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="40" y="140" width="40" height="40"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="20" y="60" width="120" height="60"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-intake" bpmnElement="intake" isExpanded="false" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="160" y="100" width="240" height="120"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-approval" bpmnElement="approval" isExpanded="false" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="480" y="100" width="240" height="120"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Approval-Result" bpmnElement="Approval-Result" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="800" y="140" width="40" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-validation" bpmnElement="validation" isExpanded="false" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="960" y="100" width="240" height="120"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Validation-Result" bpmnElement="Validation-Result" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="1060" y="300" width="40" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-controls" bpmnElement="controls" isExpanded="false" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="960" y="460" width="240" height="120"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Controls-Result" bpmnElement="Controls-Result" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="800" y="500" width="40" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-publication" bpmnElement="publication" isExpanded="false" bioc:fill="#FFFFFF" bioc:stroke="#000000">
+        <dc:Bounds x="480" y="460" width="240" height="120"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Overview-Success" bpmnElement="Overview-Success" bioc:fill="#216E39" bioc:stroke="#FFFFFF">
+        <dc:Bounds x="320" y="500" width="40" height="40"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="200" y="560" width="200" height="60"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Overview-Rejected" bpmnElement="Overview-Rejected" bioc:fill="#EF9292" bioc:stroke="#000000">
+        <dc:Bounds x="800" y="300" width="40" height="40"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="740" y="340" width="160" height="60"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Overview-Technical" bpmnElement="Overview-Technical" bioc:fill="#EF9292" bioc:stroke="#000000">
+        <dc:Bounds x="1260" y="300" width="40" height="40"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1200" y="360" width="200" height="60"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape-Overview-Parked" bpmnElement="Overview-Parked" bioc:fill="#EF9292" bioc:stroke="#000000">
+        <dc:Bounds x="800" y="680" width="40" height="40"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="860" y="680" width="200" height="60"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-01" bpmnElement="Overview-Flow-01">
+        <di:waypoint x="80" y="160"/>
+        <di:waypoint x="160" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-02" bpmnElement="Overview-Flow-02">
+        <di:waypoint x="400" y="160"/>
+        <di:waypoint x="480" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-03" bpmnElement="Overview-Flow-03">
+        <di:waypoint x="720" y="160"/>
+        <di:waypoint x="800" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-04" bpmnElement="Overview-Flow-04">
+        <di:waypoint x="840" y="160"/>
+        <di:waypoint x="960" y="160"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="840" y="180" width="120" height="100"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-05" bpmnElement="Overview-Flow-05">
+        <di:waypoint x="820" y="180"/>
+        <di:waypoint x="820" y="300"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="620" y="240" width="180" height="40"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-06" bpmnElement="Overview-Flow-06">
+        <di:waypoint x="1080" y="220"/>
+        <di:waypoint x="1080" y="300"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-07" bpmnElement="Overview-Flow-07">
+        <di:waypoint x="1080" y="340"/>
+        <di:waypoint x="1080" y="460"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1100" y="420" width="260" height="40"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-08" bpmnElement="Overview-Flow-08">
+        <di:waypoint x="1100" y="320"/>
+        <di:waypoint x="1260" y="320"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1120" y="240" width="240" height="60"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-09" bpmnElement="Overview-Flow-09">
+        <di:waypoint x="960" y="520"/>
+        <di:waypoint x="840" y="520"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-10" bpmnElement="Overview-Flow-10">
+        <di:waypoint x="800" y="520"/>
+        <di:waypoint x="720" y="520"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="480" y="600" width="240" height="40"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-11" bpmnElement="Overview-Flow-11">
+        <di:waypoint x="820" y="500"/>
+        <di:waypoint x="820" y="420"/>
+        <di:waypoint x="440" y="420"/>
+        <di:waypoint x="440" y="20"/>
+        <di:waypoint x="1080" y="20"/>
+        <di:waypoint x="1080" y="100"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="460" y="320" width="260" height="80"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-12" bpmnElement="Overview-Flow-12">
+        <di:waypoint x="820" y="540"/>
+        <di:waypoint x="820" y="680"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="840" y="600" width="220" height="60"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge-Overview-Flow-13" bpmnElement="Overview-Flow-13">
+        <di:waypoint x="480" y="520"/>
+        <di:waypoint x="360" y="520"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,58 @@
+{
+  "source": "C:\\Users\\raghu\\OneDrive\\Desktop\\Hackathon\\Synthetic_Hackathon_Data_10.xlsx",
+  "source_sha256": "a55b15435a702802bbc3d5dbeefbedb8438ae35af66f55d3646c1585ddcaa8e3",
+  "normalized_workbook": "Synthetic_Hackathon_Data_10_normalized.xlsx",
+  "source_preserved": true,
+  "structural_validation": "PASS",
+  "normalization_validation": "PASS",
+  "excel_round_trip_validation": "PASS",
+  "bpmn_execution_readiness": "NEEDS_BUSINESS_CONFIRMATION",
+  "bpmn_xml_and_render_validation": "NOT_RUN_NO_DIAGRAMS_GENERATED",
+  "source_counts": {
+    "Process": 20,
+    "Process Step": 580,
+    "Process Step Detail": 1240,
+    "Process Step Data": 1520,
+    "Application": 13,
+    "Attribute Catalogue": 44,
+    "Step Application Mapping": 300,
+    "Step Attribute Mapping": 1520,
+    "Process ID Mapping": 20,
+    "Source Process": 20,
+    "Generation Notes": 16
+  },
+  "changed_cells": 2340,
+  "changes_by_column": {
+    "Process Step Owner": 1140,
+    "RACI": 1180,
+    "Detail Type": 20
+  },
+  "normalized_steps": 580,
+  "raci_variants": 620,
+  "issue_counts": {
+    "APPROVAL_WAIT_MODEL": 20,
+    "ATTRIBUTE_ALIAS": 20,
+    "CHECKER_REJECTION": 20,
+    "INCIDENT_APPLICATION": 60,
+    "MISSING_APPLICATION": 300,
+    "NO_DATA_MAPPING": 120,
+    "NO_EXPLICIT_FLOW_TABLE": 20,
+    "PARALLEL_DATA_DEPENDENCY": 20,
+    "RACI_CONFIRMATION": 160,
+    "REMEDIATION_OUTCOMES": 20,
+    "SYNTHETIC_TEMPLATE": 20,
+    "TAX_RULE_VOCABULARY": 20
+  },
+  "structural_errors": [],
+  "rules": [
+    "Source sheets retained; edits fully logged; original owner/RACI/detail columns preserved.",
+    "Existing 20 variants remain distinct; no source rows removed.",
+    "People lanes use human teams; Maker/Checker duties stay separate.",
+    "Application names, IDs, qualifiers and existing mapping rows remain unchanged.",
+    "Mutually exclusive TRUE/otherwise tax branches use XOR, not inclusive OR.",
+    "Missing apps/data stay missing; no new hosting assignments or BDEs invented.",
+    "Control references are not a complete BPMN flow graph; display order is not execution order.",
+    "Prior process-specific timeout/parking decisions are not silently approved for every variant.",
+    "Source PDF/hash claims are retained but not independently verified against unavailable documents."
+  ]
+}

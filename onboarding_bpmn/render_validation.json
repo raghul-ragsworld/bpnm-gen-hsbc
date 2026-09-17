@@ -1,0 +1,135 @@
+[
+  {
+    "name": "overview",
+    "warnings": [],
+    "rendered_shapes": 19,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram1_people",
+    "warnings": [],
+    "rendered_shapes": 113,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram2_technology",
+    "warnings": [],
+    "rendered_shapes": 113,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram3_combined",
+    "warnings": [],
+    "rendered_shapes": 137,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram1_people_intake",
+    "warnings": [],
+    "rendered_shapes": 14,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram2_technology_intake",
+    "warnings": [],
+    "rendered_shapes": 12,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram3_combined_intake",
+    "warnings": [],
+    "rendered_shapes": 17,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram1_people_approval",
+    "warnings": [],
+    "rendered_shapes": 29,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram2_technology_approval",
+    "warnings": [],
+    "rendered_shapes": 28,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram3_combined_approval",
+    "warnings": [],
+    "rendered_shapes": 33,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram1_people_validation",
+    "warnings": [],
+    "rendered_shapes": 39,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram2_technology_validation",
+    "warnings": [],
+    "rendered_shapes": 38,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram3_combined_validation",
+    "warnings": [],
+    "rendered_shapes": 48,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram1_people_controls",
+    "warnings": [],
+    "rendered_shapes": 19,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram2_technology_controls",
+    "warnings": [],
+    "rendered_shapes": 18,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram3_combined_controls",
+    "warnings": [],
+    "rendered_shapes": 22,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram1_people_publication",
+    "warnings": [],
+    "rendered_shapes": 29,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram2_technology_publication",
+    "warnings": [],
+    "rendered_shapes": 31,
+    "label_overflows": [],
+    "svg_saved": true
+  },
+  {
+    "name": "diagram3_combined_publication",
+    "warnings": [],
+    "rendered_shapes": 38,
+    "label_overflows": [],
+    "svg_saved": true
+  }
+]

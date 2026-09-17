@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Serve standalone BPMN Generator",
+			"type": "shell",
+			"command": "npm",
+			"args": ["--prefix", "${workspaceFolder}/web", "run", "dev"],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

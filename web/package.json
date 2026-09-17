@@ -1,0 +1,38 @@
+{
+  "name": "bpmn-generator",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3010",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3010",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "sync:bpmn": "node scripts/sync-bpmn.mjs",
+    "sync:workflows": "node scripts/sync-workflows.mjs",
+    "validate:workflows": "node scripts/validate-workflows.mjs",
+    "test:workflows": "node --test scripts/workflow-quality.test.mjs scripts/process-workflow.test.mjs scripts/template-bpmn.test.mjs"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^3.1.1",
+    "bpmn-js": "^18.28.0",
+    "bpmn-moddle": "^10.2.0",
+    "lucide-react": "^0.544.0",
+    "next": "16.0.10",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "read-excel-file": "^9.3.10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.30.0",
+    "eslint-config-next": "16.0.10",
+    "playwright": "^1.63.0",
+    "typescript": "^5.9.3"
+  }
+}

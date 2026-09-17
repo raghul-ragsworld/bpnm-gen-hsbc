@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sample Process Onboarding</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #17231c; font: 16px Georgia, serif; background: #f6f8f7; height: 100dvh; display: flex; flex-direction: column; }
+    header { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 20px; border-bottom: 1px solid #cad3cc; background: #fff; }
+    h1 { font-size: 18px; margin: 0 18px 0 0; }
+    select, button { padding: 8px 12px; border: 1px solid #96a69c; border-radius: 4px; background: white; color: inherit; font: inherit; max-width: 100%; }
+    button { min-width: 40px; cursor: pointer; }
+    #status { font: 12px monospace; }
+    main { display: grid; grid-template-columns: minmax(0, 1fr); flex: 1; min-height: 0; }
+    body[data-raci="true"]:not([data-overview="true"]) main { grid-template-columns: minmax(0, 1fr) 400px; }
+    body:not([data-raci="true"]) aside { display: none; }
+    .panel-toggle { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+    #canvas { min-width: 0; min-height: 0; background-image: radial-gradient(#dce3df 1px, transparent 1px); background-size: 20px 20px; }
+    #canvas .djs-container { cursor: grab; }
+    #canvas .djs-container:active { cursor: grabbing; }
+    aside { overflow: auto; padding: 24px; border-left: 1px solid #cad3cc; background: #fff; overflow-wrap: anywhere; }
+    aside h2 { margin: 0 0 20px; font-size: 22px; }
+    aside h3 { font-size: 18px; line-height: 1.5; margin: 20px 0 12px; }
+    aside p { line-height: 1.5; }
+    .raci-variant { padding: 16px 0; border-top: 1px solid #cad3cc; }
+    dl { margin: 0; display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px 12px; line-height: 1.5; }
+    dt { font-weight: bold; color: #285840; }
+    dd { margin: 0; }
+    details { margin-top: 18px; font-size: 14px; line-height: 1.6; }
+    summary { cursor: pointer; }
+    #zoom-level { font: 14px monospace; min-width: 5ch; text-align: center; }
+    body[data-overview="true"] main { grid-template-columns: minmax(0, 1fr); }
+    body[data-overview="true"] aside { display: none; }
+    #canvas .djs-element[data-element-id="intake"], #canvas .djs-element[data-element-id="approval"],
+    #canvas .djs-element[data-element-id="validation"], #canvas .djs-element[data-element-id="controls"],
+    #canvas .djs-element[data-element-id="publication"] { cursor: pointer; }
+    .step-heading { text-align: left; border: 0; padding: 0; font-weight: bold; line-height: 1.5; }
+    .context { font-size: 14px; color: #58625c; }
+    @media (max-width: 850px) {
+      header { padding: 12px; gap: 8px; }
+      h1 { width: 100%; }
+      body[data-raci="true"]:not([data-overview="true"]) main { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 0.8fr); }
+      aside { border-left: 0; border-top: 1px solid #cad3cc; padding: 20px; }
+    }
+    .bjs-powered-by { display: none; }
+    .bjs-drilldown { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sample Process Onboarding</h1>
+    <select id="view" aria-label="Diagram view"><option value="overview">Process overview</option><option value="diagram1_people">People</option><option value="diagram2_technology">Technology</option><option value="diagram3_combined">Combined</option></select>
+    <select id="phase" aria-label="Process phase"><option value="overview">Overview</option><option value="full">Full model</option></select>
+    <select id="step" aria-label="Process step"><option value="">Whole diagram</option></select>
+    <button id="zoom-out" title="Zoom out (Ctrl + wheel down)" aria-label="Zoom out">-</button>
+    <button id="zoom-in" title="Zoom in (Ctrl + wheel up)" aria-label="Zoom in">+</button>
+    <output id="zoom-level" aria-label="Diagram zoom">100%</output>
+    <button id="actual-size" title="Show selected or first step at 100% zoom">Readable</button>
+    <button id="fit" title="Fit the entire diagram; labels may become small">Fit all</button>
+    <label class="panel-toggle"><input id="raci-toggle" type="checkbox" aria-controls="raci-panel">RACI</label>
+    <span id="status" role="status">Rendering</span>
+  </header>
+  <main>
+    <div id="canvas" title="Drag to pan. Scroll to pan. Ctrl + scroll to zoom." aria-label="Process diagram"></div>
+    <aside id="raci-panel" aria-label="Workflow RACI"><h2>Workflow RACI</h2><div id="raci" aria-live="polite"></div></aside>
+  </main>
+  <script src="assets/bpmn-navigated-viewer.js"></script>
+  <script>
+    let viewer;
+    let overviewRenderer;
+    let navigation;
+    let currentName;
+    let loading = false;
+    let detailView = 'diagram1_people';
+    let fitMode = true;
+    let fitAll = false;
+    const source = {};
+    const reports = [];
+    const phaseSelect = document.getElementById('phase');
+    const viewSelect = document.getElementById('view');
+    const stepSelect = document.getElementById('step');
+    for (let number = 1; number <= 29; number++) {
+      const identifier = `AOB-${String(number).padStart(3, '0')}`;
+      stepSelect.add(new Option(identifier, identifier));
+    }
+    stepSelect.value = '';
+    function activePhase() {
+      return navigation?.phases.find(phase => phase.id === phaseSelect.value);
+    }
+    function bindViewer() {
+      viewer.on('canvas.viewbox.changed', event => {
+        document.getElementById('zoom-level').textContent = `${Math.round(event.viewbox.scale * 100)}%`;
+      });
+      viewer.on('element.click', event => {
+        if (loading) return;
+        const identifier = event.element.labelTarget?.id || event.element.id;
+        if (navigation.phases.some(phase => phase.id === identifier)) {
+          phaseSelect.value = identifier;
+          stepSelect.value = '';
+          showSelection();
+        } else if (/^AOB-\d{3}$/.test(identifier)) {
+          selectStep(identifier);
+        }
+      });
+    }
+    async function importDiagram(name) {
+      const overview = name === 'overview';
+      if (!viewer || overviewRenderer !== overview) {
+        viewer?.destroy();
+        viewer = new BpmnJS({ container: '#canvas', bpmnRenderer: { defaultLabelColor: '#17231c' },
+          textRenderer: { defaultStyle: { fontFamily: 'Georgia', fontSize: overview ? 20 : 18 }, externalStyle: { fontFamily: 'Georgia', fontSize: 16 } }
+        });
+        overviewRenderer = overview;
+        bindViewer();
+      }
+      currentName = name;
+      const result = await viewer.importXML(source[name]);
+      window.viewer = viewer;
+      return result;
+    }
+    function appendText(parent, tag, text) {
+      const child = document.createElement(tag);
+      child.textContent = text;
+      parent.append(child);
+      return child;
+    }
+    function showRaci() {
+      const panel = document.getElementById('raci');
+      panel.replaceChildren();
+      const registry = viewer.get('elementRegistry');
+      const phase = activePhase();
+      document.querySelector('aside h2').textContent = phase ? `${phase.title}: Workflow RACI` : 'Workflow RACI';
+      if (phase) appendText(panel, 'p', 'Adjacent context: ' + phase.context.join(', ')).className = 'context';
+      const identifiers = stepSelect.value ? [stepSelect.value] : Array.from({ length: 29 }, (_, index) => `AOB-${String(index + 1).padStart(3, '0')}`).filter(identifier => !phase || phase.members.includes(identifier));
+      for (const identifier of identifiers) {
+        const target = registry.get(identifier);
+        const documentation = target?.businessObject.documentation?.[0]?.text;
+        if (!documentation) continue;
+        const record = JSON.parse(documentation);
+        const heading = appendText(panel, 'h3', '');
+        const stepButton = appendText(heading, 'button', `${identifier}: ${record.step['Process Step']}`);
+        stepButton.className = 'step-heading';
+        stepButton.addEventListener('click', () => selectStep(identifier));
+        const normalized = record.normalized;
+        if (viewSelect.value !== 'diagram1_people') {
+          appendText(panel, 'p', `Application: ${normalized?.application || 'Not specified in source'}`);
+          if (normalized?.application_basis !== 'source') appendText(panel, 'p', 'Proposed application assignment; confirmation required.');
+        }
+        const variants = new Map();
+        for (const detail of record.details) {
+          const key = JSON.stringify([detail['Process Step Owner'], detail.RACI]);
+          if (!variants.has(key)) {
+            const assignment = normalized?.raci[variants.size];
+            variants.set(key, { owner: normalized?.team || detail['Process Step Owner'],
+              raci: assignment ? Object.entries(assignment.assignments).map(([role, team]) => `${role}=${team}`).join(',') : detail.RACI,
+              duty: assignment?.duty, sourceOwner: detail['Process Step Owner'], sourceRaci: detail.RACI, types: new Set() });
+          }
+          variants.get(key).types.add(detail['Detail Type']);
+        }
+        for (const variant of variants.values()) {
+          const section = document.createElement('section');
+          section.className = 'raci-variant';
+          panel.append(section);
+          const list = document.createElement('dl');
+          section.append(list);
+          appendText(list, 'dt', 'Responsible team');
+          appendText(list, 'dd', variant.owner);
+          if (['Maker', 'Checker'].includes(variant.duty)) {
+            appendText(list, 'dt', 'Control duty');
+            appendText(list, 'dd', variant.duty + ' (different individuals for the same record)');
+          }
+          const labels = { R: 'R · Responsible', A: 'A · Accountable', C: 'C · Consulted', I: 'I · Informed' };
+          for (const part of variant.raci.split(',')) {
+            const separator = part.indexOf('=');
+            const key = part.slice(0, separator).trim();
+            appendText(list, 'dt', labels[key] || key);
+            appendText(list, 'dd', part.slice(separator + 1).trim());
+          }
+          const provenance = document.createElement('details');
+          section.append(provenance);
+          appendText(provenance, 'summary', 'Original source and provenance');
+          appendText(provenance, 'p', `Original owner: ${variant.sourceOwner}`);
+          appendText(provenance, 'p', `Original RACI: ${variant.sourceRaci}`);
+          const types = document.createElement('ul');
+          provenance.append(types);
+          for (const type of variant.types) appendText(types, 'li', type);
+        }
+      }
+    }
+    function firstReadableStep() {
+      const registry = viewer.get('elementRegistry');
+      const identifiers = activePhase()?.members || Array.from({ length: 29 }, (_, index) => `AOB-${String(index + 1).padStart(3, '0')}`);
+      return identifiers.find(identifier => /Task$/.test(registry.get(identifier)?.type || '') || registry.get(identifier)?.type === 'bpmn:task') || identifiers[0];
+    }
+    function focusStep(identifier) {
+      const canvas = viewer.get('canvas');
+      fitMode = !identifier;
+      if (!identifier) {
+        const width = document.getElementById('canvas').clientWidth;
+        const height = document.getElementById('canvas').clientHeight;
+        if (!width || !height) return;
+        const box = document.querySelector('#canvas .viewport').getBBox();
+        const scale = Math.min(Math.max(1, width - 32) / box.width, Math.max(1, height - 32) / box.height);
+        if (!fitAll && currentName !== 'overview' && scale < 1) {
+          stepSelect.value = firstReadableStep();
+          focusStep(stepSelect.value);
+          return;
+        }
+        const visibleWidth = width / scale;
+        const visibleHeight = visibleWidth * height / width;
+        canvas.viewbox({ x: box.x + (box.width - visibleWidth) / 2, y: box.y + (box.height - visibleHeight) / 2, width: visibleWidth, height: visibleHeight });
+        return;
+      }
+      const target = viewer.get('elementRegistry').get(identifier);
+      if (!target) { canvas.zoom('fit-viewport'); return; }
+      const width = document.getElementById('canvas').clientWidth;
+      const height = document.getElementById('canvas').clientHeight;
+      const visibleWidth = Math.max(width, 360);
+      const left = Math.min(target.x, target.label?.x ?? target.x);
+      const top = Math.min(target.y, target.label?.y ?? target.y);
+      canvas.viewbox({ x: left - Math.min(160, (visibleWidth - target.width) / 2), y: top - 100, width: visibleWidth, height: height * visibleWidth / width });
+    }
+    async function showSelection() {
+      if (loading) return;
+      loading = true;
+      const overview = phaseSelect.value === 'overview';
+      const phase = activePhase();
+      if (overview) {
+        viewSelect.value = 'overview';
+      } else if (viewSelect.value === 'overview') {
+        viewSelect.value = detailView;
+      }
+      const name = overview ? 'overview' : phase ? phase.views[viewSelect.value] : viewSelect.value;
+      document.body.dataset.overview = String(overview);
+      await importDiagram(name);
+      fitAll = false;
+      focusStep(stepSelect.value);
+      if (!overview) showRaci();
+      const perspective = viewSelect.selectedOptions[0].textContent;
+      document.getElementById('status').textContent = overview ? 'Process overview: summary abstraction' : `${perspective}: ${phase ? 'phase view with adjacent context' : 'authoritative full model'}`;
+      loading = false;
+    }
+    async function selectStep(identifier) {
+      if (loading) return;
+      document.getElementById('raci-toggle').checked = true;
+      document.body.dataset.raci = 'true';
+      stepSelect.value = identifier;
+      if (phaseSelect.value === 'overview' || !viewer.get('elementRegistry').get(identifier)) {
+        const number = Number(identifier.slice(4));
+        phaseSelect.value = navigation.phases.find(phase => number >= phase.first && number <= phase.last).id;
+        await showSelection();
+      } else {
+        focusStep(identifier);
+        showRaci();
+      }
+    }
+    async function renderAll() {
+      loading = true;
+      const saveExports = new URLSearchParams(location.search).get('export') === '1';
+      navigation = await (await fetch('navigation.json', { cache: 'no-store' })).json();
+      for (const phase of navigation.phases) phaseSelect.add(new Option(phase.title, phase.id));
+      for (const name of navigation.diagrams) {
+        source[name] = await (await fetch(`${name}.bpmn`, { cache: 'no-store' })).text();
+        const result = await importDiagram(name);
+        const registry = viewer.get('elementRegistry');
+        const labelOverflows = [];
+        const rendered = registry.getAll().filter(item => !item.labelTarget && !item.waypoints);
+        for (const item of rendered) {
+          if (!/Task$/.test(item.type) && item.type !== 'bpmn:task' && item.type !== 'bpmn:TextAnnotation' && !(item.type === 'bpmn:SubProcess' && item.collapsed)) continue;
+          const visual = registry.getGraphics(item)?.querySelector('.djs-visual');
+          for (const text of visual?.querySelectorAll('text') || []) {
+            const box = text.getBBox();
+            if (box.x < -3 || box.y < -3 || box.x + box.width > item.width + 3 || box.y + box.height > item.height + 3) {
+              labelOverflows.push({ id: item.id, box: { x: box.x, y: box.y, width: box.width, height: box.height }, width: item.width, height: item.height });
+            }
+          }
+        }
+        if (saveExports) {
+          const exported = await viewer.saveSVG();
+          const response = await fetch(`/save/${name}.svg`, { method: 'POST', headers: { 'Content-Type': 'image/svg+xml' }, body: exported.svg });
+          if (!response.ok) throw new Error(`SVG save failed: ${name}`);
+        }
+        reports.push({ name, warnings: result.warnings.map(item => item.message), rendered_shapes: rendered.length, label_overflows: labelOverflows, svg_saved: saveExports });
+      }
+      if (saveExports) {
+        const saved = await fetch('/save/render_validation.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reports, null, 2) });
+        if (!saved.ok) throw new Error('Render report save failed');
+      }
+      loading = false;
+      await showSelection();
+      if (reports.some(report => report.warnings.length || report.label_overflows.length)) document.getElementById('status').textContent = 'Validation issues';
+      window.renderReports = reports;
+    }
+    viewSelect.addEventListener('change', () => {
+      if (viewSelect.value === 'overview') {
+        phaseSelect.value = 'overview';
+        stepSelect.value = '';
+      } else {
+        detailView = viewSelect.value;
+        if (phaseSelect.value === 'overview') {
+          phaseSelect.value = 'full';
+          stepSelect.value = '';
+        }
+      }
+      showSelection();
+    });
+    phaseSelect.addEventListener('change', () => {
+      stepSelect.value = '';
+      showSelection();
+    });
+    stepSelect.addEventListener('change', event => event.target.value ? selectStep(event.target.value) : showSelection());
+    document.getElementById('fit').addEventListener('click', () => {
+      if (loading) return;
+      document.getElementById('raci-toggle').checked = false;
+      document.body.dataset.raci = 'false';
+      stepSelect.value = '';
+      fitAll = true;
+      focusStep('');
+      if (currentName !== 'overview') showRaci();
+    });
+    document.getElementById('actual-size').addEventListener('click', () => {
+      if (loading) return;
+      if (currentName === 'overview') { fitMode = false; viewer.get('canvas').zoom(1); return; }
+      fitAll = false;
+      stepSelect.value = stepSelect.value || firstReadableStep();
+      focusStep(stepSelect.value);
+      showRaci();
+    });
+    document.getElementById('zoom-in').addEventListener('click', () => { if (!loading) { fitMode = false; viewer.get('canvas').zoom(viewer.get('canvas').zoom() * 1.4); } });
+    document.getElementById('zoom-out').addEventListener('click', () => { if (!loading) { fitMode = false; viewer.get('canvas').zoom(viewer.get('canvas').zoom() / 1.4); } });
+    document.getElementById('raci-toggle').addEventListener('change', event => {
+      document.body.dataset.raci = String(event.target.checked);
+    });
+    const canvasElement = document.getElementById('canvas');
+    canvasElement.addEventListener('pointerdown', () => { fitMode = false; });
+    canvasElement.addEventListener('wheel', () => { fitMode = false; }, { passive: true });
+    new ResizeObserver(() => {
+      if (!viewer || loading) return;
+      viewer.get('canvas').resized();
+      if (fitMode) focusStep('');
+    }).observe(canvasElement);
+    renderAll().catch(error => { document.getElementById('status').textContent = error.message; window.renderError = error.message; });
+  </script>
+</body>
+</html>

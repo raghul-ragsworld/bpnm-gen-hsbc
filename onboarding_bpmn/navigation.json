@@ -1,0 +1,194 @@
+{
+  "phases": [
+    {
+      "id": "intake",
+      "title": "Intake",
+      "first": 1,
+      "last": 4,
+      "members": [
+        "AOB-001",
+        "AOB-002",
+        "AOB-003",
+        "AOB-004"
+      ],
+      "context": [
+        "AOB-005"
+      ],
+      "views": {
+        "diagram1_people": "diagram1_people_intake",
+        "diagram2_technology": "diagram2_technology_intake",
+        "diagram3_combined": "diagram3_combined_intake"
+      },
+      "validation": {
+        "xsd_valid": true,
+        "geometry_valid": true,
+        "semantic_process_unchanged": true
+      }
+    },
+    {
+      "id": "approval",
+      "title": "Approval & Draft",
+      "first": 5,
+      "last": 7,
+      "members": [
+        "AOB-005",
+        "AOB-006",
+        "AOB-007",
+        "Approval-Complete",
+        "Approval-Escalation",
+        "Approval-Outcome",
+        "Approval-Received",
+        "Approval-Start",
+        "Approval-Timeout",
+        "Approval-Wait",
+        "Draft-Merge",
+        "Rejection-Complete",
+        "Rejection-Received",
+        "Request-Rejected",
+        "Withdrawal-Complete",
+        "Withdrawal-Received"
+      ],
+      "context": [
+        "AOB-003",
+        "AOB-008"
+      ],
+      "views": {
+        "diagram1_people": "diagram1_people_approval",
+        "diagram2_technology": "diagram2_technology_approval",
+        "diagram3_combined": "diagram3_combined_approval"
+      },
+      "validation": {
+        "xsd_valid": true,
+        "geometry_valid": true,
+        "semantic_process_unchanged": true
+      }
+    },
+    {
+      "id": "validation",
+      "title": "Ingestion & Validation",
+      "first": 8,
+      "last": 18,
+      "members": [
+        "AOB-008",
+        "AOB-009",
+        "AOB-010",
+        "AOB-011",
+        "AOB-012",
+        "AOB-013",
+        "AOB-014",
+        "AOB-015",
+        "AOB-016",
+        "AOB-017",
+        "AOB-018",
+        "Ingest-Merge",
+        "Ingest-Outcome",
+        "Retry-Decision",
+        "Specialist-Outcome",
+        "Technical-Parked",
+        "Validation-Merge"
+      ],
+      "context": [
+        "AOB-007",
+        "AOB-020",
+        "Remediation-Decision",
+        "Remediation-Merge"
+      ],
+      "views": {
+        "diagram1_people": "diagram1_people_validation",
+        "diagram2_technology": "diagram2_technology_validation",
+        "diagram3_combined": "diagram3_combined_validation"
+      },
+      "validation": {
+        "xsd_valid": true,
+        "geometry_valid": true,
+        "semantic_process_unchanged": true
+      }
+    },
+    {
+      "id": "controls",
+      "title": "Remediation & Checker",
+      "first": 19,
+      "last": 20,
+      "members": [
+        "AOB-019",
+        "AOB-020",
+        "Breach-Merge",
+        "Remediation-Decision",
+        "Remediation-Escalation",
+        "Remediation-Timer"
+      ],
+      "context": [
+        "AOB-018",
+        "AOB-021",
+        "Remediation-Merge",
+        "Remediation-Parked",
+        "Validation-Merge"
+      ],
+      "views": {
+        "diagram1_people": "diagram1_people_controls",
+        "diagram2_technology": "diagram2_technology_controls",
+        "diagram3_combined": "diagram3_combined_controls"
+      },
+      "validation": {
+        "xsd_valid": true,
+        "geometry_valid": true,
+        "semantic_process_unchanged": true
+      }
+    },
+    {
+      "id": "publication",
+      "title": "Publication & Completion",
+      "first": 21,
+      "last": 29,
+      "members": [
+        "AOB-021",
+        "AOB-022",
+        "AOB-023",
+        "AOB-024",
+        "AOB-025",
+        "AOB-026",
+        "AOB-027",
+        "AOB-028",
+        "AOB-029",
+        "Delivery-Join",
+        "Delivery-Split",
+        "Remediation-Parked"
+      ],
+      "context": [
+        "AOB-020",
+        "Remediation-Escalation"
+      ],
+      "views": {
+        "diagram1_people": "diagram1_people_publication",
+        "diagram2_technology": "diagram2_technology_publication",
+        "diagram3_combined": "diagram3_combined_publication"
+      },
+      "validation": {
+        "xsd_valid": true,
+        "geometry_valid": true,
+        "semantic_process_unchanged": true
+      }
+    }
+  ],
+  "diagrams": [
+    "overview",
+    "diagram1_people",
+    "diagram2_technology",
+    "diagram3_combined",
+    "diagram1_people_intake",
+    "diagram2_technology_intake",
+    "diagram3_combined_intake",
+    "diagram1_people_approval",
+    "diagram2_technology_approval",
+    "diagram3_combined_approval",
+    "diagram1_people_validation",
+    "diagram2_technology_validation",
+    "diagram3_combined_validation",
+    "diagram1_people_controls",
+    "diagram2_technology_controls",
+    "diagram3_combined_controls",
+    "diagram1_people_publication",
+    "diagram2_technology_publication",
+    "diagram3_combined_publication"
+  ]
+}
